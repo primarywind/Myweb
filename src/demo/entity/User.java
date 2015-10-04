@@ -16,7 +16,7 @@ public class User implements java.io.Serializable {
 	private String nationality;
 	private Timestamp regTime;
 	private Integer level;
-
+	private String pwd;
 	// Constructors
 
 	/** default constructor */
@@ -81,6 +81,14 @@ public class User implements java.io.Serializable {
 
 	public void setLevel(Integer level) {
 		this.level = level;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 }

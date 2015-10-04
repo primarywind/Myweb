@@ -3,6 +3,6 @@ package demo.dao;
 import demo.entity.User;
 
 
-public interface IUserDao {
+public interface UserDao {
 	public void save(User user);
 }

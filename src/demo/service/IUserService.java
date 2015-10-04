@@ -1,7 +1,7 @@
 package demo.service;
 
-import demo.entity.UserInfo;
+import demo.entity.User;
 
 public interface IUserService {
-	public void reg(UserInfo user);
+	public void reg(User user);
 }

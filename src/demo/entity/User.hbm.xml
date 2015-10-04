@@ -25,5 +25,8 @@
         <property name="level" type="java.lang.Integer">
             <column name="level" not-null="true" />
         </property>
+        <property name="pwd" type="java.lang.String">
+            <column name="pwd" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>
