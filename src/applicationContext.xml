@@ -31,7 +31,7 @@
 		<property name="transactionAttributes">
 			<props>
 				<!-- 以下部分为定义事务回滚规则 -->
-				<prop key="insert*">PROPAGATION_REQUIRED,-MyCheckedException</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
 				<prop key="update*">PROPAGATION_REQUIRED</prop>
 				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
 			</props>
