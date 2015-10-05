@@ -19,16 +19,35 @@
 	</bean>
 
 
-	<bean id="userDaoImpl" class="demo.dao.UserDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<!-- 配置userServiceTarget Bean的事务代理 -->
+	<bean id="userService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<!-- 依赖注入PlatformTransactionManager的bean引用，此处使用 Hibernate的bean -->
+		<!-- 局部事务器，传入Hibernate事务管理器的引用 -->
+		<property name="transactionManager" ref="transactionManager" />
+		<!-- 需要生成代理的目标bean -->
+		<property name="target" ref="userServiceTarget" />
+		<!-- 指定事务属性 -->
+		<property name="transactionAttributes">
+			<props>
+				<!-- 以下部分为定义事务回滚规则 -->
+				<prop key="insert*">PROPAGATION_REQUIRED,-MyCheckedException</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
 	</bean>
 
-	<bean id="userServiceImpl" class="demo.service.UserServiceImpl">
+
+	<bean id="userDaoImpl" class="com.myweb.dao.impl.UserDaoImpl">
+	</bean>
+
+	<bean id="userServiceTarget" class="com.myweb.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDaoImpl"></property>
 	</bean>
 
-	<bean id="userAction" class="demo.action.UserAction">
-		<property name="userService" ref="userServiceImpl"></property>
+	<bean id="userAction" class="com.myweb.action.UserAction">
+		<property name="userService" ref="userServiceTarget"></property>
 	</bean>
 
 </beans>
