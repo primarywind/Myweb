@@ -14,7 +14,7 @@ public class UserAction extends ActionSupport {
 
     public String reg() {
         System.out.println("reg ...");
-        this.userService.save(user);
+        this.userService.saveUser(user);
         return "reg_ok";
     }
 

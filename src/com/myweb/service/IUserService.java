@@ -8,5 +8,5 @@ public interface IUserService {
      * 
      * @param user
      */
-    public void save(User user);
+    public void saveUser(User user);
 }

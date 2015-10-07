@@ -9,7 +9,7 @@ import com.myweb.service.IUserService;
 public class UserServiceImpl implements IUserService {
     private UserDao userDao;
 
-    public void save(User tuser) {
+    public void saveUser(User tuser) {
         User user = new User();
         user.setGender(1);
         user.setLevel(1);
@@ -19,7 +19,17 @@ public class UserServiceImpl implements IUserService {
         user.setUserName("胡磊");
         //设定密码为默认值
         user.setPwd("123");
-        this.userDao.save(user);
+        userDao.save(user);
+        //        User user1 = new User();
+        //        user1.setGender(1);
+        //        user1.setLevel(1);
+        //        user1.setNationality("中国");
+        //        Timestamp time2 = new Timestamp(System.currentTimeMillis());
+        //        user1.setRegTime(time2);
+        //        user1.setUserName("胡磊");
+        //        //设定密码为默认值
+        //        user1.setPwd("123");
+        //        userDao.save(user1);
     }
 
     public UserDao getUserDao() {

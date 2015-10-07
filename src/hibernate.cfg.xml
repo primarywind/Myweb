@@ -7,11 +7,13 @@
 <hibernate-configuration>
 
 	<session-factory>
-		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/Myweb?useUnicode=true&amp;characterEncoding=UTF-8</property>
         <property name="connection.username">root</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="myeclipse.connection.profile">mysqlconnect</property>
+        <property name="connection.autocommit">true</property>
+        <property name="hibernate.show_sql">true</property>
 		<mapping resource="com/myweb/entity/User.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
