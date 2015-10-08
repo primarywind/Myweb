@@ -3,7 +3,7 @@ package com.myweb.util;
 import java.util.Collection;
 
 /**
- * 
+ *  本工具类用来进行常规参数校验
  * @author huleiwind
  * @version $Id: ObjectCheckerUtil.java, v 0.1 2015-10-4 下午8:13:49 huleiwind Exp $
  */

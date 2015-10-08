@@ -3,7 +3,7 @@ package com.myweb.util;
 import java.security.MessageDigest;
 
 /** 
- * 采用MD5加密
+ * 本工具类用来MD5加密
  *  
  */
 public class MD5Util {

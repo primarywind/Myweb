@@ -3,7 +3,7 @@ package com.myweb.util;
 import java.util.Iterator;
 
 /**
- * 
+ * 本工具类主要用来操作字符串
  * @author huleiwind
  * @version $Id: StringUtil.java, v 0.1 2015-10-4 下午8:17:05 huleiwind Exp $
  */

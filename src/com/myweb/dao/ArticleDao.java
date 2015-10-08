@@ -1,5 +1,7 @@
 package com.myweb.dao;
 
+import java.util.List;
+
 import com.myweb.entity.Article;
 
 /**
@@ -9,4 +11,10 @@ import com.myweb.entity.Article;
  */
 public interface ArticleDao {
     public Integer save(Article article);
+
+    public void delete(Article article);
+
+    public Article findById(int id);
+
+    public List<Article> findByPages(int pageNo, int pageSize);
 }

@@ -1,6 +1,6 @@
 package com.myweb.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Article entity. @author MyEclipse Persistence Tools
@@ -10,13 +10,14 @@ public class Article implements java.io.Serializable {
 
     // Fields    
 
-    private Integer articleId;
-    private Integer userId;
-    private String  title;
-    private Date    pubTime;
-    private String  content;
-    private String  label;
-    private String  category;
+    private Integer   articleId;
+    private Integer   userId;
+    private String    title;
+    private String    briefIndc;
+    private Timestamp pubTime;
+    private String    content;
+    private String    label;
+    private Integer   categoryId;
 
     // Constructors
 
@@ -25,15 +26,15 @@ public class Article implements java.io.Serializable {
     }
 
     /** full constructor */
-    public Article(Integer articleId, Integer userId, String title, Date pubTime, String content,
-                   String label, String category) {
-        this.articleId = articleId;
+    public Article(Integer userId, String title, String briefIndc, Timestamp pubTime,
+                   String content, String label, Integer categoryId) {
         this.userId = userId;
         this.title = title;
+        this.briefIndc = briefIndc;
         this.pubTime = pubTime;
         this.content = content;
         this.label = label;
-        this.category = category;
+        this.categoryId = categoryId;
     }
 
     // Property accessors
@@ -62,11 +63,19 @@ public class Article implements java.io.Serializable {
         this.title = title;
     }
 
-    public Date getPubTime() {
+    public String getBriefIndc() {
+        return this.briefIndc;
+    }
+
+    public void setBriefIndc(String briefIndc) {
+        this.briefIndc = briefIndc;
+    }
+
+    public Timestamp getPubTime() {
         return this.pubTime;
     }
 
-    public void setPubTime(Date pubTime) {
+    public void setPubTime(Timestamp pubTime) {
         this.pubTime = pubTime;
     }
 
@@ -86,12 +95,12 @@ public class Article implements java.io.Serializable {
         this.label = label;
     }
 
-    public String getCategory() {
-        return this.category;
+    public Integer getCategoryId() {
+        return this.categoryId;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
 }

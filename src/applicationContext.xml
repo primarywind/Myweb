@@ -8,6 +8,12 @@
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="configLocation" value="classpath:hibernate.cfg.xml">
 		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/myweb/entity/User.hbm.xml</value>
+				<value>com/myweb/entity/Article.hbm.xml</value>
+			</list>
+		</property>
 	</bean>
 
 	<!-- 配置事务管理器 -->
@@ -18,6 +24,7 @@
 		</property>
 	</bean>
 
+	<!-- 配置事务通知 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="save*" propagation="REQUIRED"
@@ -31,21 +38,17 @@
 		</tx:attributes>
 	</tx:advice>
 
+	<!-- 配置事务切点 -->
 	<aop:config>
 		<aop:pointcut id="UserServicePoint" expression="bean(userService)" />
+		<aop:pointcut id="articleServicePoint" expression="bean(articleService)" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="UserServicePoint" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="articleServicePoint" />
 	</aop:config>
-
-	<bean id="userDaoImpl" class="com.myweb.dao.impl.UserDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-	<bean id="userService" class="com.myweb.service.impl.UserServiceImpl">
-		<property name="userDao" ref="userDaoImpl"></property>
-	</bean>
-
-	<bean id="userAction" class="com.myweb.action.UserAction">
-		<property name="userService" ref="userService"></property>
-	</bean>
-
+	<!-- dao层bean配置 -->
+	<import resource="com/myweb/dao/application-dao.xml" />
+	<!-- service层bean配置 -->
+	<import resource="com/myweb/service/application-service.xml" />
+	<!-- action层bean配置 -->
+	<import resource="com/myweb/action/application-action.xml" />
 </beans>

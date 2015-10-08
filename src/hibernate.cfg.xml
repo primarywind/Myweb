@@ -14,6 +14,5 @@
         <property name="myeclipse.connection.profile">mysqlconnect</property>
         <property name="connection.autocommit">true</property>
         <property name="hibernate.show_sql">true</property>
-		<mapping resource="com/myweb/entity/User.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

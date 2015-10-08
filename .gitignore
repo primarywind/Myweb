@@ -18,3 +18,11 @@ WebRoot/WEB-INF/classes/com/myweb/entity/User.hbm.xml
 WebRoot/WEB-INF/classes/com/myweb/entity/User.hbm.xml
 
 WebRoot/WEB-INF/classes/hibernate.cfg.xml
+
+WebRoot/WEB-INF/classes/com/myweb/entity/Article.hbm.xml
+
+WebRoot/WEB-INF/classes/com/myweb/entity/Article.hbm.xml
+
+WebRoot/WEB-INF/classes/com/myweb/entity/Article.hbm.xml
+
+WebRoot/WEB-INF/classes/hibernate.cfg.xml
