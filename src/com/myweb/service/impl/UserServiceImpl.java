@@ -9,7 +9,7 @@ import com.myweb.service.IUserService;
  * @author huleiwind
  * @version $Id: UserServiceImpl.java, v 0.1 2015-10-8 上午11:03:48 huleiwind Exp $
  */
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl extends BaseService implements IUserService {
     private UserDao userDao;
 
     public Integer saveUser(User user) {

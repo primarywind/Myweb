@@ -3,6 +3,7 @@ package com.myweb.service;
 import java.util.List;
 
 import com.myweb.entity.Article;
+import com.myweb.view.ArticleListView;
 
 /**
  * 
@@ -18,7 +19,7 @@ public interface IArticleService {
      * @param pageSize  一页条数
      * @return
      */
-    public List<Article> findArticlesByPage(int pageNo, int pageSize);
+    public List<ArticleListView> findArticlesByPage(int pageNo, int pageSize, int categoryId);
 
     /**
      * 根据文章id查询文章
@@ -27,4 +28,6 @@ public interface IArticleService {
      * @return
      */
     public Article findArticleById(int id);
+
+    public int findArticlesNum(int findArticlesNum);
 }

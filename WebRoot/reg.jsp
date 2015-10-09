@@ -2,6 +2,6 @@
 
 用户注册
 
-<form action="user!reg.action" method="post">
+<form action="jsonkpi/article.action" method="get">
 	<input type="submit" value="注册"/>
 </form>

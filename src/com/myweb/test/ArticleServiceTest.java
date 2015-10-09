@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.myweb.entity.Article;
 import com.myweb.service.IArticleService;
+import com.myweb.view.ArticleListView;
 
 /**
  * 
@@ -28,8 +29,14 @@ public class ArticleServiceTest extends SpringTestBase {
 
     @Test
     public void testFindArticlesByPage() {
-        List<Article> articles = articleService.findArticlesByPage(1, 3);
+        List<ArticleListView> articles = articleService.findArticlesByPage(1, 3, 0);
         assertNotNull(articles);
+    }
+
+    @Test
+    public void testFindArticlesNums() {
+        int nums = articleService.findArticlesNum(0);
+        assertNotNull(nums);
     }
 
     @Test

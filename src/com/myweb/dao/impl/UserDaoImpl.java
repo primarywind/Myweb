@@ -10,4 +10,9 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
     public Integer save(User user) {
         return (Integer) getHibernateTemplate().save(user);
     }
+
+    public User findById(int id) {
+        User instance = (User) getHibernateTemplate().get("com.myweb.entity.User", id);
+        return instance;
+    }
 }

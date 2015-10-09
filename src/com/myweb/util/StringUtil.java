@@ -1687,7 +1687,7 @@ public class StringUtil {
      *
      * @return 连接后的字符串，如果原数组为<code>null</code>，则返回<code>null</code>
      */
-    public static String join(Iterator iterator, char separator) {
+    public static String join(Iterator<?> iterator, char separator) {
         if (iterator == null) {
             return null;
         }
@@ -1726,7 +1726,7 @@ public class StringUtil {
      *
      * @return 连接后的字符串，如果原数组为<code>null</code>，则返回<code>null</code>
      */
-    public static String join(Iterator iterator, String separator) {
+    public static String join(Iterator<?> iterator, String separator) {
         if (iterator == null) {
             return null;
         }
