@@ -80,22 +80,13 @@
 					</div>
 					<div class="collapse navbar-collapse" id="main-menu">
 						<ul class="menu">
-							<li class="nav-current" role="presentation"><a href="/">首页</a>
+							<li class="nav-current"><a href="/">首页</a>
 							</li>
-							<li role="presentation"><a href="http://lumen.golaravel.com"
-								title="Lumen中文文档" target="_blank">技术相关</a></li>
-							<li role="presentation"><a href="http://wenda.golaravel.com"
-								title="Laravel问答社区" target="_blank">生活相关</a></li>
-							<li role="presentation"><a
-								href="/post/laravel-documents-offline-package/"
-								title="下载 Laravel 中文文档离线版">资源文档</a></li>
-							<li role="presentation"><a
-								href="http://www.laravel.com/api/" title="Laravel 框架 API"
-								target="_blank">照片画廊</a>
-							</li>
-							<li role="presentation"><a
-								href="http://www.golaravel.com/php/" title="PHP 中文手册"
-								target="_blank">交流屋</a></li>
+							<li><a href="/" target="_blank">技术相关</a></li>
+							<li><a href="/" target="_blank">生活相关</a></li>
+							<li><a href="/" target="_blank">资源文档</a></li>
+							<li><a href="/" target="_blank">照片画廊</a></li>
+							<li><a href="/" target="_blank">交流屋</a></li>
 						</ul>
 					</div>
 				</div>
@@ -228,9 +219,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
-					<span>Copyright &copy; <a href="http://www.golaravel.com/">Laravel
-							中文网</a> </span> | <span><a href="http://www.miibeian.gov.cn/"
-						target="_blank">京ICP备11008151号</a> </span> | <span>京公网安备11010802014853</span>
+					<span>Copyright &copy; <a href="#"> 中文网</a> </span> | <span><a
+						href="/" target="_blank">京ICP备1111号</a> </span> | <span>京公网安备1111</span>
 				</div>
 			</div>
 		</div>
