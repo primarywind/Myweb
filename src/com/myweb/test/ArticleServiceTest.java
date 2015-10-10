@@ -8,9 +8,9 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.myweb.entity.Article;
 import com.myweb.service.IArticleService;
 import com.myweb.view.ArticleListView;
+import com.myweb.view.ArticleView;
 
 /**
  * 
@@ -41,7 +41,7 @@ public class ArticleServiceTest extends SpringTestBase {
 
     @Test
     public void testFindArticleById() {
-        Article article = articleService.findArticleById(1);
+        ArticleView article = articleService.findArticleDetailById(1);
         assertNotNull(article);
     }
 

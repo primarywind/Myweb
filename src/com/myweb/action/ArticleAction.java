@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.myweb.service.IArticleService;
 import com.myweb.view.ArticleListView;
+import com.myweb.view.ArticleView;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -20,17 +21,19 @@ public class ArticleAction extends ActionSupport {
     private static final long     serialVersionUID = 1174404680631562411L;
     private IArticleService       articleService;
 
-    private List<ArticleListView> articleViews;
+    private List<ArticleListView> articleListViews;
+    private ArticleView           articleView;
 
     private int                   pageNo           = 1;
     private int                   pageSize         = 10;
     private int                   categoryId       = 0;
+    private int                   articleId        = 0;
     public Map                    responseJson;
 
     public String findArticlesByPage() {
         Map<String, Object> map = new HashMap<String, Object>();
-        articleViews = articleService.findArticlesByPage(pageNo, pageSize, categoryId);
-        map.put("articleViews", articleViews);
+        articleListViews = articleService.findArticlesByPage(pageNo, pageSize, categoryId);
+        map.put("articleListViews", articleListViews);
         this.setResponseJson(map);
         return Action.SUCCESS;
     }
@@ -43,12 +46,20 @@ public class ArticleAction extends ActionSupport {
         return Action.SUCCESS;
     }
 
-    public List<ArticleListView> getArticleViews() {
-        return articleViews;
+    public String findArticleDetail() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        articleView = articleService.findArticleDetailById(articleId);
+        map.put("articleView", articleView);
+        this.setResponseJson(map);
+        return Action.SUCCESS;
     }
 
-    public void setArticleViews(List<ArticleListView> articleViews) {
-        this.articleViews = articleViews;
+    public List<ArticleListView> getArticleListViews() {
+        return articleListViews;
+    }
+
+    public void setArticleListViews(List<ArticleListView> articleListViews) {
+        this.articleListViews = articleListViews;
     }
 
     public int getPageNo() {
@@ -89,6 +100,22 @@ public class ArticleAction extends ActionSupport {
 
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public ArticleView getArticleView() {
+        return articleView;
+    }
+
+    public void setArticleView(ArticleView articleView) {
+        this.articleView = articleView;
+    }
+
+    public int getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(int articleId) {
+        this.articleId = articleId;
     }
 
 }

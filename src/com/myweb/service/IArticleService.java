@@ -2,8 +2,8 @@ package com.myweb.service;
 
 import java.util.List;
 
-import com.myweb.entity.Article;
 import com.myweb.view.ArticleListView;
+import com.myweb.view.ArticleView;
 
 /**
  * 
@@ -22,12 +22,12 @@ public interface IArticleService {
     public List<ArticleListView> findArticlesByPage(int pageNo, int pageSize, int categoryId);
 
     /**
-     * 根据文章id查询文章
+     * 根据文章id查询文章详细内容
      * 
-     * @param id  文章id
+     * @param articleId  文章id
      * @return
      */
-    public Article findArticleById(int id);
+    public ArticleView findArticleDetailById(int articleId);
 
     public int findArticlesNum(int findArticlesNum);
 }

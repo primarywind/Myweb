@@ -26,23 +26,6 @@
 <link rel="stylesheet" type="text/css"
 	href="/Myweb/assets/css/screen.css" />
 
-<!--<script>-->
-<!--/*====================================================-->
-<!--THEME SETTINGS & GLOBAL VARIABLES-->
-<!--====================================================*/-->
-
-<!--//  1. Sidebar Position-->
-<!--var sidebar_left = true; // Set true or flase for positioning sidebar on left-->
-
-<!--//  2. Recent Post count-->
-<!--var recent_post_count = 3;-->
-
-<!--</script>-->
-
-<script>
-	var _hmt = _hmt || [];
-</script>
-
 <link rel="alternate" type="application/rss+xml" title="我的私人博客"
 	href="http://blog.csdn.net/primary_wind" />
 </head>
@@ -100,22 +83,19 @@
 							<li class="nav-current" role="presentation"><a href="/">首页</a>
 							</li>
 							<li role="presentation"><a href="http://lumen.golaravel.com"
-								title="Lumen中文文档" target="_blank">技术相关</a>
-							</li>
+								title="Lumen中文文档" target="_blank">技术相关</a></li>
 							<li role="presentation"><a href="http://wenda.golaravel.com"
-								title="Laravel问答社区" target="_blank">生活相关</a>
-							</li>
+								title="Laravel问答社区" target="_blank">生活相关</a></li>
 							<li role="presentation"><a
 								href="/post/laravel-documents-offline-package/"
-								title="下载 Laravel 中文文档离线版">资源文档</a>
-							</li>
+								title="下载 Laravel 中文文档离线版">资源文档</a></li>
 							<li role="presentation"><a
 								href="http://www.laravel.com/api/" title="Laravel 框架 API"
-								target="_blank">照片画廊</a></li>
+								target="_blank">照片画廊</a>
+							</li>
 							<li role="presentation"><a
 								href="http://www.golaravel.com/php/" title="PHP 中文手册"
-								target="_blank">交流屋</a>
-							</li>
+								target="_blank">交流屋</a></li>
 						</ul>
 					</div>
 				</div>
@@ -138,8 +118,6 @@
 						id="page-number"></span> <a class="older-posts" href="#" id="next"><i
 						class="fa fa-angle-right"></i> </a>
 				</nav>
-
-
 				</main>
 
 				<aside class="col-md-4 sidebar">
@@ -266,8 +244,8 @@
 	<script
 		src="http://cdn.bootcss.com/fitvids/1.1.0/jquery.fitvids.min.js"></script>
 	<script src="http://cdn.bootcss.com/highlight.js/8.5/highlight.min.js"></script>
-	<script src="/Myweb/assets/js/main.js"></script>
-	<script type="text/template">  
+
+	<script type="text/template" id="brief">  
 				<article id={articleId} class="post tag-laravel-5-1 tag-xin-ban-ben-fa-bu">
 					<div class="post-head">
 						<h1 class="post-title">
@@ -277,15 +255,15 @@
 						<div class="post-meta">
 							<span class="author">作者：<a href="/author/wangsai/">{userName}</a>
 							</span> &bull;
-							<time class="post-date" datetime="2015年8月31日星期一晚上9点44"
-								title="2015年8月31日星期一晚上9点44">{pubTime} </time>
+							<time class="post-date" datetime=""
+								title="">{pubTime} </time>
 						</div>
 					</div>
 					<div class="post-content">
 						<p>{briefIndc}</p>
 					</div>
 					<div class="post-permalink">
-						<a href="" class="btn btn-default">阅读全文</a>
+						<a href="javascript:void(0)" class="btn btn-default" onClick="goToDetail('{articleId}')">阅读全文</a>
 					</div>
 
 					<footer class="post-footer clearfix">
@@ -295,6 +273,43 @@
 						<div class="pull-right share"></div>
 					</footer>
 				</article>
+                
+    </script>
+	<script type="text/template" id="detail">  
+	<article id="{articleId}" class="post tag-spark"> 
+    <header
+		class="post-head">
+	<h1 class="post-title">{title}</h1>
+	<section class="post-meta"> <span class="author">作者：<a
+		href="/author/wangsai/">{userName}</a>
+	</span> • <time class="post-date">{pubTime}</time> </section> </header> <section
+		class="post-content"> {content} </section> <footer
+		class="post-footer clearfix">
+	<div class="pull-left tag-list">
+		<i class="fa fa-folder-open-o"></i> <a href="/tag/spark/">{label}</a>
+	</div>
+	</footer> 
+    </article>
+	<div class="about-author clearfix">
+		<a href="/author/wangsai/"><img
+			src="http://image.golaravel.com/6/d4/82b9646073bef7a7d67c6cd1db987.png"
+			alt="{userName}" class="avatar pull-left">
+		</a>
+
+		<div class="details">
+			<div class="author">
+				关于作者 <a href="/author/wangsai/">{userName}</a>
+			</div>
+			<div class="meta-info">
+				<span class="loaction"><i class="fa fa-home"></i>湖北</span> <span
+					class="website"><i class="fa fa-globe"></i><a
+					href="http://www.bootcss.com/" targer="_blank">个人网站/博客</a>
+				</span>
+			</div>
+		</div>
+	</div>
      </script>
+
+	<script src="/Myweb/assets/js/main.js"></script>
 </body>
 </html>

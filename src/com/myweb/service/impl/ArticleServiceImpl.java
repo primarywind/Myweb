@@ -9,6 +9,7 @@ import com.myweb.entity.Article;
 import com.myweb.entity.User;
 import com.myweb.service.IArticleService;
 import com.myweb.view.ArticleListView;
+import com.myweb.view.ArticleView;
 
 /**
  * 
@@ -23,22 +24,27 @@ public class ArticleServiceImpl extends BaseService implements IArticleService {
     public List<ArticleListView> findArticlesByPage(int pageNo, int pageSize, int categoryId) {
         List<Article> articles = articleDao.findByPages(pageNo, pageSize, categoryId);
         System.out.println(getViewObjectMapper());
-        List<ArticleListView> articleViews = getViewObjectMapper().map(articles,
+        List<ArticleListView> articleListViews = getViewObjectMapper().map(articles,
             ArticleListView.class);
-        for (ArticleListView articleView : articleViews) {
-            User user = userDao.findById(articleView.getUserId());
-            articleView.setUserName(user.getUserName());
-            articleView.setPubTime(articleView.getPubTime().substring(0, 19));
+        for (ArticleListView articleListView : articleListViews) {
+            User user = userDao.findById(articleListView.getUserId());
+            articleListView.setUserName(user.getUserName());
+            articleListView.setPubTime(articleListView.getPubTime().substring(0, 19));
         }
-        return articleViews;
+        return articleListViews;
     }
 
     public int findArticlesNum(int categoryId) {
         return categoryDao.findNums(categoryId);
     }
 
-    public Article findArticleById(int id) {
-        return articleDao.findById(id);
+    public ArticleView findArticleDetailById(int articleId) {
+        Article article = articleDao.findById(articleId);
+        ArticleView articleView = getViewObjectMapper().map(article, ArticleView.class);
+        User user = userDao.findById(articleView.getUserId());
+        articleView.setUserName(user.getUserName());
+        articleView.setPubTime(articleView.getPubTime().substring(0, 19));
+        return articleView;
     }
 
     public ArticleDao getArticleDao() {
