@@ -80,13 +80,17 @@
 					</div>
 					<div class="collapse navbar-collapse" id="main-menu">
 						<ul class="menu">
-							<li class="nav-current"><a href="/">首页</a>
+							<li class="nav-current"><a href="">首页</a></li>
+							<li><a href="/" target="_blank">技术相关</a>
 							</li>
-							<li><a href="/" target="_blank">技术相关</a></li>
-							<li><a href="/" target="_blank">生活相关</a></li>
-							<li><a href="/" target="_blank">资源文档</a></li>
-							<li><a href="/" target="_blank">照片画廊</a></li>
-							<li><a href="/" target="_blank">交流屋</a></li>
+							<li><a href="/" target="_blank">生活相关</a>
+							</li>
+							<li><a href="/" target="_blank">资源文档</a>
+							</li>
+							<li><a href="/" target="_blank">照片画廊</a>
+							</li>
+							<li><a href="/" target="_blank">交流屋</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -272,8 +276,11 @@
 	<h1 class="post-title">{title}</h1>
 	<section class="post-meta"> <span class="author">作者：<a
 		href="/author/wangsai/">{userName}</a>
-	</span> • <time class="post-date">{pubTime}</time> </section> </header> <section
-		class="post-content"> {content} </section> <footer
+	</span> • <time class="post-date">{pubTime}</time> </section> 
+    </header> 
+    <section
+		class="post-content"> {content} </section> 
+    <footer
 		class="post-footer clearfix">
 	<div class="pull-left tag-list">
 		<i class="fa fa-folder-open-o"></i> <a href="/tag/spark/">{label}</a>
@@ -291,15 +298,18 @@
 				关于作者 <a href="/author/wangsai/">{userName}</a>
 			</div>
 			<div class="meta-info">
-				<span class="loaction"><i class="fa fa-home"></i>湖北</span> <span
+				<span class="loaction"><i class="fa fa-home"></i>{nationality}</span> <span
 					class="website"><i class="fa fa-globe"></i><a
-					href="http://www.bootcss.com/" targer="_blank">个人网站/博客</a>
+					href="{blogUrl}" targer="_blank">个人网站/博客</a>
 				</span>
 			</div>
 		</div>
 	</div>
+     <div class="prev-next-wrap clearfix">
+    <a class="btn btn-default" href=""><i class="fa fa-angle-left fa-fw"></i>返回</a>
+    &nbsp;
+     </div>
      </script>
-
 	<script src="/Myweb/assets/js/main.js"></script>
 </body>
 </html>

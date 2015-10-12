@@ -43,6 +43,8 @@ public class ArticleServiceImpl extends BaseService implements IArticleService {
         ArticleView articleView = getViewObjectMapper().map(article, ArticleView.class);
         User user = userDao.findById(articleView.getUserId());
         articleView.setUserName(user.getUserName());
+        articleView.setBlogUrl(user.getBlogUrl());
+        articleView.setNationality(user.getNationality());
         articleView.setPubTime(articleView.getPubTime().substring(0, 19));
         return articleView;
     }

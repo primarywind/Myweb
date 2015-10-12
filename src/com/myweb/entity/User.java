@@ -8,17 +8,16 @@ import java.sql.Timestamp;
 
 public class User implements java.io.Serializable {
 
-    // Fields
+    // Fields    
 
-    /**  */
-    private static final long serialVersionUID = -8286875445241062318L;
-    private Integer           userId;
-    private String            userName;
-    private Integer           gender;
-    private String            nationality;
-    private Timestamp         regTime;
-    private Integer           level;
-    private String            pwd;
+    private Integer   userId;
+    private String    userName;
+    private String    blogUrl;
+    private Integer   gender;
+    private String    nationality;
+    private Timestamp regTime;
+    private Integer   level;
+    private String    pwd;
 
     // Constructors
 
@@ -27,13 +26,15 @@ public class User implements java.io.Serializable {
     }
 
     /** full constructor */
-    public User(String userName, Integer gender, String nationality, Timestamp regTime,
-                Integer level) {
+    public User(String userName, String blogUrl, Integer gender, String nationality,
+                Timestamp regTime, Integer level, String pwd) {
         this.userName = userName;
+        this.blogUrl = blogUrl;
         this.gender = gender;
         this.nationality = nationality;
         this.regTime = regTime;
         this.level = level;
+        this.pwd = pwd;
     }
 
     // Property accessors
@@ -52,6 +53,14 @@ public class User implements java.io.Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getBlogUrl() {
+        return this.blogUrl;
+    }
+
+    public void setBlogUrl(String blogUrl) {
+        this.blogUrl = blogUrl;
     }
 
     public Integer getGender() {
@@ -87,7 +96,7 @@ public class User implements java.io.Serializable {
     }
 
     public String getPwd() {
-        return pwd;
+        return this.pwd;
     }
 
     public void setPwd(String pwd) {

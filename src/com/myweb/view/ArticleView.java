@@ -6,6 +6,8 @@ package com.myweb.view;
  * @version $Id: ArticleView.java, v 0.1 2015-10-10 下午3:19:35 huleiwind Exp $
  */
 public class ArticleView {
+
+    //articleDo
     private Integer articleId;
     private Integer userId;
     private String  userName;
@@ -15,6 +17,26 @@ public class ArticleView {
     private String  pubTime;
     private String  label;
     private Integer categoryId;
+
+    //userDo
+    private String  blogUrl;
+    private String  nationality;
+
+    public String getBlogUrl() {
+        return blogUrl;
+    }
+
+    public void setBlogUrl(String blogUrl) {
+        this.blogUrl = blogUrl;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
 
     public Integer getArticleId() {
         return articleId;
