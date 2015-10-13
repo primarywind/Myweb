@@ -13,6 +13,9 @@
         <property name="name" type="java.lang.String">
             <column name="name" not-null="true" />
         </property>
+        <property name="CHref" type="java.lang.String">
+            <column name="c_href" length="65535" />
+        </property>
         <property name="addTime" type="java.sql.Timestamp">
             <column name="add_time" length="19" not-null="true" />
         </property>

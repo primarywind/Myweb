@@ -16,5 +16,7 @@
 	<bean id="articleService" class="com.myweb.service.impl.ArticleServiceImpl">
 	</bean>
 
+	<bean id="categoryService" class="com.myweb.service.impl.CategoryServiceImpl">
+	</bean>
 
 </beans>

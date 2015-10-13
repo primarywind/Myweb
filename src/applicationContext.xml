@@ -12,6 +12,7 @@
 			<list>
 				<value>com/myweb/entity/User.hbm.xml</value>
 				<value>com/myweb/entity/Article.hbm.xml</value>
+				<value>com/myweb/entity/Category.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -45,6 +46,7 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="UserServicePoint" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="articleServicePoint" />
 	</aop:config>
+	
 	<!-- dao层bean配置 -->
 	<import resource="com/myweb/dao/application-dao.xml" />
 	<!-- service层bean配置 -->

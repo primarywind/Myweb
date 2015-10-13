@@ -12,6 +12,7 @@ public class Category implements java.io.Serializable {
 
     private Integer   categoryId;
     private String    name;
+    private String    CHref;
     private Timestamp addTime;
     private Integer   ifview;
     private Integer   CIndex;
@@ -22,9 +23,18 @@ public class Category implements java.io.Serializable {
     public Category() {
     }
 
-    /** full constructor */
+    /** minimal constructor */
     public Category(String name, Timestamp addTime, Integer ifview, Integer CIndex) {
         this.name = name;
+        this.addTime = addTime;
+        this.ifview = ifview;
+        this.CIndex = CIndex;
+    }
+
+    /** full constructor */
+    public Category(String name, String CHref, Timestamp addTime, Integer ifview, Integer CIndex) {
+        this.name = name;
+        this.CHref = CHref;
         this.addTime = addTime;
         this.ifview = ifview;
         this.CIndex = CIndex;
@@ -46,6 +56,14 @@ public class Category implements java.io.Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCHref() {
+        return this.CHref;
+    }
+
+    public void setCHref(String CHref) {
+        this.CHref = CHref;
     }
 
     public Timestamp getAddTime() {

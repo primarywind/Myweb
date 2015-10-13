@@ -1,5 +1,7 @@
 package com.myweb.dao.impl;
 
+import java.util.List;
+
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.myweb.dao.CategoryDAO;
@@ -39,5 +41,10 @@ public class CategoryDAOImpl extends HibernateDaoSupport implements CategoryDAO 
         Long a = (Long) getHibernateTemplate().find(hql).listIterator().next();
         int count = a.intValue();
         return count;
+    }
+
+    public List<Category> findAllCategories() {
+        String hql = "from Category c where c.ifview = 1 order by c.CIndex asc";
+        return getHibernateTemplate().find(hql);
     }
 }

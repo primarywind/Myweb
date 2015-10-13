@@ -28,6 +28,8 @@
 
 <link rel="alternate" type="application/rss+xml" title="我的私人博客"
 	href="http://blog.csdn.net/primary_wind" />
+
+
 </head>
 <body class="home-template">
 
@@ -69,7 +71,7 @@
 	<!-- end header -->
 
 	<!-- start navigation -->
-	<nav class="main-navigation">
+	<div class="main-navigation">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
@@ -80,23 +82,14 @@
 					</div>
 					<div class="collapse navbar-collapse" id="main-menu">
 						<ul class="menu">
-							<li class="nav-current"><a href="">首页</a></li>
-							<li><a href="/" target="_blank">技术相关</a>
-							</li>
-							<li><a href="/" target="_blank">生活相关</a>
-							</li>
-							<li><a href="/" target="_blank">资源文档</a>
-							</li>
-							<li><a href="/" target="_blank">照片画廊</a>
-							</li>
-							<li><a href="/" target="_blank">交流屋</a>
-							</li>
+							<div id="menu"></div>
+
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-	</nav>
+	</div>
 	<!-- end navigation -->
 
 
@@ -107,12 +100,12 @@
 
 				<main class="col-md-8 main-content">
 				<div id="main-content"></div>
-				<nav class="pagination" role="navigation">
+				<div class="pagination" id="pagination">
 					<a class="older-posts" href="#" id="previous"><i
 						class="fa fa-angle-left"></i> </a> <span class="page-number"
 						id="page-number"></span> <a class="older-posts" href="#" id="next"><i
 						class="fa fa-angle-right"></i> </a>
-				</nav>
+				</div>
 				</main>
 
 				<aside class="col-md-4 sidebar">
@@ -232,12 +225,7 @@
 
 	<a href="#" id="back-to-top"><i class="fa fa-angle-up"></i> </a>
 
-	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-	<script
-		src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script
-		src="http://cdn.bootcss.com/fitvids/1.1.0/jquery.fitvids.min.js"></script>
-	<script src="http://cdn.bootcss.com/highlight.js/8.5/highlight.min.js"></script>
+
 
 	<script type="text/template" id="brief">  
 				<article id={articleId} class="post tag-laravel-5-1 tag-xin-ban-ben-fa-bu">
@@ -270,46 +258,55 @@
                 
     </script>
 	<script type="text/template" id="detail">  
-	<article id="{articleId}" class="post tag-spark"> 
-    <header
-		class="post-head">
-	<h1 class="post-title">{title}</h1>
-	<section class="post-meta"> <span class="author">作者：<a
-		href="/author/wangsai/">{userName}</a>
-	</span> • <time class="post-date">{pubTime}</time> </section> 
-    </header> 
-    <section
-		class="post-content"> {content} </section> 
-    <footer
-		class="post-footer clearfix">
-	<div class="pull-left tag-list">
-		<i class="fa fa-folder-open-o"></i> <a href="/tag/spark/">{label}</a>
-	</div>
-	</footer> 
+	<article id="{articleId}" class="post tag-spark">
+	<header class="post-head">
+		<h1 class="post-title">{title}</h1>
+		<section class="post-meta">
+			<span class="author">作者：<a href="/author/wangsai/">{userName}</a>
+			</span> •
+			<time class="post-date">{pubTime}</time>
+		</section>
+	</header>
+	<section class="post-content">{content}</section>
+	<footer class="post-footer clearfix">
+		<div class="pull-left tag-list">
+			<i class="fa fa-folder-open-o"></i> <a href="/tag/spark/">{label}</a>
+		</div>
+	</footer>
     </article>
-	<div class="about-author clearfix">
-		<a href="/author/wangsai/"><img
-			src="http://image.golaravel.com/6/d4/82b9646073bef7a7d67c6cd1db987.png"
-			alt="{userName}" class="avatar pull-left">
-		</a>
+    <div class="about-author clearfix">
+	<a href="/author/wangsai/"><img
+		src="http://image.golaravel.com/6/d4/82b9646073bef7a7d67c6cd1db987.png"
+		alt="{userName}" class="avatar pull-left"> </a>
 
-		<div class="details">
-			<div class="author">
-				关于作者 <a href="/author/wangsai/">{userName}</a>
-			</div>
-			<div class="meta-info">
-				<span class="loaction"><i class="fa fa-home"></i>{nationality}</span> <span
-					class="website"><i class="fa fa-globe"></i><a
-					href="{blogUrl}" targer="_blank">个人网站/博客</a>
-				</span>
-			</div>
+	<div class="details">
+		<div class="author">
+			关于作者 <a href="/author/wangsai/">{userName}</a>
+		</div>
+		<div class="meta-info">
+			<span class="loaction"><i class="fa fa-home"></i>{nationality}</span>
+			<span class="website"><i class="fa fa-globe"></i><a
+				href="{blogUrl}" targer="_blank">个人网站/博客</a> </span>
 		</div>
 	</div>
-     <div class="prev-next-wrap clearfix">
-    <a class="btn btn-default" href=""><i class="fa fa-angle-left fa-fw"></i>返回</a>
-    &nbsp;
-     </div>
+    </div>
+	<div class="prev-next-wrap clearfix">
+	<a class="btn btn-default" href=""><i
+		class="fa fa-angle-left fa-fw"></i>返回</a> &nbsp;
+    </div>
      </script>
+	<script type="text/template" id="categories">  
+     <li><a href="javascript:void(0)" onClick="getArticlesByPagesAndCategoryId('{categoryId}')">{name}</a></li>
+	</script>
+	<script type="text/template" id="categorieshref">  
+     <li><a href="{chref}" target="_blank">{name}</a></li>
+	</script>
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+	<script
+		src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script
+		src="http://cdn.bootcss.com/fitvids/1.1.0/jquery.fitvids.min.js"></script>
+	<script src="http://cdn.bootcss.com/highlight.js/8.5/highlight.min.js"></script>
 	<script src="/Myweb/assets/js/main.js"></script>
 </body>
 </html>

@@ -33,8 +33,12 @@ public class ArticleDaoImpl extends HibernateDaoSupport implements ArticleDao {
     }
 
     public List<Article> findByPages(final int pageNo, final int pageSize, int categoryId) {
-        final String hql = "from Article a where a.categoryId=" + categoryId
-                           + " order by a.pubTime desc";
+        final String hql;
+        if (categoryId != 0) {
+            hql = "from Article a where a.categoryId=" + categoryId + " order by a.pubTime desc";
+        } else {
+            hql = "from Article a order by a.pubTime desc";
+        }
         List<Article> lists = getHibernateTemplate().executeFind(new HibernateCallback() {
             public Object doInHibernate(Session session) throws HibernateException, SQLException {
                 return PageNoUtil.getList(session, hql, pageNo, pageSize);

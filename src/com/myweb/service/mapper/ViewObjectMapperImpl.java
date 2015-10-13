@@ -3,8 +3,10 @@ package com.myweb.service.mapper;
 import ma.glasnost.orika.MapperFactory;
 
 import com.myweb.entity.Article;
+import com.myweb.entity.Category;
 import com.myweb.view.ArticleListView;
 import com.myweb.view.ArticleView;
+import com.myweb.view.CategoryView;
 
 /**
  * 
@@ -27,5 +29,10 @@ public class ViewObjectMapperImpl extends BaseOrikaMapperImpl {
             .field("articleId", "articleId").field("userId", "userId").field("title", "title")
             .field("pubTime", "pubTime").field("content", "content").field("label", "label")
             .field("categoryId", "categoryId").register();
+
+        // 栏目列表视图
+        mapperFactory.classMap(Category.class, CategoryView.class).byDefault()
+            .field("categoryId", "categoryId").field("name", "name").field("CHref", "chref")
+            .register();
     }
 }

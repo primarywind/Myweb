@@ -1,6 +1,5 @@
 package com.myweb.view;
 
-
 /**
  * 文章列表视图
  * @author huleiwind
