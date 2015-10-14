@@ -9,9 +9,10 @@
 
 	<bean id="userDao" class="com.myweb.dao.impl.UserDaoImpl">
 	</bean>
-	
+
 	<bean id="categoryDao" class="com.myweb.dao.impl.CategoryDAOImpl">
 	</bean>
 
-
+	<bean id="pictureDao" class="com.myweb.dao.impl.PictureDaoImpl">
+	</bean>
 </beans>

@@ -19,4 +19,6 @@
 	<bean id="categoryService" class="com.myweb.service.impl.CategoryServiceImpl">
 	</bean>
 
+	<bean id="pictureService" class="com.myweb.service.impl.PictureServiceImpl">
+	</bean>
 </beans>

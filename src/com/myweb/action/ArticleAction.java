@@ -25,6 +25,7 @@ public class ArticleAction extends ActionSupport {
     private ArticleView           articleView;
 
     private int                   pageNo           = 1;
+    //默认一页10条
     private int                   pageSize         = 10;
     private int                   categoryId       = 0;
     private int                   articleId        = 0;

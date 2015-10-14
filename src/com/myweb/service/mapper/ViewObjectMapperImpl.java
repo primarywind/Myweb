@@ -4,9 +4,11 @@ import ma.glasnost.orika.MapperFactory;
 
 import com.myweb.entity.Article;
 import com.myweb.entity.Category;
+import com.myweb.entity.Picture;
 import com.myweb.view.ArticleListView;
 import com.myweb.view.ArticleView;
 import com.myweb.view.CategoryView;
+import com.myweb.view.PictureListView;
 
 /**
  * 
@@ -34,5 +36,10 @@ public class ViewObjectMapperImpl extends BaseOrikaMapperImpl {
         mapperFactory.classMap(Category.class, CategoryView.class).byDefault()
             .field("categoryId", "categoryId").field("name", "name").field("CHref", "chref")
             .register();
+
+        // 图片列表视图
+        mapperFactory.classMap(Picture.class, PictureListView.class).byDefault()
+            .field("picId", "picId").field("picName", "picName").field("picPath", "picPath")
+            .field("picType", "picType").field("picOwnerId", "picOwnerId").register();
     }
 }

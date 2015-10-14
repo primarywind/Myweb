@@ -48,3 +48,11 @@ WebRoot/WEB-INF/classes/com/myweb/entity/User.hbm.xml
 WebRoot/WEB-INF/classes/com/myweb/entity/Article.hbm.xml
 
 WebRoot/WEB-INF/classes/com/myweb/entity/User.hbm.xml
+
+WebRoot/WEB-INF/classes/struts.xml
+
+WebRoot/WEB-INF/classes/com/myweb/entity/User.hbm.xml
+
+WebRoot/WEB-INF/classes/com/myweb/entity/Article.hbm.xml
+
+WebRoot/WEB-INF/classes/struts.xml

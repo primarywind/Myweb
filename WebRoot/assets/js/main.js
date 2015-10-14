@@ -1,3 +1,4 @@
+//全局变量
 var pageNo = 1;
 var pageSize = 2;
 var pageCount = 0;
@@ -49,9 +50,13 @@ function getAllCategories() {
 			// 把数组化成字符串，并添加到table中去。
 			$('#menu').empty();
 			$('#menu').append(arr.join(''));
+		},
+		error : function(dta) {
+			alert("栏目拉取失败...");
 		}
 	});
 }
+
 // 获取文章详细内容
 function goToDetail(articleId) {
 	$.ajax({
@@ -77,13 +82,13 @@ function goToDetail(articleId) {
 			$('#main-content').empty();
 			$('.pagination').hide();
 			$('#main-content').append(arr.join(''));
+		},
+		error : function(dta) {
+			alert("文章详细内容拉取失败...");
 		}
 	});
 }
 
-getArticleByPages();
-GetTotalCount();
-getAllCategories();
 // 上一页按钮click事件
 $("#previous").click(function() {
 	if (pageNo != 1) {
@@ -127,7 +132,7 @@ function getArticleByPages() {
 		success : function(dta) {
 			if (!dta || !dta.articleListViews
 					|| dta.articleListViews.length <= 0) {
-				$('#main-content').empty();		
+				$('#main-content').empty();
 			}
 			// 获取模板上的HTML
 			var html = $('script[type="text/template"][id="brief"]').html();
@@ -143,7 +148,7 @@ function getArticleByPages() {
 			$("#page-number").text("第" + pageNo + "页  共 " + pageCount + " 页");
 		},
 		error : function(dta) {
-			alert("文章拉取失败...");
+			alert("文章列表拉取失败...");
 		}
 	});
 }
@@ -160,11 +165,19 @@ function GetTotalCount() {
 		dataType : "json",
 		success : function(dta) {
 			if (!dta.nums || dta.nums.length <= 0) {
+				pageCount = 1;
 				return;
 			}
 			// 设置总条数
 			pageCount = Math.ceil(dta.nums / pageSize);
 			$("#page-number").text("第" + pageNo + "页  共 " + pageCount + " 页");
+		},
+		error : function(dta) {
+			alert("文章总条数失败...");
 		}
 	});
 }
+
+getArticleByPages();
+GetTotalCount();
+getAllCategories();

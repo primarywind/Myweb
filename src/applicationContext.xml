@@ -13,6 +13,7 @@
 				<value>com/myweb/entity/User.hbm.xml</value>
 				<value>com/myweb/entity/Article.hbm.xml</value>
 				<value>com/myweb/entity/Category.hbm.xml</value>
+				<value>com/myweb/entity/Picture.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
