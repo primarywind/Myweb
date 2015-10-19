@@ -15,4 +15,10 @@
 
 	<bean id="pictureDao" class="com.myweb.dao.impl.PictureDaoImpl">
 	</bean>
+
+	<bean id="sendcardDao" class="com.myweb.dao.impl.SendcardDaoImpl">
+	</bean>
+	
+	<bean id="followcardDao" class="com.myweb.dao.impl.FollowcardDaoImpl">
+	</bean>
 </beans>

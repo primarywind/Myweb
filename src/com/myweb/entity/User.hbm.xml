@@ -31,5 +31,8 @@
         <property name="pwd" type="java.lang.String">
             <column name="pwd" not-null="true" />
         </property>
+        <property name="faceImg" type="java.lang.String">
+            <column name="face_img" length="65535" />
+        </property>
     </class>
 </hibernate-mapping>

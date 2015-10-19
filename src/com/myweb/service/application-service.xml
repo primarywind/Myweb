@@ -21,4 +21,8 @@
 
 	<bean id="pictureService" class="com.myweb.service.impl.PictureServiceImpl">
 	</bean>
+
+	<bean id="sendCardService" class="com.myweb.service.impl.SendCardServiceImpl">
+	</bean>
+
 </beans>

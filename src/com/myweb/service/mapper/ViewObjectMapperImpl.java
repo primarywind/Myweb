@@ -4,11 +4,16 @@ import ma.glasnost.orika.MapperFactory;
 
 import com.myweb.entity.Article;
 import com.myweb.entity.Category;
+import com.myweb.entity.Followcard;
 import com.myweb.entity.Picture;
+import com.myweb.entity.Sendcard;
 import com.myweb.view.ArticleListView;
 import com.myweb.view.ArticleView;
 import com.myweb.view.CategoryView;
+import com.myweb.view.FollowCardListView;
 import com.myweb.view.PictureListView;
+import com.myweb.view.SendCardDetailView;
+import com.myweb.view.SendCardListView;
 
 /**
  * 
@@ -41,5 +46,22 @@ public class ViewObjectMapperImpl extends BaseOrikaMapperImpl {
         mapperFactory.classMap(Picture.class, PictureListView.class).byDefault()
             .field("picId", "picId").field("picName", "picName").field("picPath", "picPath")
             .field("picType", "picType").field("picOwnerId", "picOwnerId").register();
+
+        // 帖子列表视图
+        mapperFactory.classMap(Sendcard.class, SendCardListView.class).byDefault()
+            .field("cardId", "cardId").field("userId", "userId").field("title", "title")
+            .field("pubTime", "pubTime").field("viewCount", "viewCount")
+            .field("followCount", "followCount").field("favoriteCount", "favoriteCount").register();
+
+        // 帖子详细内容视图
+        mapperFactory.classMap(Sendcard.class, SendCardDetailView.class).byDefault()
+            .field("cardId", "cardId").field("userId", "userId").field("title", "title")
+            .field("pubTime", "pubTime").register();
+
+        // 帖子回复列表视图
+        mapperFactory.classMap(Followcard.class, FollowCardListView.class).byDefault()
+            .field("followId", "followId").field("userId", "userId")
+            .field("cardOrFollowId", "cardOrFollowId").field("followContent", "followContent")
+            .field("pubTime", "pubTime").field("followType", "followType").register();
     }
 }

@@ -10,4 +10,6 @@
 	<bean id="articleAction" class="com.myweb.action.ArticleAction">
 		<property name="articleService" ref="articleService"></property>
 	</bean>
+	
+	
 </beans>

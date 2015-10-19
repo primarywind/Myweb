@@ -14,6 +14,9 @@
 				<value>com/myweb/entity/Article.hbm.xml</value>
 				<value>com/myweb/entity/Category.hbm.xml</value>
 				<value>com/myweb/entity/Picture.hbm.xml</value>
+				<value>com/myweb/entity/Sendcard.hbm.xml</value>
+				<value>com/myweb/entity/Followcard.hbm.xml</value>
+				<value>com/myweb/entity/Favorite.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

@@ -12,8 +12,6 @@
 		<action name="user" class="com.myweb.action.UserAction" method="reg">
 			<result name="reg_ok">reg_ok.jsp</result>
 		</action>
-
-
 	</package>
 
 	<package name="jsonkpi" extends="json-default">
@@ -37,22 +35,36 @@
 				<param name="root">responseJson</param>
 			</result>
 		</action>
-		
+
 		<action name="findAllCategories" class="com.myweb.action.CategoryAction"
 			method="findAllCategories">
 			<result type="json">
 				<param name="root">responseJson</param>
 			</result>
 		</action>
-		
-		
+
+
 		<action name="findPicturesByPage" class="com.myweb.action.PictureAction"
 			method="findPicturesByPage">
 			<result type="json">
 				<param name="root">responseJson</param>
 			</result>
 		</action>
+
+		<action name="findSendCardsByPage" class="com.myweb.action.SendCardAction"
+			method="findSendCardsByPage">
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
 		
+		<action name="findSendCardDateilsByPage" class="com.myweb.action.SendCardAction"
+			method="findSendCardDateilsByPage">
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
 	</package>
 
 </struts>
