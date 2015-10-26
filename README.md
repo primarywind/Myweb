@@ -7,12 +7,15 @@
   2）文章分页显示
 * 博客图片显示模块  
   1）瀑布流显示
+* 讨论区模块
+  1）注册登录
+  2）新建话题，回复话题等
 * 博客内容管理模块
 * 讨论管理模块
 * 权限管理模块（还有时间...）
 
 ### 应用技术
 
-* 前端bootstrap，jQuery
+* 前端bootstrap，jQuery，ueditor
 * 后台ssh框架
-* 服务器Apache+tomcat 负载均衡
+* 服务器Apache+tomcat
