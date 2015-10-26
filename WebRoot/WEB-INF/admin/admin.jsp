@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":"
@@ -10,7 +10,7 @@
 <head>
 <base href="<%=basePath%>">
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<title>��̨����</title>
+<title>后台管理</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -18,7 +18,7 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 
-<!--��ַ��ǰ����ֵ�Icon-->
+<!--网址列前面出现的Icon-->
 <link rel="shortcut icon" href="/Myweb/assets/images/favicon.ico">
 <link rel="stylesheet"
 	href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -36,7 +36,7 @@
 			<div class="col-sm-12">
 
 				<h1>
-					<span class="hide">Laravel - </span>Ϊ�Լ����С�� -- Primarywind
+					<span class="hide">Laravel - </span>为自己搭建的小窝 -- Primarywind
 				</h1>
 
 				<h2 class="hide">PHP THAT DOESN'T HURT. CODE HAPPY &amp; ENJOY
@@ -58,7 +58,7 @@
 					href="http://developer.51cto.com/art/201001/176550.htm"
 					class="btn btn-default btn-doc" target="_blank">jvm</a> <a
 					href="http://wenda.golaravel.com" class="btn btn-default btn-doc"
-					target="_blank">������</a>
+					target="_blank">交流屋</a>
 			</div>
 		</div>
 	</div>
@@ -79,9 +79,9 @@
 						<ul class="menu">
 							<div id="menu">
 								<ul class="nav pull-right">
-									<li class="active">��ӭ<s:property value="user.userName" /></a>
+									<li class="active">欢迎<s:property value="user.userName" /></a>
 									</li>
-									<li class="active"><a href="/Myweb/logonOut.action">�˳�</a>
+									<li class="active"><a href="/Myweb/logonOut.action">退出</a>
 									</li>
 								</ul>
 							</div>
@@ -102,22 +102,22 @@
 			<div class="tabbable">
 				<!-- Only required for left/right tabs -->
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#tab1" data-toggle="tab">��Ŀ����</a>
+					<li class="active"><a href="#tab1" data-toggle="tab">栏目管理</a>
 					</li>
-					<li><a href="#tab2" data-toggle="tab">���¹���</a></li>
+					<li><a href="#tab2" data-toggle="tab">文章管理</a></li>
 				</ul>
 				<div class="tab-content">
-					<!-- ��Ŀ������ǩҳ -->
+					<!-- 栏目管理标签页 -->
 					<div class="tab-pane  active" id="tab1">
 						<table class="table table-striped">
 							<thead>
 								<tr>
-									<th>��ĿID</th>
-									<th>��Ŀ����</th>
-									<th>����ʱ��</th>
-									<th>��Ŀ���</th>
-									<th>��Ŀ����(��ѡ)</th>
-									<th>�Ƿ�ɼ�</th>
+									<th>栏目ID</th>
+									<th>栏目名称</th>
+									<th>添加时间</th>
+									<th>栏目类别</th>
+									<th>栏目链接(可选)</th>
+									<th>是否可见</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -135,7 +135,7 @@
 											<option selected="selected">0</option>
 											<option>1</option>
 									</select></td>
-									<td><button type="button" class="btn btn-info ">ɾ��</button>
+									<td><button type="button" class="btn btn-info ">删除</button>
 									</td>
 								</tr>
 								<tr>
@@ -152,7 +152,7 @@
 											<option selected="selected">0</option>
 											<option>1</option>
 									</select></td>
-									<td><button type="button" class="btn btn-info ">ɾ��</button>
+									<td><button type="button" class="btn btn-info ">删除</button>
 									</td>
 								</tr>
 								<tr>
@@ -169,7 +169,7 @@
 											<option selected="selected">0</option>
 											<option>1</option>
 									</select></td>
-									<td><button type="button" class="btn btn-info ">ɾ��</button>
+									<td><button type="button" class="btn btn-info ">删除</button>
 									</td>
 								</tr>
 								<tr>
@@ -186,41 +186,51 @@
 											<option selected="selected">0</option>
 											<option>1</option>
 									</select></td>
-									<td><button type="button" class="btn btn-info ">ɾ��</button>
+									<td><button type="button" class="btn btn-info ">删除</button>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 						<center>
-							<button type="button" class="btn btn-info ">����</button>
-							<button type="button" class="btn btn-info ">����</button>
+							<button type="button" class="btn btn-info ">新增</button>
+							<button type="button" class="btn btn-info ">保存</button>
 						</center>
 					</div>
 					<div class="tab-pane fade" id="tab2">
-						<center>
-							<!-- ���¹�����ǩҳ -->
-							<div class="row col-md-4  col-md-offset-4"
-								style="margin-top: 20px;">
+						<!-- 文章管理标签页 -->
+						<div class="row col-md-4  col-md-offset-4"
+							style="margin-top: 20px;">
 
-								<div class="input-group">
-									<select class="form-control">
-										<option selected="selected" value=0>�������</option>
-										<option selected="selected" value=0>�������</option>
-									</select><span class="input-group-btn">
-										<button class="btn btn-default" type="button">��������</button> </span>
-								</div>
-
-
+							<div class="input-group">
+								<select class="form-control">
+									<option selected="selected" value=0>生活相关</option>
+									<option selected="selected" value=0>技术相关</option>
+								</select><span class="input-group-btn">
+									<button class="btn btn-default" type="button">搜索文章</button> </span>
 							</div>
-						</center>
+
+
+						</div>
+					
+						<div class="row col-md-4  col-md-offset-2" style="margin-top: 30px;">
+							<script id="editor" type="text/plain"
+								style="width:700px;height:250px;"></script>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-	<script
-		src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+		<script
+			src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+		<script src="/Myweb/assets/js/ueditor/ueditor.config.js"></script>
+		<script src="/Myweb/assets/js/ueditor/ueditor.all.js"></script>
+		<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+		<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+
+		<script src="/Myweb/assets/js/ueditor/lang/zh-cn/zh-cn.js"></script>
+		<script src="/Myweb/assets/js/admin.js"></script>
 </body>
 </html>
