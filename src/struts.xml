@@ -3,16 +3,26 @@
          "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<constant name="struts.action.extension" value="action" /><!--这里!!!扩展名修改 -->
+	<constant name="struts.action.extension" value="action" />
 	<constant name="struts.i18n.encoding" value="utf-8" />
 	<!-- 使用spring,将action托管给spring -->
 	<constant name="struts.objectFactory" value="spring" />
 
-	<package name="myweb" extends="struts-default">
-		<action name="user" class="com.myweb.action.UserAction" method="reg">
-			<result name="reg_ok">reg_ok.jsp</result>
+	<package name="admin" extends="struts-default">
+		<action name="logon" class="com.myweb.action.AdminAction"
+			method="logon">
+			<result name="logon_ok">/WEB-INF/admin/admin.jsp</result>
+			<result name="logon_failed">/logon.jsp</result>
 		</action>
+		<action name="logonOut" class="com.myweb.action.AdminAction"
+			method="logonOut">
+			<result name="logonOut_ok">/logon.jsp</result>
+			<result name="logonOut_failed">/WEB-INF/admin/admin.jsp</result>
+		</action>
+
 	</package>
+
+
 
 	<package name="jsonkpi" extends="json-default">
 		<action name="findArticlesByPage" class="com.myweb.action.ArticleAction"
@@ -43,7 +53,6 @@
 			</result>
 		</action>
 
-
 		<action name="findPicturesByPage" class="com.myweb.action.PictureAction"
 			method="findPicturesByPage">
 			<result type="json">
@@ -57,14 +66,13 @@
 				<param name="root">responseJson</param>
 			</result>
 		</action>
-		
+
 		<action name="findSendCardDateilsByPage" class="com.myweb.action.SendCardAction"
 			method="findSendCardDateilsByPage">
 			<result type="json">
 				<param name="root">responseJson</param>
 			</result>
 		</action>
-
 	</package>
 
 </struts>

@@ -3,6 +3,7 @@ package com.myweb.service.impl;
 import com.myweb.dao.UserDao;
 import com.myweb.entity.User;
 import com.myweb.service.IUserService;
+import com.myweb.util.MD5Util;
 
 /**
  * 
@@ -22,5 +23,16 @@ public class UserServiceImpl extends BaseService implements IUserService {
 
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
+    }
+
+    public User logon(String name, String password) {
+        String md5Password = null;
+        try {
+            md5Password = MD5Util.md5Encode(password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        User user = userDao.findByNameAndPassowrd(name, md5Password);
+        return user;
     }
 }

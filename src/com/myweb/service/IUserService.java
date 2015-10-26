@@ -14,4 +14,9 @@ public interface IUserService {
      * @param user
      */
     public Integer saveUser(User user);
+
+    /**
+     * 用户登录验证
+     */
+    public User logon(String userName, String password);
 }

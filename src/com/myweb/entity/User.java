@@ -17,6 +17,7 @@ public class User implements java.io.Serializable {
     private String    nationality;
     private Timestamp regTime;
     private Integer   level;
+    private String    name;
     private String    pwd;
     private String    faceImg;
 
@@ -26,27 +27,16 @@ public class User implements java.io.Serializable {
     public User() {
     }
 
-    /** minimal constructor */
-    public User(String userName, String blogUrl, Integer gender, String nationality,
-                Timestamp regTime, Integer level, String pwd) {
-        this.userName = userName;
-        this.blogUrl = blogUrl;
-        this.gender = gender;
-        this.nationality = nationality;
-        this.regTime = regTime;
-        this.level = level;
-        this.pwd = pwd;
-    }
-
     /** full constructor */
     public User(String userName, String blogUrl, Integer gender, String nationality,
-                Timestamp regTime, Integer level, String pwd, String faceImg) {
+                Timestamp regTime, Integer level, String name, String pwd, String faceImg) {
         this.userName = userName;
         this.blogUrl = blogUrl;
         this.gender = gender;
         this.nationality = nationality;
         this.regTime = regTime;
         this.level = level;
+        this.name = name;
         this.pwd = pwd;
         this.faceImg = faceImg;
     }
@@ -107,6 +97,14 @@ public class User implements java.io.Serializable {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPwd() {
