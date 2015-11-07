@@ -20,12 +20,9 @@ public class MyStrutsFilter extends StrutsPrepareAndExecuteFilter {
         String url = request.getRequestURI();
         String contextPath = request.getContextPath();
         HttpServletResponse response = (HttpServletResponse) res;
-        System.out.println(url);
         if (url.endsWith("jsp")) {
-            System.out.println("使用自定义的过滤器");
             chain.doFilter(req, res);
         } else {
-            System.out.println("使用默认的过滤器");
             super.doFilter(req, res, chain);
         }
     }

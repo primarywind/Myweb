@@ -104,100 +104,38 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#tab1" data-toggle="tab">栏目管理</a>
 					</li>
-					<li><a href="#tab2" data-toggle="tab">文章管理</a></li>
+					<li><a href="#tab2" data-toggle="tab">文章管理</a>
+					</li>
 				</ul>
 				<div class="tab-content">
 					<!-- 栏目管理标签页 -->
 					<div class="tab-pane  active" id="tab1">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>栏目ID</th>
-									<th>栏目名称</th>
-									<th>添加时间</th>
-									<th>栏目类别</th>
-									<th>栏目链接(可选)</th>
-									<th>是否可见</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><select class="form-control">
-											<option selected="selected">0</option>
-											<option>1</option>
-									</select></td>
-									<td><button type="button" class="btn btn-info ">删除</button>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row">1</th>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><select class="form-control">
-											<option selected="selected">0</option>
-											<option>1</option>
-									</select></td>
-									<td><button type="button" class="btn btn-info ">删除</button>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row">1</th>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><select class="form-control">
-											<option selected="selected">0</option>
-											<option>1</option>
-									</select></td>
-									<td><button type="button" class="btn btn-info ">删除</button>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row">1</th>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><input type="text" class="form-control" value="Otto">
-									</td>
-									<td><select class="form-control">
-											<option selected="selected">0</option>
-											<option>1</option>
-									</select></td>
-									<td><button type="button" class="btn btn-info ">删除</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<center>
-							<button type="button" class="btn btn-info ">新增</button>
-							<button type="button" class="btn btn-info ">保存</button>
-						</center>
+						<form id="categoriesForm">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>栏目ID</th>
+										<th>栏目名称</th>
+										<th>添加时间</th>
+										<th>栏目链接(可选)</th>
+										<th>序列</th>
+										<th>是否可见</th>
+									</tr>
+								</thead>
+								<tbody id="caTbody">
+									<!-- 待填充内容 -->
+								</tbody>
+							</table>
+							<center>
+								<button type="button" class="btn btn-info " id="addCategory">新增</button>
+								<button type="button" class="btn btn-info " id="saveAndUpdate"
+									onclick="addAndUpdateCategories();">保存</button>
+							</center>
+						</form>
 					</div>
+					<!---------------------------------- 文章管理标签页 --------------->
 					<div class="tab-pane fade" id="tab2">
-						<!-- 文章管理标签页 -->
+
 						<div class="row col-md-4  col-md-offset-4"
 							style="margin-top: 20px;">
 
@@ -211,10 +149,47 @@
 
 
 						</div>
-					
-						<div class="row col-md-4  col-md-offset-2" style="margin-top: 30px;">
+						<div class="row col-md-8 col-md-offset-2"
+							style="margin-top: 30px;">
+							<div class="input-group" style="margin-bottom: 10px;">
+								<div class="input-group-addon">文章ID</div>
+								<input type="text" class="form-control" id="title">
+								<div class="input-group-addon">发布者</div>
+								<input type="text" class="form-control" id="title">
+
+							</div>
+							<div class="input-group" style="margin-bottom: 10px;">
+								<div class="input-group-addon">标题</div>
+								<input type="text" class="form-control" id="title">
+								<div class="input-group-addon">发布时间</div>
+								<input type="text" class="form-control" id="title">
+							</div>
+							<div class="input-group" style="margin-bottom: 10px;">
+								<div class="input-group-addon">类别</div>
+								<input type="text" class="form-control" id="title">
+								<div class="input-group-addon">标签</div>
+								<input type="text" class="form-control" id="title">
+							</div>
+						</div>
+						<div class="row col-md-4  col-md-offset-2"
+							style="margin-top: 30px;">
+
 							<script id="editor" type="text/plain"
 								style="width:700px;height:250px;"></script>
+						</div>
+						<div class="row col-md-8 col-md-offset-2"
+							style="margin-top: 30px;">
+							<div class="input-group" style="margin-bottom: 10px;">
+
+								<input class="btn btn-default" type="submit" value="保存">
+							</div>
+						</div>
+						<div class="row col-md-8 col-md-offset-2"
+							style="margin-top: 30px;">
+							<div class="input-group" style="margin-bottom: 10px;">
+
+								<input class="btn btn-default" type="submit" value="新增文章">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -232,5 +207,6 @@
 
 		<script src="/Myweb/assets/js/ueditor/lang/zh-cn/zh-cn.js"></script>
 		<script src="/Myweb/assets/js/admin.js"></script>
+
 </body>
 </html>

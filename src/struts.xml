@@ -46,6 +46,13 @@
 			</result>
 		</action>
 
+		<action name="findCategories" class="com.myweb.action.CategoryAction"
+			method="findCategories">
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
 		<action name="findAllCategories" class="com.myweb.action.CategoryAction"
 			method="findAllCategories">
 			<result type="json">
@@ -73,5 +80,20 @@
 				<param name="root">responseJson</param>
 			</result>
 		</action>
+		
+		<action name="addAndUpdateCategories" class="com.myweb.action.CategoryAction"
+			method="addAndUpdateCategories">
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+		
+		<action name="deleteCategory" class="com.myweb.action.CategoryAction"
+			method="deleteCategory">
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+		
 	</package>
 </struts>

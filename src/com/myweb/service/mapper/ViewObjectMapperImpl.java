@@ -40,6 +40,7 @@ public class ViewObjectMapperImpl extends BaseOrikaMapperImpl {
         // 栏目列表视图
         mapperFactory.classMap(Category.class, CategoryView.class).byDefault()
             .field("categoryId", "categoryId").field("name", "name").field("CHref", "chref")
+            .field("addTime", "addTime").field("ifview", "ifview").field("CIndex", "CIndex")
             .register();
 
         // 图片列表视图

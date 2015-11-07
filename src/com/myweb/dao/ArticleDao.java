@@ -16,5 +16,7 @@ public interface ArticleDao {
 
     public Article findById(int id);
 
+    public List<Article> findByCId(int categoryId);
+
     public List<Article> findByPages(int pageNo, int pageSize, int categoryId);
 }

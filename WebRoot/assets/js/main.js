@@ -22,7 +22,7 @@ function formatTemplate(dta, tmpl) {
 function getAllCategories() {
 	$.ajax({
 		type : "get",
-		url : "jsonkpi/findAllCategories.action",
+		url : "jsonkpi/findCategories.action?ifView=1",
 		cache : false,
 		dataType : "json",
 		success : function(dta) {

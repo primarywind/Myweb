@@ -1,109 +1,146 @@
 // 实例化编辑器
 // 建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
 var ue = UE.getEditor('editor');
+var deleteCategoriesId = new Array();
+loadCategoriesDatas();
 
-function isFocus(e) {
-	alert(UE.getEditor('editor').isFocus());
-	UE.dom.domUtils.preventDefault(e)
-}
-function setblur(e) {
-	UE.getEditor('editor').blur();
-	UE.dom.domUtils.preventDefault(e)
-}
-function insertHtml() {
-	var value = prompt('插入html代码', '');
-	UE.getEditor('editor').execCommand('insertHtml', value)
-}
-function createEditor() {
-	enableBtn();
-	UE.getEditor('editor');
-}
-function getAllHtml() {
-	alert(UE.getEditor('editor').getAllHtml())
-}
-function getContent() {
-	var arr = [];
-	arr.push("使用editor.getContent()方法可以获得编辑器的内容");
-	arr.push("内容为：");
-	arr.push(UE.getEditor('editor').getContent());
-	alert(arr.join("\n"));
-}
-function getPlainTxt() {
-	var arr = [];
-	arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
-	arr.push("内容为：");
-	arr.push(UE.getEditor('editor').getPlainTxt());
-	alert(arr.join('\n'))
-}
-function setContent(isAppendTo) {
-	var arr = [];
-	arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
-	UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
-	alert(arr.join("\n"));
-}
-function setDisabled() {
-	UE.getEditor('editor').setDisabled('fullscreen');
-	disableBtn("enable");
+// 加载栏目数据
+function loadCategoriesDatas() {
+	$
+			.ajax({
+				type : "get",
+				url : "jsonkpi/findAllCategories.action",
+				cache : false,
+				dataType : "json",
+				success : function(dta) {
+					if (!dta.categoryListView
+							|| dta.categoryListView.length <= 0) {
+						alert("栏目数据为空");
+					}
+					var innerHtml = "";
+					// 对数据进行遍历
+					$
+							.each(
+									dta.categoryListView,
+									function(i, o) {
+										var htmltext = "<tr class='columns' name='categoryId'>"
+												+ "<td><input type='text'value='"
+												+ o.categoryId
+												+ "' class='form-control' required disabled>"
+												+ "<input type='hidden'value='"
+												+ o.categoryId
+												+ "' name='cId'></td>"
+												+ "<td><input type='text' name='cName' class='form-control' required value='"
+												+ o.name
+												+ "'></td>"
+												+ "<td><input type='text' class='form-control' value='"
+												+ o.addTime
+												+ "' disabled></td>"
+												+ "<td><input type='text' name='cHref' class='form-control' value='"
+												+ o.chref
+												+ "'></td>"
+												+ "<td><input type='text' name='CIndex' class='form-control' required value='"
+												+ o.CIndex + "'></td>";
+										if (o.ifview == 1) {
+											htmltext += "<td><select name='cifView' class='form-control'><option selected='selected' value='1'>可见</option><option value='0'>不可见</option></select></td>"
+													+ "<td><input type='button' class='btn btn-info delete-btn' value='删除'/></td></tr>";
+										} else {
+											htmltext += "<td><select name='cifView' class='form-control'><option  value='1'>可见</option><option selected='selected' value='0'>不可见</option></select></td>"
+													+ "<td><input type='button' class='btn btn-info delete-btn' value='删除'/></td></tr>";
+										}
+										innerHtml += htmltext;
+									});
+					// 把数组化成字符串，并添加到table中去。
+					$('#caTbody').append(innerHtml);
+					$(".delete-btn")
+							.click(
+									function() {
+										var delCId = $(this).parent().parent()
+												.children("td").children(
+														"input")[1].value;
+										// 异步删除栏目
+										// 1.栏目下存在文章则无法删除
+										// 2.栏目下空文章则进行删除
+										$
+												.ajax({
+													type : "get",
+													url : "jsonkpi/deleteCategory.action",
+													data : {
+														"delCId" : delCId
+													},
+													cache : false,
+													dataType : "json",
+													success : function(dta) {
+														$(this).parent()
+																.parent()
+																.remove();
+														alert(dta.msg);
+													},
+													error : function(dta) {
+														alert("系统错误...");
+													}
+												});
+
+									});
+				},
+				error : function(dta) {
+					alert("栏目拉取失败...");
+				}
+			});
 }
 
-function setEnabled() {
-	UE.getEditor('editor').setEnabled();
-	enableBtn();
-}
+// 绑定新增按钮事件
+$("#addCategory")
+		.click(
+				function() {
+					var innerhtml = "<tr class='columns'>"
+							+ "<td><input type='text' value='?' name='cId' class='form-control' required disabled><input type='hidden' value='?' name='cId'></td>"
+							+ "<td><input type='text' name='cName' required class='form-control'></td>"
+							+ "<td><input type='text' class='form-control' disabled></td>"
+							+ "<td><input type='text' name='cHref' class='form-control''></td><td><input type='text' name='CIndex' class='form-control'></td><td><select name='cifView' class='form-control'><option selected='selected' value='1'>可见</option><option value='0'>不可见</option></select></td>"
+							+ "<td><input type='button' class='btn btn-info delete-btn' value='删除'/></td></tr>";
+					$('#caTbody').append(innerhtml);
+					$(".delete-btn").click(
+							function() {
+								var delCId = $(this).parent().parent()
+										.children("td")[0].innerHTML;
+								// 异步删除栏目
+								// 1.栏目下存在文章则无法删除
+								// 2.栏目下空文章则进行删除
+								$.ajax({
+									type : "get",
+									url : "jsonkpi/deleteCategory.action",
+									data : {
+										"delCId" : delCId
+									},
+									cache : false,
+									dataType : "json",
+									success : function(dta) {
+										$(this).parent().parent().remove();
+										alert(dta.msg);
+									},
+									error : function(dta) {
+										alert("系统错误...");
+									}
+								});
 
-function getText() {
-	// 当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
-	var range = UE.getEditor('editor').selection.getRange();
-	range.select();
-	var txt = UE.getEditor('editor').selection.getText();
-	alert(txt)
-}
+							});
+				});
 
-function getContentTxt() {
-	var arr = [];
-	arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
-	arr.push("编辑器的纯文本内容为：");
-	arr.push(UE.getEditor('editor').getContentTxt());
-	alert(arr.join("\n"));
-}
-function hasContent() {
-	var arr = [];
-	arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
-	arr.push("判断结果为：");
-	arr.push(UE.getEditor('editor').hasContents());
-	alert(arr.join("\n"));
-}
-function setFocus() {
-	UE.getEditor('editor').focus();
-}
-function deleteEditor() {
-	disableBtn();
-	UE.getEditor('editor').destroy();
-}
-function disableBtn(str) {
-	var div = document.getElementById('btns');
-	var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
-	for ( var i = 0, btn; btn = btns[i++];) {
-		if (btn.id == str) {
-			UE.dom.domUtils.removeAttributes(btn, [ "disabled" ]);
-		} else {
-			btn.setAttribute("disabled", "true");
+// 保存栏目数据
+function addAndUpdateCategories() {
+	$.ajax({
+		type : "post",
+		url : "jsonkpi/addAndUpdateCategories.action",
+		data : $("#categoriesForm").serialize(),
+		cache : false,
+		dataType : "json",
+		success : function(dta) {
+			alert(dta.msg);
+			return;
+		},
+		error : function(dta) {
+			alert("保存失败...");
 		}
-	}
-}
-function enableBtn() {
-	var div = document.getElementById('btns');
-	var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
-	for ( var i = 0, btn; btn = btns[i++];) {
-		UE.dom.domUtils.removeAttributes(btn, [ "disabled" ]);
-	}
-}
-
-function getLocalData() {
-	alert(UE.getEditor('editor').execCommand("getlocaldata"));
-}
-
-function clearLocalData() {
-	UE.getEditor('editor').execCommand("clearlocaldata");
-	alert("已清空草稿箱")
+	});
 }

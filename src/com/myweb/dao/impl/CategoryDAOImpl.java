@@ -2,6 +2,9 @@ package com.myweb.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.myweb.dao.CategoryDAO;
@@ -43,8 +46,28 @@ public class CategoryDAOImpl extends HibernateDaoSupport implements CategoryDAO 
         return count;
     }
 
-    public List<Category> findAllCategories() {
-        String hql = "from Category c where c.ifview = 1 order by c.CIndex asc";
+    public List<Category> findCategories(int ifView) {
+        String hql = "from Category c where c.ifview = " + ifView + " order by c.CIndex asc";
         return getHibernateTemplate().find(hql);
+    }
+
+    public List<Category> findAllCategories() {
+        String hql = "from Category c  order by c.CIndex asc";
+        return getHibernateTemplate().find(hql);
+    }
+
+    public int deleteByCid(Integer delCId) {
+        final String hql = "delete Category c where c.categoryId = " + delCId;
+        getHibernateTemplate().execute(new HibernateCallback() {
+            public Object doInHibernate(Session session) throws HibernateException {
+                session.createQuery(hql).executeUpdate();
+                return 1;
+            }
+        });
+        return 1;
+    }
+
+    public void update(Category category) {
+        getHibernateTemplate().update(category);
     }
 }

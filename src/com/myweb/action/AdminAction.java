@@ -3,6 +3,7 @@ package com.myweb.action;
 import java.util.Map;
 
 import com.myweb.entity.User;
+import com.myweb.service.ICategoryService;
 import com.myweb.service.IUserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,9 +18,11 @@ public class AdminAction extends ActionSupport {
     private static final long serialVersionUID = -4149993028729686564L;
     private User              user;
     private IUserService      userService;
-
+    private ICategoryService  categoryService;
     private String            name;
     private String            passWord;
+
+    public Map                responseJson;
 
     public String logon() {
         user = userService.logon(name, passWord);
@@ -68,6 +71,14 @@ public class AdminAction extends ActionSupport {
 
     public void setUserService(IUserService userService) {
         this.userService = userService;
+    }
+
+    public Map getResponseJson() {
+        return responseJson;
+    }
+
+    public void setResponseJson(Map responseJson) {
+        this.responseJson = responseJson;
     }
 
 }

@@ -28,7 +28,7 @@ public class CategoryServiceTest extends SpringTestBase {
 
     @Test
     public void testFindCategories() {
-        List<CategoryView> lists = categoryService.findCategories();
+        List<CategoryView> lists = categoryService.findCategories(1);
         System.out.println(lists);
     }
 }
