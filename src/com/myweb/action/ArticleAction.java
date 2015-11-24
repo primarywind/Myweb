@@ -23,13 +23,26 @@ public class ArticleAction extends ActionSupport {
 
     private List<ArticleListView> articleListViews;
     private ArticleView           articleView;
-
+    private List<ArticleView>     articleViews;
     private int                   pageNo           = 1;
     //默认一页10条
     private int                   pageSize         = 10;
     private int                   categoryId       = 0;
     private int                   articleId        = 0;
     public Map                    responseJson;
+
+    //文章Id
+    private int[]                 articleIds;
+    //标题
+    private String[]              titles;
+    //栏目Id
+    private int[]                 categoryIds;
+    //文章标签
+    private String[]              labels;
+    //文章简介
+    private String[]              brefContents;
+    //文章内容
+    private String[]              contents;
 
     public String findArticlesByPage() {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -55,12 +68,26 @@ public class ArticleAction extends ActionSupport {
         return Action.SUCCESS;
     }
 
-    public List<ArticleListView> getArticleListViews() {
-        return articleListViews;
+    public String findArticleDetailListByCategoryId() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        articleViews = articleService.findArticleDetailList(categoryId);
+        map.put("articleViews", articleViews);
+        this.setResponseJson(map);
+        return Action.SUCCESS;
     }
 
-    public void setArticleListViews(List<ArticleListView> articleListViews) {
-        this.articleListViews = articleListViews;
+    public String addAndUpdateCategoryArticles() {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        int addAndUpdateCategoryResult = articleService.addAndUpdateCategoryArticles(articleIds,
+            categoryIds, labels, titles, brefContents, contents);
+        if (addAndUpdateCategoryResult == 1) {
+            map.put("msg", "保存成功！");
+        } else {
+            map.put("msg", "保存失败！");
+        }
+        this.setResponseJson(map);
+        return Action.SUCCESS;
     }
 
     public int getPageNo() {
@@ -83,16 +110,8 @@ public class ArticleAction extends ActionSupport {
         this.articleService = articleService;
     }
 
-    public Map getResponseJson() {
-        return responseJson;
-    }
-
     public void setResponseJson(Map responseJson) {
         this.responseJson = responseJson;
-    }
-
-    public IArticleService getArticleService() {
-        return articleService;
     }
 
     public int getCategoryId() {
@@ -103,6 +122,22 @@ public class ArticleAction extends ActionSupport {
         this.categoryId = categoryId;
     }
 
+    public int getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(int articleId) {
+        this.articleId = articleId;
+    }
+
+    public List<ArticleListView> getArticleListViews() {
+        return articleListViews;
+    }
+
+    public void setArticleListViews(List<ArticleListView> articleListViews) {
+        this.articleListViews = articleListViews;
+    }
+
     public ArticleView getArticleView() {
         return articleView;
     }
@@ -111,12 +146,68 @@ public class ArticleAction extends ActionSupport {
         this.articleView = articleView;
     }
 
-    public int getArticleId() {
-        return articleId;
+    public List<ArticleView> getArticleViews() {
+        return articleViews;
     }
 
-    public void setArticleId(int articleId) {
-        this.articleId = articleId;
+    public void setArticleViews(List<ArticleView> articleViews) {
+        this.articleViews = articleViews;
+    }
+
+    public IArticleService getArticleService() {
+        return articleService;
+    }
+
+    public Map getResponseJson() {
+        return responseJson;
+    }
+
+    public String[] getTitles() {
+        return titles;
+    }
+
+    public void setTitles(String[] titles) {
+        this.titles = titles;
+    }
+
+    public String[] getLabels() {
+        return labels;
+    }
+
+    public void setLabels(String[] labels) {
+        this.labels = labels;
+    }
+
+    public String[] getBrefContents() {
+        return brefContents;
+    }
+
+    public void setBrefContents(String[] brefContents) {
+        this.brefContents = brefContents;
+    }
+
+    public String[] getContents() {
+        return contents;
+    }
+
+    public void setContents(String[] contents) {
+        this.contents = contents;
+    }
+
+    public int[] getArticleIds() {
+        return articleIds;
+    }
+
+    public void setArticleIds(int[] articleIds) {
+        this.articleIds = articleIds;
+    }
+
+    public int[] getCategoryIds() {
+        return categoryIds;
+    }
+
+    public void setCategoryIds(int[] categoryIds) {
+        this.categoryIds = categoryIds;
     }
 
 }

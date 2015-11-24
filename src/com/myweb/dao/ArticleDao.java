@@ -12,6 +12,8 @@ import com.myweb.entity.Article;
 public interface ArticleDao {
     public Integer save(Article article);
 
+    public void update(Article article);
+
     public void delete(Article article);
 
     public Article findById(int id);

@@ -35,4 +35,11 @@ public interface ICategoryService {
      * @return
      */
     public int deleteCategoryByCId(int delCId);
+
+    /**
+     * 查找所有文章类型栏目（href为空，ifview＝1）
+     * 
+     * @return
+     */
+    public List<CategoryView> findArticleCategories();
 }

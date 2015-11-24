@@ -138,18 +138,14 @@
 
 						<div class="row col-md-4  col-md-offset-4"
 							style="margin-top: 20px;">
-
 							<div class="input-group">
-								<select class="form-control">
-									<option selected="selected" value=0>生活相关</option>
-									<option selected="selected" value=0>技术相关</option>
-								</select><span class="input-group-btn">
-									<button class="btn btn-default" type="button">搜索文章</button> </span>
+								<select class="form-control" id="categoriesSelect">
+								</select><span class="input-group-btn"> <!--<button class="btn btn-default" type="button">搜索文章</button> </span>-->
 							</div>
-
-
 						</div>
-						<div class="row col-md-8 col-md-offset-2"
+						<form id="articlesForm">
+							<div id="articleContent">
+								<!-- 						<div class="row col-md-8 col-md-offset-2"
 							style="margin-top: 30px;">
 							<div class="input-group" style="margin-bottom: 10px;">
 								<div class="input-group-addon">文章ID</div>
@@ -171,24 +167,37 @@
 								<input type="text" class="form-control" id="title">
 							</div>
 						</div>
-						<div class="row col-md-4  col-md-offset-2"
+						
+						<div class="row col-md-10  col-md-offset-2"
 							style="margin-top: 30px;">
+							文件简介:
+							<script id="brefeditor" type="text/plain"
+								style="width:700px;height:250px;"></script>
+						</div>
 
+						<div class="row col-md-10  col-md-offset-2"
+							style="margin-top: 30px;">
+							文章详细内容:
 							<script id="editor" type="text/plain"
 								style="width:700px;height:250px;"></script>
 						</div>
+						 -->
+							</div>
+						</form>
 						<div class="row col-md-8 col-md-offset-2"
 							style="margin-top: 30px;">
 							<div class="input-group" style="margin-bottom: 10px;">
 
-								<input class="btn btn-default" type="submit" value="保存">
+								<input class="btn btn-default" type="button"
+									onclick="addAndUpdateCategoryArticles();" value="保存">
 							</div>
 						</div>
 						<div class="row col-md-8 col-md-offset-2"
 							style="margin-top: 30px;">
 							<div class="input-group" style="margin-bottom: 10px;">
 
-								<input class="btn btn-default" type="submit" value="新增文章">
+								<input class="btn btn-default" type="button"
+									onclick="addCategoryArticle();" value="新增文章">
 							</div>
 						</div>
 					</div>
@@ -207,6 +216,5 @@
 
 		<script src="/Myweb/assets/js/ueditor/lang/zh-cn/zh-cn.js"></script>
 		<script src="/Myweb/assets/js/admin.js"></script>
-
 </body>
 </html>

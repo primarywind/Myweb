@@ -1,8 +1,20 @@
 // 实例化编辑器
 // 建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-var ue = UE.getEditor('editor');
+
+var articleSize = 0;
+
+// 保存简介窗口实例
+var bues = new Array();
+// 保存详细窗口实例
+var ues = new Array();
+
 var deleteCategoriesId = new Array();
+
+// 加载栏目列表数据
 loadCategoriesDatas();
+
+// 加载文章栏目下拉框数据
+loadCategoriesSelectsDatas();
 
 // 加载栏目数据
 function loadCategoriesDatas() {
@@ -33,9 +45,9 @@ function loadCategoriesDatas() {
 												+ "<td><input type='text' name='cName' class='form-control' required value='"
 												+ o.name
 												+ "'></td>"
-												+ "<td><input type='text' class='form-control' value='"
+												+ "<td><input type='text' class='form-control ' value='"
 												+ o.addTime
-												+ "' disabled></td>"
+												+ "' ></td>"
 												+ "<td><input type='text' name='cHref' class='form-control' value='"
 												+ o.chref
 												+ "'></td>"
@@ -46,7 +58,7 @@ function loadCategoriesDatas() {
 													+ "<td><input type='button' class='btn btn-info delete-btn' value='删除'/></td></tr>";
 										} else {
 											htmltext += "<td><select name='cifView' class='form-control'><option  value='1'>可见</option><option selected='selected' value='0'>不可见</option></select></td>"
-													+ "<td><input type='button' class='btn btn-info delete-btn' value='删除'/></td></tr>";
+													+ "<td><input type='button' class='btn btn-info delete-btn' value='删除'/></td><td><input type='button' class='btn btn-info delete-btn' value='修改文章'/></td></tr>";
 										}
 										innerHtml += htmltext;
 									});
@@ -89,6 +101,153 @@ function loadCategoriesDatas() {
 			});
 }
 
+// 加载文章类型栏目下拉选项
+function loadCategoriesSelectsDatas() {
+	$.ajax({
+		type : "get",
+		url : "jsonkpi/findArticleCategories.action",
+		cache : false,
+		dataType : "json",
+		success : function(dta) {
+			if (!dta.categoryListView || dta.categoryListView.length <= 0) {
+				return;
+			}
+			var innerhtml = "";
+			// 对数据进行遍历
+			$.each(dta.categoryListView, function(i, o) {
+				if (i == 0) {
+					innerhtml = innerhtml
+							+ "<option selected='selected' value="
+							+ o.categoryId + ">" + o.name + "</option>";
+					// 加载默认栏目下文章
+					loadCategoryArticle(o.categoryId);
+				} else {
+					innerhtml = innerhtml + "<option value=" + o.categoryId
+							+ ">" + o.name + "</option>";
+				}
+			});
+			$("#categoriesSelect").empty();
+			$("#categoriesSelect").append(innerhtml);
+		},
+		error : function(dta) {
+			alert("文章类型栏目下拉数据拉取失败...");
+		}
+	});
+}
+
+// 加载指定栏目下文章
+function loadCategoryArticle(categoreId) {
+	$
+			.ajax({
+				type : "get",
+				url : "jsonkpi/findArticleDetailListByCategoryId.action",
+				data : {
+					"categoryId" : categoreId
+				},
+				cache : false,
+				dataType : "json",
+				success : function(dta) {
+
+					if (!dta.articleViews || dta.articleViews.length <= 0) {
+						alert("该栏目下文章为空！");
+						return;
+					}
+
+					// 重建简介窗口实例
+					bues = new Array();
+					// 重建详细窗口实例
+					ues = new Array();
+
+					var innertext = "";
+
+					$("#articleContent").empty();
+					// 对数据进行遍历
+					$
+							.each(
+									dta.articleViews,
+									function(i, o) {
+										var htmltext = "<div class='row col-md-8 col-md-offset-2' style='margin-top: 30px;'><div class='input-group' style='margin-bottom: 10px;'><div class='input-group-addon'>文章ID</div>"
+												+ "<input type='text' class='form-control' name='articleIds' value='"
+												+ o.articleId
+												+ "' disabled><input type='hidden' name='articleIds' value='"
+												+ o.articleId
+												+ "'><div class='input-group-addon' disabled>发布者</div>"
+												+ "<input type='text' class='form-control' name='userName' value='"
+												+ o.userName
+												+ "' disabled>"
+												+ "</div><div class='input-group' style='margin-bottom: 10px;'>"
+												+ "<div class='input-group-addon'>标题</div>"
+												+ "<input type='text' class='form-control' name='titles' value='"
+												+ o.title
+												+ "'>"
+												+ "<div class='input-group-addon'>发布时间</div>"
+												+ "<input type='text' class='form-control' name='pubTime' value='"
+												+ o.pubTime
+												+ "' disabled>"
+												+ "</div><div class='input-group' style='margin-bottom: 10px;'>"
+												+ "<div class='input-group-addon'>类别ID</div>"
+												+ "<input type='text' class='form-control' name='categoryIds' value='"
+												+ o.categoryId
+												+ "' disable>"
+												+ "<div class='input-group-addon'>标签</div>"
+												+ "<input type='text' class='form-control' name='labels' value='"
+												+ o.label
+												+ "'>"
+												+ "</div>"
+												+ "</div><div class='row col-md-8  col-md-offset-2' style='margin-top: 30px;'>"
+												+ "文件简介:<script id='brefeditor"
+												+ o.categoryId
+												+ "-"
+												+ i
+												+ "' name='brefContents' type='text/plain' style='width:700px;height:250px;'></script>"
+												+ "</div><div class='row col-md-8  col-md-offset-2' style='margin-top: 30px;'>文章详细内容:"
+												+ "<script id='editor"
+												+ o.categoryId
+												+ "-"
+												+ i
+												+ "' name='contents' type='text/plain' style='width:700px;height:250px;'></script></div>";
+										innertext = innertext + htmltext;
+
+									});
+
+					// 填充拼装html内容
+					$("#articleContent").append(innertext);
+					// 对数据进行遍历
+					$.each(dta.articleViews, function(i, o) {
+
+						var bue = UE.getEditor("brefeditor" + o.categoryId
+								+ "-" + i, {
+							// 最大字符限制
+							maximumWords : 200
+						});
+						// 填充文本内容
+						bue.ready(function() {
+							bue.setContent(o.briefIndc);
+						});
+						var ue = UE.getEditor(
+								"editor" + o.categoryId + "-" + i, {
+								// 最大字符限制默认10000
+								});
+						// 填充文本内容
+						ue.ready(function() {
+							ue.setContent(o.content);
+						});
+						bues.push(bue);
+						ues.push(ue);
+					});
+				},
+				error : function(dta) {
+					alert("获取栏目文章失败...");
+				}
+			});
+}
+
+// 加载栏目下文章
+$("#categoriesSelect").change(function() {
+	var categoreId = this.value;
+	loadCategoryArticle(categoreId);
+});
+
 // 绑定新增按钮事件
 $("#addCategory")
 		.click(
@@ -118,6 +277,7 @@ $("#addCategory")
 									success : function(dta) {
 										$(this).parent().parent().remove();
 										alert(dta.msg);
+										window.location.reload();
 									},
 									error : function(dta) {
 										alert("系统错误...");
@@ -133,6 +293,24 @@ function addAndUpdateCategories() {
 		type : "post",
 		url : "jsonkpi/addAndUpdateCategories.action",
 		data : $("#categoriesForm").serialize(),
+		cache : false,
+		dataType : "json",
+		success : function(dta) {
+			alert(dta.msg);
+			return;
+		},
+		error : function(dta) {
+			alert("保存失败...");
+		}
+	});
+}
+
+// 保存并更新指定栏目下文章
+function addAndUpdateCategoryArticles() {
+	$.ajax({
+		type : "post",
+		url : "jsonkpi/addAndUpdateCategoryArticles.action",
+		data : $("#articlesForm").serialize(),
 		cache : false,
 		dataType : "json",
 		success : function(dta) {

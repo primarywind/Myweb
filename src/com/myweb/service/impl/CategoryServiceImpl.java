@@ -1,6 +1,7 @@
 package com.myweb.service.impl;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.myweb.dao.ArticleDao;
@@ -84,6 +85,28 @@ public class CategoryServiceImpl extends BaseService implements ICategoryService
         }
     }
 
+    public List<CategoryView> findArticleCategories() {
+        try {
+            List<Category> categories = categoryDao.findAllCategories();
+            List<Category> categoryResult = new ArrayList<Category>();
+            for (Category category : categories) {
+                if (("".equals(category.getCHref()) || category.getCHref() == null)
+                    && category.getIfview() == 1) {
+                    //符合条件加入队列
+                    categoryResult.add(category);
+                }
+            }
+            List<CategoryView> categoryListViews = getViewObjectMapper().map(categoryResult,
+                CategoryView.class);
+            return categoryListViews;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            //系统异常
+            return new ArrayList<CategoryView>();
+        }
+    }
+
     public CategoryDAO getCategoryDao() {
         return categoryDao;
     }
@@ -99,5 +122,4 @@ public class CategoryServiceImpl extends BaseService implements ICategoryService
     public void setArticleDao(ArticleDao articleDao) {
         this.articleDao = articleDao;
     }
-
 }

@@ -45,6 +45,14 @@ public class CategoryAction extends ActionSupport {
         return Action.SUCCESS;
     }
 
+    public String findArticleCategories() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<CategoryView> categoryListView = categoryService.findArticleCategories();
+        map.put("categoryListView", categoryListView);
+        this.setResponseJson(map);
+        return Action.SUCCESS;
+    }
+
     public String addAndUpdateCategories() {
         System.out.println(cName);
         System.out.println(cHref);

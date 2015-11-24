@@ -80,20 +80,41 @@
 				<param name="root">responseJson</param>
 			</result>
 		</action>
-		
+
 		<action name="addAndUpdateCategories" class="com.myweb.action.CategoryAction"
 			method="addAndUpdateCategories">
 			<result type="json">
 				<param name="root">responseJson</param>
 			</result>
 		</action>
-		
+
 		<action name="deleteCategory" class="com.myweb.action.CategoryAction"
 			method="deleteCategory">
 			<result type="json">
 				<param name="root">responseJson</param>
 			</result>
 		</action>
-		
+
+		<action name="findArticleCategories" class="com.myweb.action.CategoryAction"
+			method="findArticleCategories">
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+		<action name="findArticleDetailListByCategoryId" class="com.myweb.action.ArticleAction"
+			method="findArticleDetailListByCategoryId">
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+		<action name="addAndUpdateCategoryArticles" class="com.myweb.action.ArticleAction"
+			method="addAndUpdateCategoryArticles">
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
 	</package>
 </struts>

@@ -20,4 +20,5 @@ public interface CategoryDAO {
     public List<Category> findCategories(int ifView);
 
     public List<Category> findAllCategories();
+
 }

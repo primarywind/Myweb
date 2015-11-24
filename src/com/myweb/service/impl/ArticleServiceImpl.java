@@ -23,7 +23,6 @@ public class ArticleServiceImpl extends BaseService implements IArticleService {
 
     public List<ArticleListView> findArticlesByPage(int pageNo, int pageSize, int categoryId) {
         List<Article> articles = articleDao.findByPages(pageNo, pageSize, categoryId);
-        System.out.println(getViewObjectMapper());
         List<ArticleListView> articleListViews = getViewObjectMapper().map(articles,
             ArticleListView.class);
         for (ArticleListView articleListView : articleListViews) {
@@ -47,6 +46,51 @@ public class ArticleServiceImpl extends BaseService implements IArticleService {
         articleView.setNationality(user.getNationality());
         articleView.setPubTime(articleView.getPubTime().substring(0, 19));
         return articleView;
+    }
+
+    public List<ArticleView> findArticleDetailList(int categoryId) {
+        List<Article> articles = articleDao.findByPages(1, 100, categoryId);
+        List<ArticleView> articleListViews = getViewObjectMapper().map(articles, ArticleView.class);
+        for (ArticleView articleView : articleListViews) {
+            User user = userDao.findById(articleView.getUserId());
+            articleView.setUserName(user.getUserName());
+            articleView.setBlogUrl(user.getBlogUrl());
+            articleView.setNationality(user.getNationality());
+            articleView.setPubTime(articleView.getPubTime().substring(0, 19));
+        }
+        return articleListViews;
+    }
+
+    public int addAndUpdateCategoryArticles(int[] articleIds, int[] categoryIds, String[] labels,
+                                            String[] titles, String[] brefContents,
+                                            String[] contents) {
+        for (int i = 0, size = articleIds.length; i < size; i++) {
+            if (articleIds[i] != 0) {
+                //已存在文章，进行修改
+                Article article = articleDao.findById(articleIds[i]);
+
+                article.setCategoryId(categoryIds[i]);
+                article.setLabel(labels[i]);
+                article.setTitle(titles[i]);
+                article.setBriefIndc(brefContents[i]);
+                article.setContent(contents[i]);
+
+                articleDao.update(article);
+            } else {
+                //新增文章，进行添加
+                Article article = new Article();
+
+                article.setCategoryId(categoryIds[i]);
+                article.setLabel(labels[i]);
+                article.setTitle(titles[i]);
+                article.setBriefIndc(brefContents[i]);
+                article.setContent(contents[i]);
+
+                articleDao.save(article);
+            }
+        }
+
+        return 1;
     }
 
     public ArticleDao getArticleDao() {

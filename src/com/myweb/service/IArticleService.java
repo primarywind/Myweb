@@ -13,7 +13,7 @@ import com.myweb.view.ArticleView;
 public interface IArticleService {
 
     /**
-     * 分页查询文章
+     * 分页查询文章（不包括文章内容）
      * 
      * @param pageNo   起始页码
      * @param pageSize  一页条数
@@ -29,5 +29,34 @@ public interface IArticleService {
      */
     public ArticleView findArticleDetailById(int articleId);
 
-    public int findArticlesNum(int findArticlesNum);
+    /**
+     * 查询文章数
+     * 
+     * @param categoryId  文章栏目id
+     * @return
+     */
+    public int findArticlesNum(int categoryId);
+
+    /**
+     * 根据栏目id查询出最近发表的100篇文章详细内容
+     * 
+     * @param categoryId  文章栏目id
+     * @return
+     */
+    public List<ArticleView> findArticleDetailList(int categoryId);
+
+    /**
+     * 批量添加或修改指定栏目下文章
+     * 
+     * @param articleIds
+     * @param categoryIds
+     * @param labels
+     * @param titles
+     * @param brefContents
+     * @param contents
+     * @return
+     */
+    public int addAndUpdateCategoryArticles(int[] articleIds, int[] categoryIds, String[] labels,
+                                            String[] titles, String[] brefContents,
+                                            String[] contents);
 }

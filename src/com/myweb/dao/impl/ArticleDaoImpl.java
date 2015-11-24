@@ -48,8 +48,11 @@ public class ArticleDaoImpl extends HibernateDaoSupport implements ArticleDao {
     }
 
     public List<Article> findByCId(int categoryId) {
-        String hql = "from Article a  where a.categoryId=" + categoryId;
+        String hql = "from com.myweb.entity.Article a  where a.categoryId=" + categoryId;
         return getHibernateTemplate().find(hql);
     }
 
+    public void update(Article article) {
+        getHibernateTemplate().update(article);
+    }
 }
