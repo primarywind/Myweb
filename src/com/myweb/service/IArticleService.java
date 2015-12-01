@@ -56,7 +56,7 @@ public interface IArticleService {
      * @param contents
      * @return
      */
-    public int addAndUpdateCategoryArticles(int[] articleIds, int[] categoryIds, String[] labels,
+    public int addAndUpdateCategoryArticles(String[] articleIds, int[] categoryIds, String[] labels,
                                             String[] titles, String[] brefContents,
                                             String[] contents);
 }

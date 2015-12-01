@@ -8,6 +8,13 @@ var bues = new Array();
 // 保存详细窗口实例
 var ues = new Array();
 
+// 保存提交者以便于新增文章输入框填充
+var name = "";
+// 保存提交者以便于新增文章输入框填充
+var categoryId = "";
+// 保存新增文章序号
+var addArticleIndex = 0;
+
 var deleteCategoriesId = new Array();
 
 // 加载栏目列表数据
@@ -158,6 +165,8 @@ function loadCategoryArticle(categoreId) {
 					// 重建详细窗口实例
 					ues = new Array();
 
+					name = dta.articleViews[0].userName;
+					categoryId = dta.articleViews[0].categoryId;
 					var innertext = "";
 
 					$("#articleContent").empty();
@@ -248,7 +257,7 @@ $("#categoriesSelect").change(function() {
 	loadCategoryArticle(categoreId);
 });
 
-// 绑定新增按钮事件
+// 绑定栏目新增按钮事件
 $("#addCategory")
 		.click(
 				function() {
@@ -322,3 +331,57 @@ function addAndUpdateCategoryArticles() {
 		}
 	});
 }
+
+// 绑定新增文章按钮
+$("#addCategoryArticle")
+		.click(
+				function() {
+					var htmltext = "<div class='row col-md-8 col-md-offset-2' style='margin-top: 30px;'><div class='input-group' style='margin-bottom: 10px;'><div class='input-group-addon'>文章ID</div>"
+							+ "<input type='text' class='form-control' name='articleIds' value='0' disabled><input type='hidden' name='articleIds' value='0'><div class='input-group-addon' disabled>发布者</div>"
+							+ "<input type='text' class='form-control' name='userName' value='"
+							+ name
+							+ "' disabled>"
+							+ "</div><div class='input-group' style='margin-bottom: 10px;'>"
+							+ "<div class='input-group-addon'>标题</div>"
+							+ "<input type='text' class='form-control' name='titles' value='"
+							+ "'>"
+							+ "<div class='input-group-addon'>发布时间</div>"
+							+ "<input type='text' class='form-control' name='pubTime' value='"
+							+ "' disabled>"
+							+ "</div><div class='input-group' style='margin-bottom: 10px;'>"
+							+ "<div class='input-group-addon'>类别ID</div>"
+							+ "<input type='text' class='form-control' name='categoryIds' value='"
+							+ categoryId
+							+ "' disable>"
+							+ "<div class='input-group-addon'>标签</div>"
+							+ "<input type='text' class='form-control' name='labels' value='"
+							+ "'>"
+							+ "</div>"
+							+ "</div><div class='row col-md-8  col-md-offset-2' style='margin-top: 30px;'>"
+							+ "文件简介:<script id='brefeditorAdd"
+							+ "-"
+							+ addArticleIndex
+							+ "' name='brefContents' type='text/plain' style='width:700px;height:250px;'></script>"
+							+ "</div><div class='row col-md-8  col-md-offset-2' style='margin-top: 30px;'>文章详细内容:"
+							+ "<script id='editorAdd"
+							+ "-"
+							+ addArticleIndex
+							+ "' name='contents' type='text/plain' style='width:700px;height:250px;'></script></div>";
+
+					// 填充拼装html内容
+					$("#articleContent").append(htmltext);
+
+					// 初始化输入框
+					var bue = UE.getEditor("brefeditorAdd" + "-"
+							+ addArticleIndex, {
+						// 最大字符限制
+						maximumWords : 200
+					});
+					var ue = UE.getEditor("editorAdd" + "-" + addArticleIndex,
+							{
+							// 最大字符限制默认10000
+							});
+					bues.push(bue);
+					ues.push(ue);
+					addArticleIndex++;
+				});

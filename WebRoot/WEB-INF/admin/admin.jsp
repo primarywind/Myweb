@@ -197,7 +197,7 @@
 							<div class="input-group" style="margin-bottom: 10px;">
 
 								<input class="btn btn-default" type="button"
-									onclick="addCategoryArticle();" value="新增文章">
+									id="addCategoryArticle" value="新增文章">
 							</div>
 						</div>
 					</div>

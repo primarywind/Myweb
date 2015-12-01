@@ -1,6 +1,9 @@
 package com.myweb.service.impl;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.myweb.dao.ArticleDao;
 import com.myweb.dao.CategoryDAO;
@@ -10,6 +13,7 @@ import com.myweb.entity.User;
 import com.myweb.service.IArticleService;
 import com.myweb.view.ArticleListView;
 import com.myweb.view.ArticleView;
+import com.opensymphony.xwork2.ActionContext;
 
 /**
  * 
@@ -61,36 +65,47 @@ public class ArticleServiceImpl extends BaseService implements IArticleService {
         return articleListViews;
     }
 
-    public int addAndUpdateCategoryArticles(int[] articleIds, int[] categoryIds, String[] labels,
-                                            String[] titles, String[] brefContents,
-                                            String[] contents) {
-        for (int i = 0, size = articleIds.length; i < size; i++) {
-            if (articleIds[i] != 0) {
-                //已存在文章，进行修改
-                Article article = articleDao.findById(articleIds[i]);
+    public int addAndUpdateCategoryArticles(String[] articleIds, int[] categoryIds,
+                                            String[] labels, String[] titles,
+                                            String[] brefContents, String[] contents) {
+        try {
+            ActionContext actionContext = ActionContext.getContext();
+            Map session = actionContext.getSession();
 
-                article.setCategoryId(categoryIds[i]);
-                article.setLabel(labels[i]);
-                article.setTitle(titles[i]);
-                article.setBriefIndc(brefContents[i]);
-                article.setContent(contents[i]);
+            for (int i = 0, size = articleIds.length; i < size; i++) {
+                if (!articleIds[i].equals("0")) {
+                    //已存在文章，进行修改
+                    Article article = articleDao.findById(Integer.parseInt(articleIds[i]));
 
-                articleDao.update(article);
-            } else {
-                //新增文章，进行添加
-                Article article = new Article();
-
-                article.setCategoryId(categoryIds[i]);
-                article.setLabel(labels[i]);
-                article.setTitle(titles[i]);
-                article.setBriefIndc(brefContents[i]);
-                article.setContent(contents[i]);
-
-                articleDao.save(article);
+                    article.setCategoryId(categoryIds[i]);
+                    article.setLabel(labels[i]);
+                    article.setTitle(titles[i]);
+                    article.setBriefIndc(brefContents[i]);
+                    article.setContent(contents[i]);
+                    articleDao.update(article);
+                } else {
+                    //新增文章，进行添加
+                    Article article = new Article();
+                    User user = (User) session.get("USER");
+                    article.setUserId(user.getUserId());
+                    article.setCategoryId(categoryIds[i]);
+                    article.setLabel(labels[i]);
+                    article.setTitle(titles[i]);
+                    article.setBriefIndc(brefContents[i]);
+                    article.setContent(contents[i]);
+                    Date date = new Date();
+                    Timestamp nousedate = new Timestamp(date.getTime());
+                    article.setPubTime(nousedate);
+                    articleDao.save(article);
+                }
             }
+            return 1;
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+            return 0;
         }
 
-        return 1;
     }
 
     public ArticleDao getArticleDao() {

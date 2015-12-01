@@ -32,7 +32,7 @@ public class ArticleAction extends ActionSupport {
     public Map                    responseJson;
 
     //文章Id
-    private int[]                 articleIds;
+    private String[]              articleIds;
     //标题
     private String[]              titles;
     //栏目Id
@@ -194,11 +194,11 @@ public class ArticleAction extends ActionSupport {
         this.contents = contents;
     }
 
-    public int[] getArticleIds() {
+    public String[] getArticleIds() {
         return articleIds;
     }
 
-    public void setArticleIds(int[] articleIds) {
+    public void setArticleIds(String[] articleIds) {
         this.articleIds = articleIds;
     }
 
