@@ -65,3 +65,8 @@ WebRoot/WEB-INF/classes/com/myweb/entity/User.hbm.xml
 
 WebRoot/WEB-INF/classes/com/myweb/entity/Article.hbm.xml
 
+out/artifacts/Myweb_war_exploded/
+
+Myweb.iml
+
+Myweb.iml
