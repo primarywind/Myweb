@@ -14,7 +14,7 @@ import com.myweb.view.SendCardDetailView;
 import com.myweb.view.SendCardListView;
 
 /**
- * 
+ * 讨论模版服务
  * @author huleiwind
  * @version $Id: SendCardServiceImpl.java, v 0.1 2015-10-18 下午4:35:21 huleiwind Exp $
  */

@@ -1,8 +1,6 @@
 package com.myweb.service;
 
-import java.util.List;
-
-import com.myweb.view.PictureListView;
+import com.myweb.result.PictureListQueryResult;
 
 /**
  * 
@@ -17,5 +15,5 @@ public interface IPictureService {
      * @param pageSize
      * @return
      */
-    public List<PictureListView> findByPages(int pageNo, int pageSize);
+    public PictureListQueryResult findByPages(int pageNo, int pageSize);
 }

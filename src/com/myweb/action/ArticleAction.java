@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.myweb.result.ArticleDetailListQueryResult;
+import com.myweb.result.ArticleListQueryResult;
+import com.myweb.result.ArticleQueryResult;
+import com.myweb.result.ArticlesNumQueryResult;
+import com.myweb.result.BizResult;
 import com.myweb.service.IArticleService;
 import com.myweb.view.ArticleListView;
 import com.myweb.view.ArticleView;
@@ -46,32 +51,34 @@ public class ArticleAction extends ActionSupport {
 
     public String findArticlesByPage() {
         Map<String, Object> map = new HashMap<String, Object>();
-        articleListViews = articleService.findArticlesByPage(pageNo, pageSize, categoryId);
-        map.put("articleListViews", articleListViews);
+        ArticleListQueryResult articleListQueryResult = articleService.findArticlesByPage(pageNo,
+            pageSize, categoryId);
+        map.put("articleListViews", articleListQueryResult.getArticleList());
         this.setResponseJson(map);
         return Action.SUCCESS;
     }
 
     public String findArticlesNums() {
         Map<String, Object> map = new HashMap<String, Object>();
-        int nums = articleService.findArticlesNum(categoryId);
-        map.put("nums", nums);
+        ArticlesNumQueryResult articlesNumQueryResult = articleService.findArticlesNum(categoryId);
+        map.put("nums", articlesNumQueryResult.getNums());
         this.setResponseJson(map);
         return Action.SUCCESS;
     }
 
     public String findArticleDetail() {
         Map<String, Object> map = new HashMap<String, Object>();
-        articleView = articleService.findArticleDetailById(articleId);
-        map.put("articleView", articleView);
+        ArticleQueryResult articleQueryResult = articleService.findArticleDetailById(articleId);
+        map.put("articleView", articleQueryResult.getArticleView());
         this.setResponseJson(map);
         return Action.SUCCESS;
     }
 
     public String findArticleDetailListByCategoryId() {
         Map<String, Object> map = new HashMap<String, Object>();
-        articleViews = articleService.findArticleDetailList(categoryId);
-        map.put("articleViews", articleViews);
+        ArticleDetailListQueryResult articleDetailListQueryResult = articleService
+            .findArticleDetailList(categoryId);
+        map.put("articleViews", articleDetailListQueryResult.getArticleViewList());
         this.setResponseJson(map);
         return Action.SUCCESS;
     }
@@ -79,9 +86,9 @@ public class ArticleAction extends ActionSupport {
     public String addAndUpdateCategoryArticles() {
         Map<String, Object> map = new HashMap<String, Object>();
 
-        int addAndUpdateCategoryResult = articleService.addAndUpdateCategoryArticles(articleIds,
-            categoryIds, labels, titles, brefContents, contents);
-        if (addAndUpdateCategoryResult == 1) {
+        BizResult bizResult = articleService.addAndUpdateCategoryArticles(articleIds, categoryIds,
+            labels, titles, brefContents, contents);
+        if (bizResult.isSuccess() == true) {
             map.put("msg", "保存成功！");
         } else {
             map.put("msg", "保存失败！");

@@ -3,14 +3,13 @@ package com.myweb.test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.myweb.result.ArticleListQueryResult;
+import com.myweb.result.ArticleQueryResult;
+import com.myweb.result.ArticlesNumQueryResult;
 import com.myweb.service.IArticleService;
-import com.myweb.view.ArticleListView;
-import com.myweb.view.ArticleView;
 
 /**
  * 
@@ -29,19 +28,19 @@ public class ArticleServiceTest extends SpringTestBase {
 
     @Test
     public void testFindArticlesByPage() {
-        List<ArticleListView> articles = articleService.findArticlesByPage(1, 3, 0);
+        ArticleListQueryResult articles = articleService.findArticlesByPage(1, 3, 0);
         assertNotNull(articles);
     }
 
     @Test
     public void testFindArticlesNums() {
-        int nums = articleService.findArticlesNum(0);
+        ArticlesNumQueryResult nums = articleService.findArticlesNum(0);
         assertNotNull(nums);
     }
 
     @Test
     public void testFindArticleById() {
-        ArticleView article = articleService.findArticleDetailById(1);
+        ArticleQueryResult article = articleService.findArticleDetailById(1);
         assertNotNull(article);
     }
 

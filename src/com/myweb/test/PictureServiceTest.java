@@ -1,12 +1,10 @@
 package com.myweb.test;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.myweb.result.PictureListQueryResult;
 import com.myweb.service.IPictureService;
-import com.myweb.view.PictureListView;
 
 /**
  * 
@@ -19,7 +17,7 @@ public class PictureServiceTest extends SpringTestBase {
 
     @Test
     public void testFindCategories() {
-        List<PictureListView> lists = prictureService.findByPages(1, 2);
-        System.out.println(lists);
+        PictureListQueryResult pictureListQueryResult = prictureService.findByPages(1, 2);
+        System.out.println(pictureListQueryResult);
     }
 }

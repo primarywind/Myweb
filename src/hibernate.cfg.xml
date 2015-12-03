@@ -13,6 +13,6 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="myeclipse.connection.profile">mysqlconnect</property>
         <property name="connection.autocommit">true</property>
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
 	</session-factory>
 </hibernate-configuration>

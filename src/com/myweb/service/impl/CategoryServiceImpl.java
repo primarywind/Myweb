@@ -12,7 +12,7 @@ import com.myweb.service.ICategoryService;
 import com.myweb.view.CategoryView;
 
 /**
- * 
+ * 栏目模块服务
  * @author huleiwind
  * @version $Id: CategoryService.java, v 0.1 2015-10-13 下午12:51:11 huleiwind Exp $
  */

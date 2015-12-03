@@ -6,7 +6,7 @@ import com.myweb.service.IUserService;
 import com.myweb.util.MD5Util;
 
 /**
- * 
+ * 用户模版服务
  * @author huleiwind
  * @version $Id: UserServiceImpl.java, v 0.1 2015-10-8 上午11:03:48 huleiwind Exp $
  */

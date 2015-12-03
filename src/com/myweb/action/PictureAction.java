@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.myweb.result.PictureListQueryResult;
 import com.myweb.service.IPictureService;
 import com.myweb.view.PictureListView;
 import com.opensymphony.xwork2.Action;
@@ -25,7 +26,9 @@ public class PictureAction extends ActionSupport {
 
     public String findPicturesByPage() {
         Map<String, Object> map = new HashMap<String, Object>();
-        List<PictureListView> pictureListViews = pictureService.findByPages(pageNo, pageSize);
+        PictureListQueryResult pictureListQueryResult = pictureService
+            .findByPages(pageNo, pageSize);
+        List<PictureListView> pictureListViews = pictureListQueryResult.getPictureList();
         map.put("pictureListViews", pictureListViews);
         this.setResponseJson(map);
         return Action.SUCCESS;
