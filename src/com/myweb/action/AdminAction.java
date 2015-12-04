@@ -3,6 +3,7 @@ package com.myweb.action;
 import java.util.Map;
 
 import com.myweb.entity.User;
+import com.myweb.result.BizResult;
 import com.myweb.service.IUserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -22,8 +23,8 @@ public class AdminAction extends ActionSupport {
     public Map                responseJson;
 
     public String logon() {
-        user = userService.logon(name, passWord);
-        if (user == null) {
+        BizResult<User> bizResult = userService.logon(name, passWord);
+        if (bizResult.getObject() == null) {
             return "logon_failed";
         }
         ActionContext actionContext = ActionContext.getContext();

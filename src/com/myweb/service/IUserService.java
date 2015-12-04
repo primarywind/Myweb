@@ -1,6 +1,7 @@
 package com.myweb.service;
 
 import com.myweb.entity.User;
+import com.myweb.result.BizResult;
 
 /**
  * 
@@ -18,5 +19,5 @@ public interface IUserService {
     /**
      * 用户登录验证
      */
-    public User logon(String userName, String password);
+    public BizResult<User> logon(String userName, String password);
 }

@@ -34,9 +34,9 @@ public class SendCardAction extends ActionSupport {
     public Map                responseJson;
 
     public String findSendCardsByPage() {
-        Map<String, Object> map = new HashMap<String, Object>();
         List<SendCardListView> sendCardListViews = sendCardService.findSendCardsByPage(pageNo,
             pageSize);
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("sendCardListViews", sendCardListViews);
         this.setResponseJson(map);
         return Action.SUCCESS;

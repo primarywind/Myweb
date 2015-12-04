@@ -2,7 +2,9 @@ package com.myweb.service.impl;
 
 import com.myweb.dao.UserDao;
 import com.myweb.entity.User;
+import com.myweb.result.BizResult;
 import com.myweb.service.IUserService;
+import com.myweb.template.ServiceCallBack;
 import com.myweb.util.MD5Util;
 
 /**
@@ -25,14 +27,30 @@ public class UserServiceImpl extends BaseService implements IUserService {
         this.userDao = userDao;
     }
 
-    public User logon(String name, String password) {
-        String md5Password = null;
-        try {
-            md5Password = MD5Util.md5Encode(password);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        User user = userDao.findByNameAndPassowrd(name, md5Password);
-        return user;
+    public BizResult<User> logon(final String name, final String password) {
+        return getServiceTemplate().serviceProcess(new ServiceCallBack<User>() {
+            @Override
+            public void beforeService() {
+            }
+
+            @Override
+            public BizResult<User> executeService() {
+                String md5Password = null;
+                try {
+                    md5Password = MD5Util.md5Encode(password);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                User user = userDao.findByNameAndPassowrd(name, md5Password);
+                BizResult<User> bizResult = BizResult.valueOfSuccessed();
+                bizResult.setObject(user);
+                return bizResult;
+            }
+
+            @Override
+            public void afterService(BizResult<User> result) {
+            }
+        });
+
     }
 }

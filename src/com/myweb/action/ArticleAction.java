@@ -88,7 +88,7 @@ public class ArticleAction extends ActionSupport {
 
         BizResult bizResult = articleService.addAndUpdateCategoryArticles(articleIds, categoryIds,
             labels, titles, brefContents, contents);
-        if (bizResult.isSuccess() == true) {
+        if (bizResult.isSuccess()) {
             map.put("msg", "保存成功！");
         } else {
             map.put("msg", "保存失败！");

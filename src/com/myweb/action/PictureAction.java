@@ -25,9 +25,10 @@ public class PictureAction extends ActionSupport {
     public Map                responseJson;
 
     public String findPicturesByPage() {
-        Map<String, Object> map = new HashMap<String, Object>();
+
         PictureListQueryResult pictureListQueryResult = pictureService
             .findByPages(pageNo, pageSize);
+        Map<String, Object> map = new HashMap<String, Object>();
         List<PictureListView> pictureListViews = pictureListQueryResult.getPictureList();
         map.put("pictureListViews", pictureListViews);
         this.setResponseJson(map);

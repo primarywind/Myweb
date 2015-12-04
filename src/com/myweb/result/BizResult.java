@@ -15,6 +15,9 @@ public class BizResult<T> implements Serializable {
     /** 是否成功。*/
     private boolean           success;
 
+    /** 返回对象  */
+    private T                 object;
+
     public boolean isSuccess() {
         return success;
     }
@@ -34,4 +37,13 @@ public class BizResult<T> implements Serializable {
         result.setSuccess(true);
         return result;
     }
+
+    public T getObject() {
+        return object;
+    }
+
+    public void setObject(T object) {
+        this.object = object;
+    }
+
 }

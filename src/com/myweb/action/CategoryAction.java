@@ -1,11 +1,11 @@
 package com.myweb.action;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import com.myweb.result.BizResult;
+import com.myweb.result.CategoryListQueryResult;
 import com.myweb.service.ICategoryService;
-import com.myweb.view.CategoryView;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -30,37 +30,34 @@ public class CategoryAction extends ActionSupport {
     private int               delCId;
 
     public String findCategories() {
+        CategoryListQueryResult categoryListQueryResult = categoryService.findCategories(ifView);
         Map<String, Object> map = new HashMap<String, Object>();
-        List<CategoryView> categoryListView = categoryService.findCategories(ifView);
-        map.put("categoryListView", categoryListView);
+        map.put("categoryListView", categoryListQueryResult.getCategoryList());
         this.setResponseJson(map);
         return Action.SUCCESS;
     }
 
     public String findAllCategories() {
+        CategoryListQueryResult categoryListQueryResult = categoryService.findAllCategories();
         Map<String, Object> map = new HashMap<String, Object>();
-        List<CategoryView> categoryListView = categoryService.findAllCategories();
-        map.put("categoryListView", categoryListView);
+        map.put("categoryListView", categoryListQueryResult.getCategoryList());
         this.setResponseJson(map);
         return Action.SUCCESS;
     }
 
     public String findArticleCategories() {
+        CategoryListQueryResult categoryListQueryResult = categoryService.findArticleCategories();
         Map<String, Object> map = new HashMap<String, Object>();
-        List<CategoryView> categoryListView = categoryService.findArticleCategories();
-        map.put("categoryListView", categoryListView);
+        map.put("categoryListView", categoryListQueryResult.getCategoryList());
         this.setResponseJson(map);
         return Action.SUCCESS;
     }
 
     public String addAndUpdateCategories() {
-        System.out.println(cName);
-        System.out.println(cHref);
-        System.out.println(cifView);
-        System.out.println(cId);
-        int saveResult = categoryService.addAndUpdateCategories(cId, cName, cHref, CIndex, cifView);
+        BizResult<Object> bizResult = categoryService.addAndUpdateCategories(cId, cName, cHref,
+            CIndex, cifView);
         Map<String, Object> map = new HashMap<String, Object>();
-        if (saveResult == 1) {
+        if (bizResult.isSuccess()) {
             map.put("msg", "保存成功！");
         } else {
             map.put("msg", "保存异常，数据回滚！");
@@ -70,14 +67,12 @@ public class CategoryAction extends ActionSupport {
     }
 
     public String deleteCategory() {
-        int result = categoryService.deleteCategoryByCId(delCId);
+        BizResult<Object> bizResult = categoryService.deleteCategoryByCId(delCId);
         Map<String, Object> map = new HashMap<String, Object>();
-        if (result == 1) {
+        if (bizResult.isSuccess()) {
             map.put("msg", "删除成功！");
-        } else if (result == 2) {
-            map.put("msg", "栏目下存在文章，无法删除！");
         } else {
-            map.put("msg", "删除异常，数据回滚！");
+            map.put("msg", "栏目下存在文章，无法删除！");
         }
         this.setResponseJson(map);
         return Action.SUCCESS;

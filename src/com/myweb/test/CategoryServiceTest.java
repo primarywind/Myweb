@@ -3,13 +3,11 @@ package com.myweb.test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.myweb.result.CategoryListQueryResult;
 import com.myweb.service.ICategoryService;
-import com.myweb.view.CategoryView;
 
 /**
  * 
@@ -28,7 +26,7 @@ public class CategoryServiceTest extends SpringTestBase {
 
     @Test
     public void testFindCategories() {
-        List<CategoryView> lists = categoryService.findCategories(1);
-        System.out.println(lists);
+        CategoryListQueryResult categoryListQueryResult = categoryService.findCategories(1);
+        System.out.println(categoryListQueryResult);
     }
 }
