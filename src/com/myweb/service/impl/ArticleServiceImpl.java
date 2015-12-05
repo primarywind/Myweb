@@ -1,6 +1,7 @@
 package com.myweb.service.impl;
 
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -143,7 +144,7 @@ public class ArticleServiceImpl extends BaseService implements IArticleService {
                                                   final int[] categoryIds, final String[] labels,
                                                   final String[] titles,
                                                   final String[] brefContents,
-                                                  final String[] contents) {
+                                                  final String[] contents, final String[] delAIds) {
 
         BizResult<Object> bizResult = getServiceTemplate().serviceProcess(
             new ServiceCallBack<Object>() {
@@ -160,14 +161,22 @@ public class ArticleServiceImpl extends BaseService implements IArticleService {
                     for (int i = 0, size = articleIds.length; i < size; i++) {
                         if (!articleIds[i].equals("0")) {
                             //已存在文章，进行修改
-                            Article article = articleDao.findById(Integer.parseInt(articleIds[i]));
 
-                            article.setCategoryId(categoryIds[i]);
-                            article.setLabel(labels[i]);
-                            article.setTitle(titles[i]);
-                            article.setBriefIndc(brefContents[i]);
-                            article.setContent(contents[i]);
-                            articleDao.update(article);
+                            if (delAIds != null && delAIds.length != 0
+                                && Arrays.asList(delAIds).contains(articleIds[i])) {
+                                //1.如果为删除项目，则直接删除
+                                articleDao.deleteById(Integer.parseInt(articleIds[i]));
+                            } else {
+                                //2.如果不为删除项目，则更新
+                                Article article = articleDao.findById(Integer
+                                    .parseInt(articleIds[i]));
+                                article.setCategoryId(categoryIds[i]);
+                                article.setLabel(labels[i]);
+                                article.setTitle(titles[i]);
+                                article.setBriefIndc(brefContents[i]);
+                                article.setContent(contents[i]);
+                                articleDao.update(article);
+                            }
                         } else {
                             //新增文章，进行添加
                             Article article = new Article();

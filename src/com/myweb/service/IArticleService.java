@@ -59,5 +59,6 @@ public interface IArticleService {
      */
     public BizResult addAndUpdateCategoryArticles(String[] articleIds, int[] categoryIds,
                                                   String[] labels, String[] titles,
-                                                  String[] brefContents, String[] contents);
+                                                  String[] brefContents, String[] contents,
+                                                  String[] delAIds);
 }

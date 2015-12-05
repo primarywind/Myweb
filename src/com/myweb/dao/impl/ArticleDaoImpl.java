@@ -55,4 +55,14 @@ public class ArticleDaoImpl extends HibernateDaoSupport implements ArticleDao {
     public void update(Article article) {
         getHibernateTemplate().update(article);
     }
+
+    public void deleteById(int articleId) {
+        final String hql = "delete Article a where a.articleId = " + articleId;
+        getHibernateTemplate().execute(new HibernateCallback() {
+            public Object doInHibernate(Session session) throws HibernateException {
+                session.createQuery(hql).executeUpdate();
+                return 1;
+            }
+        });
+    }
 }

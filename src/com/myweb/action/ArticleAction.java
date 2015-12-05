@@ -44,6 +44,9 @@ public class ArticleAction extends ActionSupport {
     private int[]                 categoryIds;
     //文章标签
     private String[]              labels;
+
+    //删除文章id
+    private String[]              delAIds;
     //文章简介
     private String[]              brefContents;
     //文章内容
@@ -85,9 +88,9 @@ public class ArticleAction extends ActionSupport {
 
     public String addAndUpdateCategoryArticles() {
         Map<String, Object> map = new HashMap<String, Object>();
-
+        System.out.println(delAIds);
         BizResult bizResult = articleService.addAndUpdateCategoryArticles(articleIds, categoryIds,
-            labels, titles, brefContents, contents);
+            labels, titles, brefContents, contents, delAIds);
         if (bizResult.isSuccess()) {
             map.put("msg", "保存成功！");
         } else {
@@ -215,6 +218,14 @@ public class ArticleAction extends ActionSupport {
 
     public void setCategoryIds(int[] categoryIds) {
         this.categoryIds = categoryIds;
+    }
+
+    public String[] getDelAIds() {
+        return delAIds;
+    }
+
+    public void setDelAIds(String[] delAIds) {
+        this.delAIds = delAIds;
     }
 
 }

@@ -16,6 +16,8 @@ public interface ArticleDao {
 
     public void delete(Article article);
 
+    public void deleteById(int articleId);
+
     public Article findById(int id);
 
     public List<Article> findByCId(int categoryId);

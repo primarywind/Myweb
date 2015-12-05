@@ -203,7 +203,22 @@ function loadCategoryArticle(categoreId) {
 												+ o.label
 												+ "'>"
 												+ "</div>"
-												+ "</div><div class='row col-md-8  col-md-offset-2' style='margin-top: 30px;'>"
+												+ "<div class='input-group' style='margin-bottom: 10px;'>"
+												+ "<div class='input-group-addon'>标题</div>"
+												+ "<input type='text' class='form-control' name='titles' value='"
+												+ o.title
+												+ "'>"
+												+ "<div class='input-group-addon'>发布时间</div>"
+												+ "<input type='text' class='form-control' name='pubTime' value='"
+												+ o.pubTime
+												+ "' disabled>"
+												+ "</div><div class='input-group' style='margin-bottom: 10px;'>"
+												+ "<div class='checkbox'><label><input type='checkbox' name='delAIds' value='"
+												+ o.articleId
+												+ "'>是否删除</label></div>"
+												+ "</div>"
+												+ "</div>"
+												+ "<div class='row col-md-8  col-md-offset-2' style='margin-top: 30px;'>"
 												+ "文件简介:<script id='brefeditor"
 												+ o.categoryId
 												+ "-"

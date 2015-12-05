@@ -27,9 +27,12 @@ public class AdminAction extends ActionSupport {
         if (bizResult.getObject() == null) {
             return "logon_failed";
         }
+        user = bizResult.getObject();
         ActionContext actionContext = ActionContext.getContext();
         Map session = actionContext.getSession();
-        session.put("USER", user);
+
+        session.put("USER", bizResult.getObject());
+
         return "logon_ok";
     }
 
