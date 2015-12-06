@@ -16,7 +16,7 @@ $(function() {
 	// 页码
 	var pageNo = 1;
 	// 一页条数
-	var pageSize = 1;
+	var pageSize = 100;
 
 	// 瀑布流初始化
 	$('#waterfall').masonry({
@@ -72,6 +72,7 @@ $(function() {
 
 				var $items = $(arr.join(''));
 				// append items to grid
+				$('#waterfall').empty();
 				$('#waterfall').append($items)
 				// add and lay out newly appended items
 				.masonry('appended', $items);
@@ -81,4 +82,5 @@ $(function() {
 			}
 		});
 	}
+	GetPicturesByPage();
 });

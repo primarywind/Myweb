@@ -23,6 +23,9 @@ loadCategoriesDatas();
 // 加载文章栏目下拉框数据
 loadCategoriesSelectsDatas();
 
+// 加载图片列表数据
+getPicturesByPage();
+
 // 加载栏目数据
 function loadCategoriesDatas() {
 	$
@@ -343,6 +346,76 @@ function addAndUpdateCategoryArticles() {
 		},
 		error : function(dta) {
 			alert("保存失败...");
+		}
+	});
+}
+// 获取图片信息
+function getPicturesByPage() {
+	$
+			.ajax({
+				type : "post",
+				url : "jsonkpi/findPicturesByPage.action",
+				data : {
+					"pageNo" : 1,
+					"pageSize" : 100
+				},
+				cache : false,
+				dataType : "json",
+				success : function(dta) {
+					if (!dta.pictureListViews
+							|| dta.pictureListViews.length <= 0) {
+						alert("已无图片...");
+					}
+					var innerHtml = "";
+					// 对数据进行遍历
+					$
+							.each(
+									dta.pictureListViews,
+									function(i, o) {
+										innerHtml = innerHtml
+												+ "<tr><th scope='row'>"
+												+ o.picId
+												+ "</th><td>"
+												+ o.picName
+												+ "</td><td>"
+												+ o.picSize
+												+ "</td><td>"
+												+ o.picType
+												+ "</td><td>"
+												+ o.pubTime
+												+ "</td><td>"
+												+ o.userName
+												+ "</td><td><div class='checkbox'><label><input type='checkbox' name='delAIds' value='"
+												+ o.picId
+												+ "'>是否删除</label></td></tr>";
+									});
+					$('#pictureTbody').empty();
+					// append items to grid
+					$('#pictureTbody').append(innerHtml);
+				},
+				error : function(dta) {
+					alert("图片信息拉取失败...");
+				}
+			});
+}
+
+// 上传图片
+function uploadPic() {
+	$.ajaxFileUpload({
+		url : "jsonkpi/uploadSpecialRecommendPic.action",
+		secureuri : false,
+		fileElementId : 'uploadPicfile',
+		dataType : 'json',
+		success : function(d, status) {
+			var data = eval('(' + d + ')');
+			if (data.flag == 1) {
+				$("#uploadPicShow").attr("src", data.path);
+				$("#uploadPicture").val(data.picName);
+				alert("上传成功");
+			}
+		},
+		error : function(data, status, e) {
+			alert(e);
 		}
 	});
 }

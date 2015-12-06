@@ -29,4 +29,8 @@ public class PictureDaoImpl extends HibernateDaoSupport implements PictureDao {
         return lists;
     }
 
+    public Integer save(Picture picture) {
+        return (Integer) getHibernateTemplate().save(picture);
+    }
+
 }

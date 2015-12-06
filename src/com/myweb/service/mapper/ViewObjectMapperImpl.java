@@ -46,7 +46,8 @@ public class ViewObjectMapperImpl extends BaseOrikaMapperImpl {
         // 图片列表视图
         mapperFactory.classMap(Picture.class, PictureListView.class).byDefault()
             .field("picId", "picId").field("picName", "picName").field("picPath", "picPath")
-            .field("picType", "picType").field("picOwnerId", "picOwnerId").register();
+            .field("picType", "picType").field("picOwnerId", "picOwnerId")
+            .field("picSize", "picSize").field("pubTime", "pubTime").register();
 
         // 帖子列表视图
         mapperFactory.classMap(Sendcard.class, SendCardListView.class).byDefault()

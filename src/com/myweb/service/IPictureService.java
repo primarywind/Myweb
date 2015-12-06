@@ -1,5 +1,9 @@
 package com.myweb.service;
 
+import java.io.File;
+
+import com.myweb.entity.Picture;
+import com.myweb.result.BizResult;
 import com.myweb.result.PictureListQueryResult;
 
 /**
@@ -16,4 +20,13 @@ public interface IPictureService {
      * @return
      */
     public PictureListQueryResult findByPages(int pageNo, int pageSize);
+
+    /**
+     * 上传图片并保存
+     * 
+     * @param file
+     * @param fileName
+     * @return
+     */
+    public BizResult<Picture> uploadPicFile(File file, String fileName);
 }

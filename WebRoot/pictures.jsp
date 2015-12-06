@@ -31,34 +31,12 @@
 <script src="/Myweb/assets/js/pictures.js"></script>
 <body>
 	<div id="waterfall">
-		<div class="cell">
-			<img src="/Myweb/images/1.jpg" />
-		</div>
 		
-		<div class="cell">
-			<img src="/Myweb/images/2.jpg" />
-		</div>
-		
-		<div class="cell">
-			<img src="/Myweb/images/3.jpg" />
-		</div>
-		
-		<div class="cell">
-			<img src="/Myweb/images/4.jpg" />
-		</div>
-
-		<div class="cell">
-			<img src="/Myweb/images/5.jpg" />
-		</div>
-
-		<div class="cell">
-			<img src="/Myweb/images/6.jpg" />
-		</div>
 	</div>
 	<br>
 	<script type="text/template" id="pictures">  
         <div class="cell">
-			<img src="/Myweb/images/{picPath}" />
+			<img src="{picPath}" />
 		</div>
 	</script>
 </body>

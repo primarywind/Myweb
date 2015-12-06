@@ -1,15 +1,26 @@
 package com.myweb.service.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import org.apache.commons.io.FileUtils;
 
 import com.myweb.dao.PictureDao;
 import com.myweb.dao.UserDao;
 import com.myweb.entity.Picture;
 import com.myweb.entity.User;
+import com.myweb.result.BizResult;
 import com.myweb.result.PictureListQueryResult;
 import com.myweb.service.IPictureService;
 import com.myweb.template.QueryCallBack;
+import com.myweb.template.ServiceCallBack;
+import com.myweb.util.HandlerPath;
 import com.myweb.view.PictureListView;
+import com.opensymphony.xwork2.ActionContext;
 
 /**
  * 图片模块服务
@@ -41,10 +52,57 @@ public class PictureServiceImpl extends BaseService implements IPictureService {
                     for (PictureListView pictureListView : pictureListViews) {
                         User user = userDao.findById(pictureListView.getPicOwnerId());
                         pictureListView.setUserName(user.getUserName());
+
                     }
                     result.setPictureList(pictureListViews);
                 }
             });
+    }
+
+    public BizResult<Picture> uploadPicFile(final File file, final String fileName) {
+        BizResult<Picture> bizResult = getServiceTemplate().serviceProcess(
+            new ServiceCallBack<Picture>() {
+                @Override
+                public void beforeService() {
+
+                }
+
+                @Override
+                public BizResult<Picture> executeService() {
+                    String finalfileName = null;
+                    ActionContext actionContext = ActionContext.getContext();
+                    Map session = actionContext.getSession();
+                    User user = (User) session.get("USER");
+                    try {
+                        UUID uuid = UUID.randomUUID();
+                        finalfileName = uuid.toString() + fileName;
+                        FileUtils.copyFile(file,
+                            new File(HandlerPath.getHostSimulateAuthorLogoPath() + finalfileName));
+                        Picture picture = new Picture();
+                        picture.setPicName(finalfileName);
+                        picture.setPicPath(HandlerPath.getPicturePath() + finalfileName);
+                        picture.setPicSize(HandlerPath.FormetFileSize(file.length()));
+                        String[] fileNames = finalfileName.split("\\.");
+                        picture.setPicType(fileNames[fileNames.length - 1]);
+                        picture.setPubTime(new Timestamp(System.currentTimeMillis()));
+                        picture.setPicOwnerId(user.getUserId());
+                        pictureDao.save(picture);
+                        BizResult<Picture> bizResult = BizResult.valueOfSuccessed();
+                        bizResult.setObject(picture);
+                        return bizResult;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return BizResult.valueOfFailed();
+                    }
+                }
+
+                @Override
+                public void afterService(BizResult<Picture> result) {
+
+                }
+
+            });
+        return bizResult;
     }
 
     public PictureDao getPictureDao() {
@@ -62,5 +120,4 @@ public class PictureServiceImpl extends BaseService implements IPictureService {
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
-
 }

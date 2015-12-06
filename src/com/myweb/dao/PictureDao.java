@@ -11,4 +11,6 @@ import com.myweb.entity.Picture;
  */
 public interface PictureDao {
     public List<Picture> findByPages(int pageNo, int pageSize);
+
+    public Integer save(Picture picture);
 }

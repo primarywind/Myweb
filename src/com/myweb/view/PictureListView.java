@@ -1,19 +1,22 @@
 package com.myweb.view;
 
+import java.sql.Timestamp;
+
 /**
  * 
  * @author huleiwind
  * @version $Id: PictureListView.java, v 0.1 2015-10-14 下午4:09:40 huleiwind Exp $
  */
 public class PictureListView {
-    private Integer picId;
-    private String  picName;
-    private String  picType;
-    private String  picPath;
-    private Integer picOwnerId;
-
+    private Integer   picId;
+    private String    picName;
+    private String    picType;
+    private String    picSize;
+    private String    picPath;
+    private Integer   picOwnerId;
+    private Timestamp pubTime;
     //Userdo
-    private String  userName;
+    private String    userName;
 
     public Integer getPicId() {
         return picId;
@@ -61,6 +64,22 @@ public class PictureListView {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPicSize() {
+        return picSize;
+    }
+
+    public void setPicSize(String picSize) {
+        this.picSize = picSize;
+    }
+
+    public Timestamp getPubTime() {
+        return pubTime;
+    }
+
+    public void setPubTime(Timestamp pubTime) {
+        this.pubTime = pubTime;
     }
 
 }

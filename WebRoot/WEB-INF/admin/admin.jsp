@@ -104,8 +104,8 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#tab1" data-toggle="tab">栏目管理</a>
 					</li>
-					<li><a href="#tab2" data-toggle="tab">文章管理</a>
-					</li>
+					<li><a href="#tab2" data-toggle="tab">文章管理</a></li>
+					<li><a href="#tab3" data-toggle="tab">图片管理</a></li>
 				</ul>
 				<div class="tab-content">
 					<!-- 栏目管理标签页 -->
@@ -133,6 +133,7 @@
 							</center>
 						</form>
 					</div>
+
 					<!---------------------------------- 文章管理标签页 --------------->
 					<div class="tab-pane fade" id="tab2">
 
@@ -144,45 +145,7 @@
 							</div>
 						</div>
 						<form id="articlesForm">
-							<div id="articleContent">
-								<!-- 						<div class="row col-md-8 col-md-offset-2"
-							style="margin-top: 30px;">
-							<div class="input-group" style="margin-bottom: 10px;">
-								<div class="input-group-addon">文章ID</div>
-								<input type="text" class="form-control" id="title">
-								<div class="input-group-addon">发布者</div>
-								<input type="text" class="form-control" id="title">
-
-							</div>
-							<div class="input-group" style="margin-bottom: 10px;">
-								<div class="input-group-addon">标题</div>
-								<input type="text" class="form-control" id="title">
-								<div class="input-group-addon">发布时间</div>
-								<input type="text" class="form-control" id="title">
-							</div>
-							<div class="input-group" style="margin-bottom: 10px;">
-								<div class="input-group-addon">类别</div>
-								<input type="text" class="form-control" id="title">
-								<div class="input-group-addon">标签</div>
-								<input type="text" class="form-control" id="title">
-							</div>
-						</div>
-						
-						<div class="row col-md-10  col-md-offset-2"
-							style="margin-top: 30px;">
-							文件简介:
-							<script id="brefeditor" type="text/plain"
-								style="width:700px;height:250px;"></script>
-						</div>
-
-						<div class="row col-md-10  col-md-offset-2"
-							style="margin-top: 30px;">
-							文章详细内容:
-							<script id="editor" type="text/plain"
-								style="width:700px;height:250px;"></script>
-						</div>
-						 -->
-							</div>
+							<div id="articleContent"></div>
 						</form>
 						<div class="row col-md-8 col-md-offset-2"
 							style="margin-top: 30px;">
@@ -201,11 +164,38 @@
 							</div>
 						</div>
 					</div>
+					<!---------------------------------- 图片管理标签页 --------------->
+					<div class="tab-pane fade" id="tab3">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>图片序号</th>
+									<th>图片名称</th>
+									<th>图片大小</th>
+									<th>图片类别</th>
+									<th>上传时间</th>
+									<th>上传者</th>
+									<th>是否删除</th>
+								</tr>
+							</thead>
+							<tbody id="pictureTbody">
+							</tbody>
+						</table>
+						<div style="margin-top: 10px; margin-left: 180px">
+							<img alt="" id="uploadPicShow" height="100" width="100" src="">
+							<input id="uploadPicfile" type="file" size="30" name="file">
+							<button type="button" onclick="uploadPic()"
+								class="btn btn-warning btn-lg">上传并保存</button>
+							<input type=hidden class="span5" id="uploadPicture"
+								name="uploadPicture">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+		<script src="/Myweb/assets/js/ajaxfileupload.js"></script>
 		<script
 			src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 

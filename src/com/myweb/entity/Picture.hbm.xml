@@ -6,7 +6,7 @@
 	<class name="com.myweb.entity.Picture" table="picture" catalog="Myweb">
 		<id name="picId" type="java.lang.Integer">
 			<column name="pic_id" />
-			<generator class="assigned" />
+			<generator class="identity" />
 		</id>
 		<property name="picName" type="java.lang.String">
 			<column name="pic_name" not-null="true" />
