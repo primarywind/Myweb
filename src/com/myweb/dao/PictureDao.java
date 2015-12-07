@@ -13,4 +13,6 @@ public interface PictureDao {
     public List<Picture> findByPages(int pageNo, int pageSize);
 
     public Integer save(Picture picture);
+
+    public int deleteById(Integer id);
 }

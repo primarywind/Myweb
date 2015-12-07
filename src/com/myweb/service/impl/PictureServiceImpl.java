@@ -105,6 +105,34 @@ public class PictureServiceImpl extends BaseService implements IPictureService {
         return bizResult;
     }
 
+    public BizResult<Object> savePictureChange(final String[] delAIds) {
+        BizResult<Object> bizResult = getServiceTemplate().serviceProcess(
+            new ServiceCallBack<Object>() {
+                @Override
+                public void beforeService() {
+
+                }
+
+                @Override
+                public BizResult<Object> executeService() {
+                    if (delAIds == null || delAIds.length == 0) {
+                        return BizResult.valueOfSuccessed();
+                    }
+                    for (String delAId : delAIds) {
+                        pictureDao.deleteById(Integer.parseInt(delAId));
+                    }
+                    return BizResult.valueOfSuccessed();
+                }
+
+                @Override
+                public void afterService(BizResult<Object> result) {
+
+                }
+
+            });
+        return bizResult;
+    }
+
     public PictureDao getPictureDao() {
         return pictureDao;
     }

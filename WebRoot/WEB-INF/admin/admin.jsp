@@ -166,21 +166,26 @@
 					</div>
 					<!---------------------------------- 图片管理标签页 --------------->
 					<div class="tab-pane fade" id="tab3">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>图片序号</th>
-									<th>图片名称</th>
-									<th>图片大小</th>
-									<th>图片类别</th>
-									<th>上传时间</th>
-									<th>上传者</th>
-									<th>是否删除</th>
-								</tr>
-							</thead>
-							<tbody id="pictureTbody">
-							</tbody>
-						</table>
+						<form id="pictureForm">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>图片序号</th>
+										<th>图片名称</th>
+										<th>图片大小</th>
+										<th>图片类别</th>
+										<th>上传时间</th>
+										<th>上传者</th>
+										<th>预览</th>
+										<th>是否删除</th>
+									</tr>
+								</thead>
+								<tbody id="pictureTbody">
+								</tbody>
+							</table>
+							<button type="button" onclick="savePictureForm()"
+								class="btn btn-warning btn-lg">保存</button>
+						</form>
 						<div style="margin-top: 10px; margin-left: 180px">
 							<img alt="" id="uploadPicShow" height="100" width="100" src="">
 							<input id="uploadPicfile" type="file" size="30" name="file">

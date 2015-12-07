@@ -33,4 +33,15 @@ public class PictureDaoImpl extends HibernateDaoSupport implements PictureDao {
         return (Integer) getHibernateTemplate().save(picture);
     }
 
+    public int deleteById(Integer id) {
+        final String hql = "delete Picture p where p.picId = " + id;
+        getHibernateTemplate().execute(new HibernateCallback() {
+            public Object doInHibernate(Session session) throws HibernateException {
+                session.createQuery(hql).executeUpdate();
+                return 1;
+            }
+        });
+        return 1;
+    }
+
 }

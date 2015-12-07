@@ -32,6 +32,7 @@ public class PictureAction extends ActionSupport {
 
     // 上传数据
     private File              file;
+    private String[]          delAIds;
 
     public String findPicturesByPage() {
 
@@ -49,6 +50,18 @@ public class PictureAction extends ActionSupport {
                  + bizResult.getObject().getPicName() + "\",picName:\"" + fileFileName + "\"}";
         return Action.SUCCESS;
 
+    }
+
+    public String savePictureChange() {
+        BizResult<Object> bizResult = pictureService.savePictureChange(delAIds);
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (bizResult.isSuccess()) {
+            map.put("msg", "保存成功！");
+        } else {
+            map.put("msg", "保存异常，数据回滚！");
+        }
+        this.setResponseJson(map);
+        return Action.SUCCESS;
     }
 
     public IPictureService getPictureService() {
@@ -113,6 +126,14 @@ public class PictureAction extends ActionSupport {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public String[] getDelAIds() {
+        return delAIds;
+    }
+
+    public void setDelAIds(String[] delAIds) {
+        this.delAIds = delAIds;
     }
 
 }

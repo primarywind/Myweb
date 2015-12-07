@@ -29,4 +29,12 @@ public interface IPictureService {
      * @return
      */
     public BizResult<Picture> uploadPicFile(File file, String fileName);
+
+    /**
+     * 保存图片修改
+     * 
+     * @param delAIds 图片id
+     * @return
+     */
+    public BizResult<Object> savePictureChange(String[] delAIds);
 }

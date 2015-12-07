@@ -126,5 +126,13 @@
 			</result>
 		</action>
 
+		<action name="savePictureChange" class="com.myweb.action.PictureAction"
+			method="savePictureChange">
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+
 	</package>
 </struts>

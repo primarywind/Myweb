@@ -385,7 +385,9 @@ function getPicturesByPage() {
 												+ o.pubTime
 												+ "</td><td>"
 												+ o.userName
-												+ "</td><td><div class='checkbox'><label><input type='checkbox' name='delAIds' value='"
+												+ "</td><td><img alt='' height='100' width='100' src='"
+												+ o.picPath
+												+ "'></td><td><div class='checkbox'><label><input type='checkbox' name='delAIds' value='"
 												+ o.picId
 												+ "'>是否删除</label></td></tr>";
 									});
@@ -420,6 +422,23 @@ function uploadPic() {
 	});
 }
 
+// 提交图片修改
+function savePictureForm() {
+	$.ajax({
+		type : "post",
+		url : "jsonkpi/savePictureChange.action",
+		data : $("#pictureForm").serialize(),
+		cache : false,
+		dataType : "json",
+		success : function(dta) {
+			alert(dta.msg);
+			return;
+		},
+		error : function(dta) {
+			alert("保存失败...");
+		}
+	});
+}
 // 绑定新增文章按钮
 $("#addCategoryArticle")
 		.click(
