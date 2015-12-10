@@ -323,6 +323,9 @@ function addAndUpdateCategories() {
 		cache : false,
 		dataType : "json",
 		success : function(dta) {
+			if (dta.logonFailed == 1) {
+				window.location.href = "/Myweb/logon.jsp";
+			}
 			alert(dta.msg);
 			return;
 		},
@@ -341,6 +344,9 @@ function addAndUpdateCategoryArticles() {
 		cache : false,
 		dataType : "json",
 		success : function(dta) {
+			if (dta.logonFailed == 1) {
+				window.location.href = "/Myweb/logon.jsp";
+			}
 			alert(dta.msg);
 			return;
 		},
@@ -409,6 +415,9 @@ function uploadPic() {
 		fileElementId : 'uploadPicfile',
 		dataType : 'json',
 		success : function(d, status) {
+			if (d.logonFailed == 1) {
+				window.location.href = "/Myweb/logon.jsp";
+			}
 			var data = eval('(' + d + ')');
 			if (data.flag == 1) {
 				$("#uploadPicShow").attr("src", data.path);
@@ -431,6 +440,9 @@ function savePictureForm() {
 		cache : false,
 		dataType : "json",
 		success : function(dta) {
+			if (d.logonFailed == 1) {
+				window.location.href = "/Myweb/logon.jsp";
+			}
 			alert(dta.msg);
 			return;
 		},

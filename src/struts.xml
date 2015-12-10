@@ -9,6 +9,7 @@
 	<constant name="struts.objectFactory" value="spring" />
 
 	<package name="admin" extends="struts-default">
+
 		<action name="logon" class="com.myweb.action.AdminAction"
 			method="logon">
 			<result name="logon_ok">/WEB-INF/admin/admin.jsp</result>
@@ -19,12 +20,27 @@
 			<result name="logonOut_ok">/logon.jsp</result>
 			<result name="logonOut_failed">/WEB-INF/admin/admin.jsp</result>
 		</action>
-
 	</package>
 
 
 
 	<package name="jsonkpi" extends="json-default">
+		<interceptors>
+			<!-- ×Ô¶¨ÒåÀ¹½ØÆ÷ -->
+			<interceptor name="permission"
+				class="com.myweb.action.interceptor.SessionIterceptor" />
+			<!-- ÅäÖÆÄ¬ÐíµÄÀ¹½ØÆ÷µ½À¹½ØÆ÷Õ» -->
+			<interceptor-stack name="permissionStack">
+				<interceptor-ref name="permission" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="logon_failed" type="redirectAction">/jsonkpi/logonFailed.action
+			</result>
+		</global-results>
+
 		<action name="findArticlesByPage" class="com.myweb.action.ArticleAction"
 			method="findArticlesByPage">
 			<result type="json">
@@ -83,6 +99,7 @@
 
 		<action name="addAndUpdateCategories" class="com.myweb.action.CategoryAction"
 			method="addAndUpdateCategories">
+			<interceptor-ref name="permissionStack" />
 			<result type="json">
 				<param name="root">responseJson</param>
 			</result>
@@ -90,6 +107,7 @@
 
 		<action name="deleteCategory" class="com.myweb.action.CategoryAction"
 			method="deleteCategory">
+			<interceptor-ref name="permissionStack" />
 			<result type="json">
 				<param name="root">responseJson</param>
 			</result>
@@ -111,6 +129,7 @@
 
 		<action name="addAndUpdateCategoryArticles" class="com.myweb.action.ArticleAction"
 			method="addAndUpdateCategoryArticles">
+			<interceptor-ref name="permissionStack" />
 			<result type="json">
 				<param name="root">responseJson</param>
 			</result>
@@ -118,6 +137,7 @@
 
 		<action name="uploadSpecialRecommendPic" class="com.myweb.action.PictureAction"
 			method="uploadSpecialRecommendPic">
+			<interceptor-ref name="permissionStack" />
 			<result type="json">
 				<param name="root">result</param>
 				<param name="contentType">
@@ -128,6 +148,14 @@
 
 		<action name="savePictureChange" class="com.myweb.action.PictureAction"
 			method="savePictureChange">
+			<interceptor-ref name="permissionStack" />
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+		<action name="logonFailed" class="com.myweb.action.AdminAction"
+			method="logonFailed">
 			<result type="json">
 				<param name="root">responseJson</param>
 			</result>

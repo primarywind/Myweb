@@ -1,10 +1,12 @@
 package com.myweb.action;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.myweb.entity.User;
 import com.myweb.result.BizResult;
 import com.myweb.service.IUserService;
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -40,6 +42,13 @@ public class AdminAction extends ActionSupport {
         Map<String, Object> attibutes = ActionContext.getContext().getSession();
         attibutes.remove("USER");
         return "logonOut_ok";
+    }
+
+    public String logonFailed() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("logonFailed", 1);
+        this.setResponseJson(map);
+        return Action.SUCCESS;
     }
 
     public String getName() {
