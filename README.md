@@ -21,8 +21,8 @@
 
 ### 应用技术
 
-* 前端bootstrap，jQuery，ueditor
-* 后台ssh框架
-* 服务器Apache+tomcat
-* php讨论框架wecenter
+* bootstrap，jQuery，ueditor
+* struts2,spring,hiberate
+* Apache+tomcat
+* wecenter
 * apache Jmeter 
