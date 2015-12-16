@@ -25,4 +25,5 @@
 * struts2,spring,hiberate
 * Apache+tomcat
 * wecenter
-* apache Jmeter 
+* apache Jmeter
+* visualVM
