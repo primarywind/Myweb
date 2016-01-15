@@ -1,8 +1,11 @@
 package com.myweb.template;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanInstantiationException;
 import org.springframework.util.Assert;
 
+import com.myweb.log.constants.LogConstants;
 import com.myweb.result.QueryResult;
 
 /**
@@ -11,6 +14,8 @@ import com.myweb.result.QueryResult;
  * @version $Id: ViewQueryTemplateImpl.java, v 0.1 2015-12-2 下午2:53:20 huleiwind Exp $
  */
 public class ViewQueryTemplateImpl implements ViewQueryTemplate {
+    /** logger for this libary */
+    protected final static Log LOGGER = LogFactory.getLog(LogConstants.COMMON_DIGEST_LOGGER_NAME);
 
     @Override
     public <T extends QueryResult> T process(Class<T> clazz, QueryCallBack<T> callBack) {
@@ -34,7 +39,7 @@ public class ViewQueryTemplateImpl implements ViewQueryTemplate {
             callBack.doProcess(queryResult);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.warn("执行查询服务出错", e);
             queryResult.setSuccess(false);
             return queryResult;
         } finally {

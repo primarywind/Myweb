@@ -6,6 +6,7 @@ import java.util.Map;
 import com.myweb.entity.User;
 import com.myweb.result.BizResult;
 import com.myweb.service.IUserService;
+import com.myweb.util.Constant;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -25,6 +26,7 @@ public class AdminAction extends ActionSupport {
     public Map                responseJson;
 
     public String logon() {
+
         BizResult<User> bizResult = userService.logon(name, passWord);
         if (bizResult.getObject() == null) {
             return "logon_failed";
@@ -32,10 +34,14 @@ public class AdminAction extends ActionSupport {
         user = bizResult.getObject();
         ActionContext actionContext = ActionContext.getContext();
         Map session = actionContext.getSession();
-
         session.put("USER", bizResult.getObject());
-
-        return "logon_ok";
+        if (user.getLevel() == Constant.USER_LEVEL) {
+            return "verify_user_ok";
+        }
+        if (user.getLevel() == Constant.ADMIN_LEVEL) {
+            return "verify_admin_ok";
+        }
+        return "logon_failed";
     }
 
     public String logonOut() {
@@ -49,6 +55,19 @@ public class AdminAction extends ActionSupport {
         map.put("logonFailed", 1);
         this.setResponseJson(map);
         return Action.SUCCESS;
+    }
+
+    public String goToDiscuss() {
+        ActionContext actionContext = ActionContext.getContext();
+        Map session = actionContext.getSession();
+        User user = (User) session.get("USER");
+        if (user == null) {
+            return "verify_failed";
+        }
+        if (user.getLevel() == Constant.USER_LEVEL) {
+            return "verify_user_ok";
+        }
+        return "verify_failed";
     }
 
     public String getName() {

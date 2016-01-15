@@ -58,12 +58,14 @@ public class ViewObjectMapperImpl extends BaseOrikaMapperImpl {
         // 帖子详细内容视图
         mapperFactory.classMap(Sendcard.class, SendCardDetailView.class).byDefault()
             .field("cardId", "cardId").field("userId", "userId").field("title", "title")
-            .field("pubTime", "pubTime").register();
+            .field("pubTime", "pubTime").field("label", "label").register();
 
         // 帖子回复列表视图
         mapperFactory.classMap(Followcard.class, FollowCardListView.class).byDefault()
             .field("followId", "followId").field("userId", "userId")
             .field("cardOrFollowId", "cardOrFollowId").field("followContent", "followContent")
             .field("pubTime", "pubTime").field("followType", "followType").register();
+
+        //回复
     }
 }

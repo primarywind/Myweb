@@ -18,6 +18,7 @@ public class Sendcard implements java.io.Serializable {
     private Integer   viewCount;
     private Integer   followCount;
     private Integer   favoriteCount;
+    private String    label;
 
     // Constructors
 
@@ -27,7 +28,7 @@ public class Sendcard implements java.io.Serializable {
 
     /** full constructor */
     public Sendcard(Integer userId, String title, String content, Timestamp pubTime,
-                    Integer viewCount, Integer followCount, Integer favoriteCount) {
+                    Integer viewCount, Integer followCount, Integer favoriteCount, String label) {
         this.userId = userId;
         this.title = title;
         this.content = content;
@@ -35,6 +36,7 @@ public class Sendcard implements java.io.Serializable {
         this.viewCount = viewCount;
         this.followCount = followCount;
         this.favoriteCount = favoriteCount;
+        this.label = label;
     }
 
     // Property accessors
@@ -101,6 +103,14 @@ public class Sendcard implements java.io.Serializable {
 
     public void setFavoriteCount(Integer favoriteCount) {
         this.favoriteCount = favoriteCount;
+    }
+
+    public String getLabel() {
+        return this.label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
 }

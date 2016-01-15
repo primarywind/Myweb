@@ -1,10 +1,8 @@
 package com.myweb.service;
 
-import java.util.List;
-
 import com.myweb.entity.Sendcard;
-import com.myweb.view.SendCardDetailView;
-import com.myweb.view.SendCardListView;
+import com.myweb.result.CardDetailQueryResult;
+import com.myweb.result.SendCardListQueryResult;
 
 /**
  * 
@@ -18,9 +16,10 @@ public interface ISendCardService {
      * 
      * @param pageNo
      * @param pageSize
+     * @param orderType 
      * @return
      */
-    public List<SendCardListView> findSendCardsByPage(int pageNo, int pageSize);
+    public SendCardListQueryResult findSendCardsByPage(int pageNo, int pageSize, int orderType);
 
     /**
      * 根据id查看话题贴
@@ -44,5 +43,5 @@ public interface ISendCardService {
      * @param sendCardId
      * @return
      */
-    public SendCardDetailView getSendCardDetail(int sendCardId);
+    public CardDetailQueryResult getSendCardDetail(int sendCardId);
 }

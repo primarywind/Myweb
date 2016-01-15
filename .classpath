@@ -103,6 +103,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xerces-2.6.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-2.1.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.1.26-bin.jar"/>

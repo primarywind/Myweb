@@ -1,9 +1,9 @@
-/**
- * Alipay.com Inc.
- * Copyright (c) 2004-2015 All Rights Reserved.
- */
 package com.myweb.template;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.myweb.log.constants.LogConstants;
 import com.myweb.result.BizResult;
 
 /**
@@ -12,6 +12,8 @@ import com.myweb.result.BizResult;
  * @version $Id: ServiceTemplateImpl.java, v 0.1 2015-12-2 下午1:42:00 huleiwind Exp $
  */
 public class ServiceTemplateImpl implements ServiceTemplate {
+    /** logger for this libary */
+    protected final static Log LOGGER = LogFactory.getLog(LogConstants.COMMON_DIGEST_LOGGER_NAME);
 
     @Override
     public <T> BizResult<T> serviceProcess(final ServiceCallBack<T> callback) {
@@ -26,7 +28,7 @@ public class ServiceTemplateImpl implements ServiceTemplate {
             callback.afterService(result);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.warn("执行服务出错", e);
             // 业务异常
             result.setSuccess(false);
             return result;

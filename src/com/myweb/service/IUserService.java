@@ -14,7 +14,7 @@ public interface IUserService {
      * 
      * @param user
      */
-    public Integer saveUser(User user);
+    public BizResult<User> saveUser(String name, String password, String sex, String city);
 
     /**
      * 用户登录验证

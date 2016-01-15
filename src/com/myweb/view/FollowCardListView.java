@@ -3,8 +3,6 @@ package com.myweb.view;
 import java.sql.Timestamp;
 import java.util.List;
 
-import com.myweb.entity.Followcard;
-
 /**
  * 
  * @author huleiwind
@@ -13,18 +11,18 @@ import com.myweb.entity.Followcard;
 public class FollowCardListView {
     // Fields    
 
-    private Integer          followId;
-    private Integer          userId;
-    private Integer          cardOrFollowId;
-    private String           followContent;
-    private Timestamp        pubTime;
-    private Integer          followType;
+    private Integer                  followId;
+    private Integer                  userId;
+    private Integer                  cardOrFollowId;
+    private String                   followContent;
+    private Timestamp                pubTime;
+    private Integer                  followType;
 
     //userDo
-    private String           userName;
-    private String           faceImg;
+    private String                   userName;
+    private String                   faceImg;
     // 若本回复下有回复则为非空
-    private List<Followcard> followcards;
+    private List<FollowCardListView> followCardListView;
 
     public Integer getFollowId() {
         return followId;
@@ -74,12 +72,12 @@ public class FollowCardListView {
         this.followType = followType;
     }
 
-    public List<Followcard> getFollowcards() {
-        return followcards;
+    public List<FollowCardListView> getFollowCardListView() {
+        return followCardListView;
     }
 
-    public void setFollowcards(List<Followcard> followcards) {
-        this.followcards = followcards;
+    public void setFollowCardListView(List<FollowCardListView> followCardListView) {
+        this.followCardListView = followCardListView;
     }
 
     public String getUserName() {

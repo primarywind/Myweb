@@ -27,7 +27,7 @@ public class SessionIterceptor extends AbstractInterceptor {
         if (url.indexOf("logon") != -1 || url.indexOf("logonOut") != -1) {
             return invocation.invoke();
         }
-
+        //后台管理员登录拦截
         ActionContext ctx = invocation.getInvocationContext();
         User user = (User) ctx.getSession().get("USER");
         if (user != null) {

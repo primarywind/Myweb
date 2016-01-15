@@ -14,10 +14,8 @@ public interface ServiceTemplate {
      *   <b>执行服务，并且发送普通消息</b>
      * </p>
      * @param callback  回调函数,用以实现具体业务内容
-     * {@link com.alipay.fc.custcenter.biz.shared.template.ServiceCallback}
      * 
      * @return   基础的结果类
-     * {@link com.alipay.fc.custcenter.biz.shared.result.BizResult}
      * */
     public <T> BizResult<T> serviceProcess(ServiceCallBack<T> callback);
 }

@@ -37,6 +37,6 @@ public class UserServiceTest extends SpringTestBase {
         user.setUserName("胡磊");
         //设定密码为默认值
         user.setPwd("123");
-        assertNotNull(userService.saveUser(user));
+        assertNotNull(userService.saveUser("hulei", "123", "1", "whu"));
     }
 }

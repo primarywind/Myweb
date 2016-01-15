@@ -16,7 +16,7 @@ public class SendCardDetailView {
     private String                   title;
     private String                   content;
     private Timestamp                pubTime;
-
+    private String                   label;
     private List<FollowCardListView> FollowCardListViews;
 
     //userDo
@@ -85,6 +85,14 @@ public class SendCardDetailView {
 
     public void setFaceImg(String faceImg) {
         this.faceImg = faceImg;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
 }

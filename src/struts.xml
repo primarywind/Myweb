@@ -9,17 +9,49 @@
 	<constant name="struts.objectFactory" value="spring" />
 
 	<package name="admin" extends="struts-default">
+		<interceptors>
+			<!-- ×Ô¶¨ÒåÀ¹½ØÆ÷ -->
+			<interceptor name="permission"
+				class="com.myweb.action.interceptor.SessionIterceptor" />
+			<!-- ÅäÖÆÄ¬ÐíµÄÀ¹½ØÆ÷µ½À¹½ØÆ÷Õ» -->
+			<interceptor-stack name="permissionStack">
+				<interceptor-ref name="permission" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="logon_failed">/Dlogon.jsp
+			</result>
+		</global-results>
 
 		<action name="logon" class="com.myweb.action.AdminAction"
 			method="logon">
-			<result name="logon_ok">/WEB-INF/admin/admin.jsp</result>
-			<result name="logon_failed">/logon.jsp</result>
+			<result name="verify_admin_ok">/WEB-INF/admin/admin.jsp</result>
+			<result name="verify_user_ok">/WEB-INF/discuss/discuss.jsp</result>
+			<result name="logon_failed">/Dlogon.jsp</result>
 		</action>
+
 		<action name="logonOut" class="com.myweb.action.AdminAction"
 			method="logonOut">
-			<result name="logonOut_ok">/logon.jsp</result>
+			<result name="logonOut_ok">/Dlogon.jsp</result>
 			<result name="logonOut_failed">/WEB-INF/admin/admin.jsp</result>
 		</action>
+
+		<action name="goToDiscuss" class="com.myweb.action.AdminAction"
+			method="goToDiscuss">
+			<result name="verify_user_ok">/WEB-INF/discuss/discuss.jsp</result>
+			<result name="verify_failed">/Dlogon.jsp</result>
+		</action>
+
+
+		<action name="getDiscussDetail" class="com.myweb.action.DiscussAction"
+			method="getDiscussDetail">
+			<interceptor-ref name="permissionStack" />
+			<result name="success">/WEB-INF/discuss/DiscussDetail.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
 	</package>
 
 
@@ -83,14 +115,14 @@
 			</result>
 		</action>
 
-		<action name="findSendCardsByPage" class="com.myweb.action.SendCardAction"
+		<action name="findSendCardsByPage" class="com.myweb.action.DiscussAction"
 			method="findSendCardsByPage">
 			<result type="json">
 				<param name="root">responseJson</param>
 			</result>
 		</action>
 
-		<action name="findSendCardDateilsByPage" class="com.myweb.action.SendCardAction"
+		<action name="findSendCardDateilsByPage" class="com.myweb.action.DiscussAction"
 			method="findSendCardDateilsByPage">
 			<result type="json">
 				<param name="root">responseJson</param>
@@ -154,8 +186,23 @@
 			</result>
 		</action>
 
+		<action name="registerUser" class="com.myweb.action.UserAction"
+			method="registerUser">
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+
 		<action name="logonFailed" class="com.myweb.action.AdminAction"
 			method="logonFailed">
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+		<action name="discuss" class="com.myweb.action.AdminAction"
+			method="discuss">
 			<result type="json">
 				<param name="root">responseJson</param>
 			</result>

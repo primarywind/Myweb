@@ -1,5 +1,6 @@
 package com.myweb.util;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 /**
@@ -4045,4 +4046,26 @@ public class StringUtil {
 
         return a;
     }
+
+    public static String join(Collection collection, String separator) {
+        if (collection == null) {
+            return null;
+        }
+        return join(collection.iterator(), separator);
+    }
+
+    public static boolean startsWith(String str, String prefix) {
+        return startsWith(str, prefix, false);
+    }
+
+    private static boolean startsWith(String str, String prefix, boolean ignoreCase) {
+        if (str == null || prefix == null) {
+            return (str == null && prefix == null);
+        }
+        if (prefix.length() > str.length()) {
+            return false;
+        }
+        return str.regionMatches(ignoreCase, 0, prefix, 0, prefix.length());
+    }
+
 }

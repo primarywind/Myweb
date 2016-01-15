@@ -79,7 +79,7 @@
 						<ul class="menu">
 							<div id="menu">
 								<ul class="nav pull-right">
-									<li class="active">欢迎<s:property value="user.userName" /></a>
+									<li class="active">欢迎<s:property value="user.name" /></a>
 									</li>
 									<li class="active"><a href="/Myweb/logonOut.action">退出</a>
 									</li>
@@ -104,8 +104,10 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#tab1" data-toggle="tab">栏目管理</a>
 					</li>
-					<li><a href="#tab2" data-toggle="tab">文章管理</a></li>
-					<li><a href="#tab3" data-toggle="tab">图片管理</a></li>
+					<li><a href="#tab2" data-toggle="tab">文章管理</a>
+					</li>
+					<li><a href="#tab3" data-toggle="tab">图片管理</a>
+					</li>
 				</ul>
 				<div class="tab-content">
 					<!-- 栏目管理标签页 -->

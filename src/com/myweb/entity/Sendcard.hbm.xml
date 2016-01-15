@@ -31,5 +31,8 @@
         <property name="favoriteCount" type="java.lang.Integer">
             <column name="favorite_count" not-null="true" />
         </property>
+        <property name="label" type="java.lang.String">
+            <column name="label" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

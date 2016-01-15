@@ -16,8 +16,8 @@
 	href="http://wenda.golaravel.com/static/css/default/ico/favicon.ico?v=20140930"
 	rel="shortcut icon" type="image/x-icon" />
 
-<link rel="stylesheet"
-	href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="/Myweb/assets/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="/Myweb/assets/css/icon.css" />
 
 <link rel="stylesheet" type="text/css"
@@ -47,9 +47,7 @@
 					method="post">
 					<input class="form-control search-query" type="text"
 						placeholder="搜索问题、话题或人" autocomplete="off" name="q"
-						id="aw-search-query" /> <span title="搜索" id="global_search_btns"
-						onClick="$('#global_search_form').submit();"><i
-						class="icon icon-search"></i> </span>
+						id="aw-search-query" />
 					<div class="aw-dropdown">
 						<div class="mod-body">
 							<p class="title">输入关键字进行搜索</p>
@@ -74,56 +72,21 @@
 							class="icon-bar"></span>
 					</button>
 				</div>
-				<nav role="navigation"
-					class="collapse navbar-collapse bs-navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li><a href="http://wenda.golaravel.com/home/"><i
-								class="icon icon-home"></i> 动态</a></li>
-						<li><a href="" class="active"><i class="icon icon-ul"></i>
-								发现</a></li>
-
-						<!-- <li><a href="http://wenda.golaravel.com/question/" class="">问题</a></li>
-
-					<li><a href="http://wenda.golaravel.com/article/" class="">文章</a></li> -->
-
-						<li><a href="http://wenda.golaravel.com/topic/"><i
-								class="icon icon-topic"></i> 话题</a></li>
-
-						<li><a href="http://wenda.golaravel.com/notifications/"
-							class=""><i class="icon icon-bell"></i> 通知</a> <span
-							class="badge badge-important" style="display:none"
-							id="notifications_unread">0</span>
-							<div class="aw-dropdown pull-right hidden-xs">
-								<div class="mod-body">
-									<ul id="header_notification_list"></ul>
-								</div>
-								<div class="mod-footer">
-									<a href="http://wenda.golaravel.com/notifications/">查看全部</a>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</nav>
 			</div>
 			<!-- end 导航 -->
 			<!-- 用户栏 -->
 			<div class="aw-user-nav">
 				<!-- 登陆&注册栏 -->
 				<a href="http://wenda.golaravel.com/people/nullpoint"
-					class="aw-user-nav-dropdown"> <img alt="nullpoint"
-					src="http://wenda.golaravel.com/uploads/avatar/000/00/25/14_avatar_mid.jpg" />
-
+					class="aw-user-nav-dropdown"> 欢迎<s:property value="user.name" />
 				</a>
 				<div class="aw-dropdown dropdown-list pull-right">
 					<ul class="aw-dropdown-list">
-						<li><a href="http://wenda.golaravel.com/inbox/"><i
-								class="icon icon-inbox"></i> 私信<span
+						<li><a href="http://wenda.golaravel.com/inbox/">私信<span
 								class="badge badge-important hide" id="inbox_unread">0</span> </a></li>
 						<li class="hidden-xs"><a
-							href="http://wenda.golaravel.com/setting/profile/"><i
-								class="icon icon-setting"></i> 设置</a></li>
-						<li><a href="http://wenda.golaravel.com/logout/"><i
-								class="icon icon-logout"></i> 退出</a></li>
+							href="http://wenda.golaravel.com/setting/profile/">设置</a></li>
+						<li><a href="http://wenda.golaravel.com/logout/">退出</a></li>
 					</ul>
 				</div>
 				<!-- end 登陆&注册栏 -->
@@ -132,14 +95,7 @@
 			<!-- 发起 -->
 			<div class="aw-publish-btn">
 				<a id="header_publish" href="http://wenda.golaravel.com/publish/"
-					class="btn-primary"><i class="icon icon-ask"></i>发起</a>
-				<div class="dropdown-list pull-right">
-					<ul>
-						<li><a href="http://wenda.golaravel.com/publish/">问题</a></li>
-						<li><a href="http://wenda.golaravel.com/publish/article/">文章</a>
-						</li>
-					</ul>
-				</div>
+					class="btn-primary">发声</a>
 			</div>
 			<!-- end 发起 -->
 		</div>
@@ -249,17 +205,6 @@
 
 					<!-- 侧边栏 -->
 					<div class="col-sm-12 col-md-3 aw-side-bar hidden-xs hidden-sm">
-						<div class="aw-mod">
-							<div class="mod-head">
-								<h3>专题</h3>
-							</div>
-							<div class="mod-body">
-								<ul>
-									<li><a href="http://wenda.golaravel.com/feature/1">Composer中国镜像</a>
-									</li>
-								</ul>
-							</div>
-						</div>
 						<div class="aw-mod aw-text-align-justify">
 							<div class="mod-head">
 								<a href="http://wenda.golaravel.com/topic/channel-hot"

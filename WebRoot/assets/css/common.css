@@ -225,7 +225,7 @@ body {
 	font-size: 14px;
 	line-height: 160%;
 	color: #666;
-	background: url(img/bg.gif) repeat
+	background: url(/Myweb/assets/images/login_bg.jpg) repeat
 }
 
 body,input,button,select,textarea,h1,h2,h3,h4,h5,h6 {
@@ -4419,7 +4419,7 @@ a.aw-load-more-content {
 }
 
 body {
-	background: url(img/bg.gif) repeat !important
+	background: url(/Myweb/assets/images/login_bg.jpg) repeat !important
 }
 
 .aw-top-menu-wrap {
@@ -4436,7 +4436,7 @@ body {
 }
 
 .aw-logo a {
-	background: url(logo/Laravel-Four-Revised-Slant.png) no-repeat
+	background: url(/Myweb/assets/images/logo.png) no-repeat
 		!important;
 	background-size: contain !important
 }

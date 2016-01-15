@@ -13,6 +13,7 @@ import com.myweb.result.CategoryListQueryResult;
 import com.myweb.service.ICategoryService;
 import com.myweb.template.QueryCallBack;
 import com.myweb.template.ServiceCallBack;
+import com.myweb.util.Constant;
 import com.myweb.view.CategoryView;
 
 /**
@@ -145,7 +146,7 @@ public class CategoryServiceImpl extends BaseService implements ICategoryService
                     List<Category> categoryResult = new ArrayList<Category>();
                     for (Category category : categories) {
                         if (("".equals(category.getCHref()) || category.getCHref() == null)
-                            && category.getIfview() == 1) {
+                            && category.getIfview() == Constant.VIEW) {
                             //符合条件加入队列
                             categoryResult.add(category);
                         }

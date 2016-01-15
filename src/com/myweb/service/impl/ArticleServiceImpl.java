@@ -11,6 +11,8 @@ import com.myweb.dao.CategoryDAO;
 import com.myweb.dao.UserDao;
 import com.myweb.entity.Article;
 import com.myweb.entity.User;
+import com.myweb.log.Logger;
+import com.myweb.log.TracerLoggerFactory;
 import com.myweb.result.ArticleDetailListQueryResult;
 import com.myweb.result.ArticleListQueryResult;
 import com.myweb.result.ArticleQueryResult;
@@ -29,9 +31,10 @@ import com.opensymphony.xwork2.ActionContext;
  * @version $Id: ArticleServiceImpl.java, v 0.1 2015-10-8 上午11:03:48 huleiwind Exp $
  */
 public class ArticleServiceImpl extends BaseService implements IArticleService {
-    private ArticleDao  articleDao;
-    private UserDao     userDao;
-    private CategoryDAO categoryDao;
+
+    private ArticleDao          articleDao;
+    private UserDao             userDao;
+    private CategoryDAO         categoryDao;
 
     public ArticleListQueryResult findArticlesByPage(final int pageNo, final int pageSize,
                                                      final int categoryId) {
