@@ -17,13 +17,18 @@
   1）栏目管理  
   2）文章内容编辑修改删除，新增文章等  
 
-* 权限管理模块（还有时间...）  
+* 个人中心模块
+  1）关注列表，回复列表，发表列表
+  2）私信发送与回复
+
+* 权限管理模块
+  1）管理员权限
+  2）普通用户权限
 
 ### 应用技术
 
 * bootstrap，jQuery，ueditor
 * struts2,spring,hiberate
 * Apache+tomcat
-* wecenter
 * apache Jmeter
 * visualVM
