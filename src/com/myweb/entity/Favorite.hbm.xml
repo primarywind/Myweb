@@ -6,10 +6,13 @@
 -->
 <hibernate-mapping>
     <class name="com.myweb.entity.Favorite" table="favorite" catalog="Myweb">
-        <id name="userId" type="java.lang.Integer">
-            <column name="user_id" />
-            <generator class="assigned" />
+        <id name="favoriteId" type="java.lang.Integer">
+            <column name="favorite_id" />
+            <generator class="identity" />
         </id>
+        <property name="userId" type="java.lang.Integer">
+            <column name="user_id" not-null="true" />
+        </property>
         <property name="cardId" type="java.lang.Integer">
             <column name="card_id" not-null="true" />
         </property>

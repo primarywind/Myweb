@@ -52,20 +52,29 @@ public class Constant {
     public final static int NO_VIEW             = 0;
 
     /**
-     * 帖子按回复数量递减排序
+     * 话题按回复数量递减排序
      */
     public final static int ORDER_BY_FOLLOWNUMS = 1;
     /**
-     * 帖子按发表时间递减排序
+     * 话题按发表时间递减排序
      */
     public final static int ORDER_BY_TIME       = 2;
     /**
-     * 帖子按推荐排序
+     * 话题按推荐排序
      */
     public final static int ORDER_BY_RECOM      = 3;
     /**
      * 等待回复排序（回复数为0）
      */
     public final static int ORDER_BY_TO_FOLLOW  = 4;
+
+    /**
+     * 取消话题关注
+     */
+    public final static int DEL_CARD_FAVORITE   = 0;
+    /**
+     * 新增话题关注
+     */
+    public final static int ADD_CARD_FAVORITE   = 1;
 
 }

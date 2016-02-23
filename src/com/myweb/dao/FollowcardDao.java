@@ -12,4 +12,9 @@ import com.myweb.entity.Followcard;
 public interface FollowcardDao {
     public List<Followcard> findByPages(int sendCardId, int pageNo, int pageSize, int followType);
 
+    public Integer save(Followcard followcard);
+
+    public Followcard findById(int id);
+
+    public List<Followcard> findByUserId(int userId, int pageNo, int pageSize);
 }

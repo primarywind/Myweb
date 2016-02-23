@@ -17,6 +17,7 @@
 				<value>com/myweb/entity/Sendcard.hbm.xml</value>
 				<value>com/myweb/entity/Followcard.hbm.xml</value>
 				<value>com/myweb/entity/Favorite.hbm.xml</value>
+				<value>com/myweb/entity/Message.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

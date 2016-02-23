@@ -82,16 +82,19 @@
 			<!-- 用户栏 -->
 			<div class="aw-user-nav">
 				<!-- 登陆&注册栏 -->
-				<a href="/Myweb/people/<%=sessionValues.getName()%>"> <img
+				<a href="/Myweb/admin/goToPeople.action"> <img
 					alt="<%=sessionValues.getName()%>"
 					src="<%=sessionValues.getFaceImg()%>"> </a>
 				<div class="aw-dropdown dropdown-list pull-right">
 					<ul class="aw-dropdown-list">
-						<li><a href="http://wenda.golaravel.com/inbox/">私信<span
-								class="badge badge-important hide" id="inbox_unread">0</span> </a></li>
+						<li><a href="/Myweb/admin/gotoMessage.action">私信<span
+								class="badge badge-important hide" id="inbox_unread">0</span> </a>
+						</li>
 						<li class="hidden-xs"><a
-							href="http://wenda.golaravel.com/setting/profile/">设置</a></li>
-						<li><a href="http://wenda.golaravel.com/logout/">退出</a></li>
+							href="http://wenda.golaravel.com/setting/profile/">设置</a>
+						</li>
+						<li><a href="/Myweb/admin/logonOut.action">退出</a>
+						</li>
 					</ul>
 				</div>
 				<!-- end 登陆&注册栏 -->
@@ -99,7 +102,7 @@
 			<!-- end 用户栏 -->
 			<!-- 发起 -->
 			<div class="aw-publish-btn">
-				<a id="header_publish" href="http://wenda.golaravel.com/publish/"
+				<a id="header_publish" href="/Myweb/admin/goToPublish.action"
 					class="btn-primary">发声</a>
 			</div>
 			<!-- end 发起 -->
@@ -138,14 +141,11 @@
 						<!-- end 新消息通知 -->
 						<!-- tab切换 -->
 						<ul class="nav nav-tabs aw-nav-tabs active hidden-xs">
-							<li><a href="javascript:findSendCardsByPage(4)">等待回复</a>
+							<li><a href="javascript:findSendCardsByPage(4)">等待回复</a></li>
+							<li><a href="javascript:findSendCardsByPage(1)">热门</a></li>
+							<li><a href="javascript:findSendCardsByPage(3)">推荐</a></li>
+							<li><a href="javascript:findSendCardsByPage(2)">最新</a>
 							</li>
-							<li><a href="javascript:findSendCardsByPage(1)">热门</a>
-							</li>
-							<li><a href="javascript:findSendCardsByPage(3)">推荐</a>
-							</li>
-							<li class="active"><a
-								href="javascript:findSendCardsByPage(2)">最新</a></li>
 
 							<h2 class="hidden-xs">
 								<i class="icon icon-list"></i> 发现
@@ -185,7 +185,8 @@
 							<div class="mod-footer">
 								<div class="page-control">
 									<ul class="pagination pull-right">
-										<li class="active"><a href="javascript:;">1</a></li>
+										<li class="active"><a href="javascript:;">1</a>
+										</li>
 										<li><a
 											href="http://wenda.golaravel.com/sort_type-new__day-0__is_recommend-0__page-2">2</a>
 										</li>
@@ -211,107 +212,6 @@
 					<div class="col-sm-12 col-md-3 aw-side-bar hidden-xs hidden-sm">
 						<div class="aw-mod aw-text-align-justify">
 							<div class="mod-head">
-								<a href="http://wenda.golaravel.com/topic/channel-hot"
-									class="pull-right">更多 &gt;</a>
-								<h3>热门话题</h3>
-							</div>
-							<div class="mod-body">
-								<dl>
-									<dt class="pull-left aw-border-radius-5">
-										<a href="http://wenda.golaravel.com/topic/laravel5"><img
-											alt=""
-											src="http://wenda.golaravel.com/static/common/topic-mid-img.png" />
-										</a>
-									</dt>
-									<dd class="pull-left">
-										<p class="clearfix">
-											<span class="topic-tag"> <a
-												href="http://wenda.golaravel.com/topic/laravel5"
-												class="text" data-id="118">laravel5</a> </span>
-										</p>
-										<p>
-											<b>59</b> 个问题, <b>13</b> 人关注
-										</p>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="pull-left aw-border-radius-5">
-										<a href="http://wenda.golaravel.com/topic/laravel"><img
-											alt=""
-											src="http://wenda.golaravel.com/static/common/topic-mid-img.png" />
-										</a>
-									</dt>
-									<dd class="pull-left">
-										<p class="clearfix">
-											<span class="topic-tag"> <a
-												href="http://wenda.golaravel.com/topic/laravel" class="text"
-												data-id="57">laravel</a> </span>
-										</p>
-										<p>
-											<b>164</b> 个问题, <b>24</b> 人关注
-										</p>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="pull-left aw-border-radius-5">
-										<a href="http://wenda.golaravel.com/topic/Laravel5.0"><img
-											alt=""
-											src="http://wenda.golaravel.com/static/common/topic-mid-img.png" />
-										</a>
-									</dt>
-									<dd class="pull-left">
-										<p class="clearfix">
-											<span class="topic-tag"> <a
-												href="http://wenda.golaravel.com/topic/Laravel5.0"
-												class="text" data-id="467">Laravel5.0</a> </span>
-										</p>
-										<p>
-											<b>8</b> 个问题, <b>2</b> 人关注
-										</p>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="pull-left aw-border-radius-5">
-										<a href="http://wenda.golaravel.com/topic/安装问题"><img
-											alt=""
-											src="http://wenda.golaravel.com/static/common/topic-mid-img.png" />
-										</a>
-									</dt>
-									<dd class="pull-left">
-										<p class="clearfix">
-											<span class="topic-tag"> <a
-												href="http://wenda.golaravel.com/topic/安装问题" class="text"
-												data-id="261">安装问题</a> </span>
-										</p>
-										<p>
-											<b>10</b> 个问题, <b>1</b> 人关注
-										</p>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="pull-left aw-border-radius-5">
-										<a href="http://wenda.golaravel.com/topic/Composer"><img
-											alt=""
-											src="http://wenda.golaravel.com/static/common/topic-mid-img.png" />
-										</a>
-									</dt>
-									<dd class="pull-left">
-										<p class="clearfix">
-											<span class="topic-tag"> <a
-												href="http://wenda.golaravel.com/topic/Composer"
-												class="text" data-id="24">Composer</a> </span>
-										</p>
-										<p>
-											<b>50</b> 个问题, <b>9</b> 人关注
-										</p>
-									</dd>
-								</dl>
-							</div>
-						</div>
-						<div class="aw-mod aw-text-align-justify">
-							<div class="mod-head">
-								<a href="http://wenda.golaravel.com/people/" class="pull-right">更多
-									&gt;</a>
 								<h3>热门用户</h3>
 							</div>
 							<div class="mod-body">

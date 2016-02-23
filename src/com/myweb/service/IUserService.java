@@ -2,6 +2,7 @@ package com.myweb.service;
 
 import com.myweb.entity.User;
 import com.myweb.result.BizResult;
+import com.myweb.result.UserInfoQueryResult;
 
 /**
  * 
@@ -20,4 +21,12 @@ public interface IUserService {
      * 用户登录验证
      */
     public BizResult<User> logon(String userName, String password);
+
+    /**
+     * 获取用户个人信息
+     * 
+     * @param userId
+     * @return
+     */
+    public UserInfoQueryResult getUserInfo(Integer userId, Integer pageNo, Integer pageSize);
 }

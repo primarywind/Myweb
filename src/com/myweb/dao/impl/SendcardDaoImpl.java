@@ -49,7 +49,24 @@ public class SendcardDaoImpl extends HibernateDaoSupport implements SendcardDao 
     }
 
     public Integer save(Sendcard sendcard) {
-        System.out.println("Dao" + sendcard.getViewCount());
+
         return (Integer) getHibernateTemplate().save(sendcard);
     }
+
+    @Override
+    public void update(Sendcard sendcard) {
+        getHibernateTemplate().update(sendcard);
+    }
+
+    @Override
+    public List<Sendcard> findByUserId(int userId, final int pageNo, final int pageSize) {
+        final String hql = "from Sendcard s where s.userId =" + userId + " order by s.pubTime desc";
+        List<Sendcard> lists = getHibernateTemplate().executeFind(new HibernateCallback() {
+            public Object doInHibernate(Session session) throws HibernateException, SQLException {
+                return PageNoUtil.getList(session, hql, pageNo, pageSize);
+            }
+        });
+        return lists;
+    }
+
 }

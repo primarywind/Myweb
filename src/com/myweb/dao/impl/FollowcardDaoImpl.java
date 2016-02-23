@@ -32,4 +32,27 @@ public class FollowcardDaoImpl extends HibernateDaoSupport implements Followcard
         return lists;
     }
 
+    public Integer save(Followcard followcard) {
+        return (Integer) getHibernateTemplate().save(followcard);
+    }
+
+    @Override
+    public Followcard findById(int id) {
+        Followcard instance = (Followcard) getHibernateTemplate().get(
+            "com.myweb.entity.Followcard", id);
+        return instance;
+    }
+
+    @Override
+    public List<Followcard> findByUserId(int userId, final int pageNo, final int pageSize) {
+        //followType=0 为回复主题， =1为回复别人回复
+        final String hql = "from Followcard f where f.userId=" + userId
+                           + " and f.followType =0 order by f.pubTime desc";
+        List<Followcard> lists = getHibernateTemplate().executeFind(new HibernateCallback() {
+            public Object doInHibernate(Session session) throws HibernateException, SQLException {
+                return PageNoUtil.getList(session, hql, pageNo, pageSize);
+            }
+        });
+        return lists;
+    }
 }

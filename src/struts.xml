@@ -51,7 +51,26 @@
 			<result name="success">/WEB-INF/discuss/DiscussDetail.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		<action name="goToPublish" class="com.myweb.action.DiscussAction"
+			method="goToPublish">
+			<interceptor-ref name="permissionStack" />
+			<result name="success">/WEB-INF/discuss/publish.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
 
+		<action name="goToPeople" class="com.myweb.action.DiscussAction"
+			method="goToPeople">
+			<interceptor-ref name="permissionStack" />
+			<result name="success">/WEB-INF/discuss/people.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="gotoMessage" class="com.myweb.action.DiscussAction"
+			method="gotoMessage">
+			<interceptor-ref name="permissionStack" />
+			<result name="success">/WEB-INF/discuss/message.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
 	</package>
 
 
@@ -186,6 +205,38 @@
 			</result>
 		</action>
 
+		<action name="addCardComment" class="com.myweb.action.DiscussAction"
+			method="addCardComment">
+			<interceptor-ref name="permissionStack" />
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+		<action name="addOthCardComment" class="com.myweb.action.DiscussAction"
+			method="addOthCardComment">
+			<interceptor-ref name="permissionStack" />
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+		<action name="updateCardFavorite" class="com.myweb.action.DiscussAction"
+			method="updateCardFavorite">
+			<interceptor-ref name="permissionStack" />
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+		<action name="submitSendCard" class="com.myweb.action.DiscussAction"
+			method="submitSendCard">
+			<interceptor-ref name="permissionStack" />
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
 		<action name="registerUser" class="com.myweb.action.UserAction"
 			method="registerUser">
 			<result type="json">
@@ -208,6 +259,21 @@
 			</result>
 		</action>
 
+		<action name="getUserDatas" class="com.myweb.action.UserAction"
+			method="getUserDatas">
+			<interceptor-ref name="permissionStack" />
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
 
+
+		<action name="getMessageList" class="com.myweb.action.DiscussAction"
+			method="getMessageList">
+			<interceptor-ref name="permissionStack" />
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
 	</package>
 </struts>

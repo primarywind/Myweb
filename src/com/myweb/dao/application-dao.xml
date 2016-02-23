@@ -18,7 +18,13 @@
 
 	<bean id="sendcardDao" class="com.myweb.dao.impl.SendcardDaoImpl">
 	</bean>
-	
+
 	<bean id="followcardDao" class="com.myweb.dao.impl.FollowcardDaoImpl">
+	</bean>
+
+	<bean id="favoriteDao" class="com.myweb.dao.impl.FavoriteDaoImpl">
+	</bean>
+
+	<bean id="messageDao" class="com.myweb.dao.impl.MessageDaoImpl">
 	</bean>
 </beans>

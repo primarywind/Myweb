@@ -15,7 +15,7 @@
 <meta name="description" content="这个网站是一个用于我自己发表博客的 -- by Primarywind" />
 
 <link
-	href="http://wenda.golaravel.com/static/css/default/ico/favicon.ico?v=20140930"
+	href="http://wenda.golaravel.com/static/css/default/ico/favicon.ico"
 	rel="shortcut icon" type="image/x-icon" />
 
 <link rel="stylesheet" type="text/css"
@@ -45,14 +45,13 @@
 		<div class="container">
 			<!-- logo -->
 			<div class="aw-logo hidden-xs">
-				<a href="http://wenda.golaravel.com"></a>
+				<a href="#"></a>
 			</div>
 			<!-- end logo -->
 			<!-- 搜索框 -->
 			<div class="aw-search-box  hidden-xs hidden-sm">
-				<form class="navbar-search"
-					action="http://wenda.golaravel.com/search/" id="global_search_form"
-					method="post">
+				<form class="navbar-search" action="#/search/"
+					id="global_search_form" method="post">
 					<input class="form-control search-query" type="text"
 						placeholder="搜索问题、话题或人" autocomplete="off" name="q"
 						id="aw-search-query" />
@@ -85,16 +84,16 @@
 			<!-- 用户栏 -->
 			<div class="aw-user-nav">
 				<!-- 登陆&注册栏 -->
-				<a href="/Myweb/people/<%=sessionValues.getName()%>"> <img
+				<a href="/Myweb/admin/goToPeople.action"> <img
 					alt="<%=sessionValues.getName()%>"
 					src="<%=sessionValues.getFaceImg()%>"> </a>
 				<div class="aw-dropdown dropdown-list pull-right">
 					<ul class="aw-dropdown-list">
-						<li><a href="http://wenda.golaravel.com/inbox/">私信<span
+						<li><a href="/Myweb/admin/gotoMessage.action">私信<span
 								class="badge badge-important hide" id="inbox_unread">0</span> </a></li>
 						<li class="hidden-xs"><a
 							href="http://wenda.golaravel.com/setting/profile/">设置</a></li>
-						<li><a href="http://wenda.golaravel.com/logout/">退出</a></li>
+						<li><a href="/Myweb/admin/logonOut.action">退出</a></li>
 					</ul>
 				</div>
 				<!-- end 登陆&注册栏 -->
@@ -127,7 +126,16 @@
 						<div class="aw-mod aw-question-detail aw-item">
 							<div class="mod-head">
 								<h1><%=sendCardDetailView.getTitle()%></h1>
-
+								<div class="operate clearfix">
+									<a title=""
+										data-original-title="<%=sendCardDetailView.getIfFavorite()%>"
+										href="javascript:;"
+										<%if (sendCardDetailView.getIfFavorite() == 0) {%>
+										class="follow btn btn-normal btn-success pull-left"
+										<%} else {%>
+										class="follow btn btn-normal btn-success pull-left active"
+										<%}%> id="favoriteButton"><span>关注</span> </a>
+								</div>
 							</div>
 							<div class="mod-body">
 								<div class="content markitup-box"><%=sendCardDetailView.getContent()%></div>
@@ -143,11 +151,12 @@
 								<div style="display: none;" class="aw-comment-box"
 									id="aw-comment-box-question">
 									<div class="aw-comment-list">
-										<div class="aw-padding10" align="center">暂无评论</div>
+										<div class="aw-padding10" align="center">回复此主题</div>
 									</div>
-									<form
-										action="http://wenda.golaravel.com/question/ajax/save_question_comment/question_id-1935"
-										method="post" onsubmit="return false;">
+									<form id="addCommentForm">
+										<input type="hidden"
+											value="<%=sendCardDetailView.getCardId()%>" name="sendCardId"
+											id="sendCardId">
 										<div class="aw-comment-box-main">
 											<textarea
 												style="overflow: hidden; word-wrap: break-word; resize: none; height: 34px;"
@@ -155,11 +164,9 @@
 												placeholder="评论一下..." id="textareaid"></textarea>
 											<div style="display: none;" class="aw-comment-box-btn"
 												id="aw-comment-box-btn">
-												<span class="pull-right"><a href="javascript:;"
-													class="btn btn-mini btn-success"
-													onclick="AWS.User.save_comment($(this));">评论</a><a
-													href="javascript:;"
-													class="btn btn-mini btn-gray close-comment-box">取消</a> </span>
+												<span class="pull-right"><a
+													href="javascript:submitCommentForm();"
+													class="btn btn-mini btn-success">评论</a> </span>
 											</div>
 										</div>
 									</form>
@@ -245,19 +252,21 @@
 										<div class="meta clearfix">
 											<span class="text-color-999 pull-right"><%=sendCardDetailView.getFollowCardListViews().get(i).getPubTime()%></span>
 											<span class="operate"> <a class="aw-add-comment"
-												data-type="answer" data-comment-count="0"
-												href="javascript:;"><i class="icon icon-comment"></i><%=sendCardDetailView.getFollowCardListViews().get(i)
+												href="javascript:showComments('aw-comment-box-answer-<%=sendCardDetailView.getFollowCardListViews().get(i).getFollowId()%>')"><i
+													class="icon icon-comment"></i><%=sendCardDetailView.getFollowCardListViews().get(i)
                     .getFollowCardListView().size()%></a> </span>
 										</div>
 										<!-- end 社交操作 -->
-										<%
-										    if (sendCardDetailView.getFollowCardListViews().get(i).getFollowCardListView()
-										            .size() != 0) {
-										            for (int j = 0; j < sendCardDetailView.getFollowCardListViews().get(i)
-										                .getFollowCardListView().size(); j++) {
-										%>
-										<div style="display: block;" class="aw-comment-box"
-											id="aw-comment-box-answer-2851">
+										<div class="aw-comment-box" style="display: none;"
+											id="aw-comment-box-answer-<%=sendCardDetailView.getFollowCardListViews().get(i).getFollowId()%>">
+											<%
+											    if (sendCardDetailView.getFollowCardListViews().get(i).getFollowCardListView()
+											            .size() != 0) {
+											            for (int j = 0; j < sendCardDetailView.getFollowCardListViews().get(i)
+											                .getFollowCardListView().size(); j++) {
+											%>
+
+
 											<div class="aw-comment-list">
 												<ul>
 													<li><a class="aw-user-name" href="#"><img
@@ -279,33 +288,57 @@
 															</p>
 															<p class="clearfix"><%=sendCardDetailView.getFollowCardListViews().get(i)
                             .getFollowCardListView().get(j).getFollowContent()%></p>
-														</div></li>
+														</div>
+													</li>
 												</ul>
 											</div>
-											<form
-												action="http://wenda.golaravel.com/question/ajax/save_answer_comment/answer_id-2851"
-												method="post" onsubmit="return false">
+
+
+											<%
+											    }
+											%>
+											<form id="commentToOthersForm"
+												style="padding:15px;background-color:#FAFAFA;">
+												<input type="hidden"
+													value="<%=sendCardDetailView.getFollowCardListViews().get(i).getFollowId()%>"
+													name="followCardId">
 												<div class="aw-comment-box-main">
 													<textarea
 														style="overflow: hidden; word-wrap: break-word; resize: none; height: 34px;"
 														class="aw-comment-txt form-control" rows="2"
 														name="message" placeholder="评论一下..."></textarea>
 													<div style="display: block;" class="aw-comment-box-btn">
-														<span class="pull-right"><a href="javascript:;"
-															class="btn btn-mini btn-success"
-															onclick="AWS.User.save_comment($(this));">评论</a><a
-															href="javascript:;"
-															class="btn btn-mini btn-gray close-comment-box">取消</a> </span>
+														<span class="pull-right"><a
+															href="javascript:submitCommentToOth();"
+															class="btn btn-mini btn-success">评论</a> </span>
 													</div>
 												</div>
 											</form>
+
+											<%
+											    } else {
+											%>
+											<form id="commentToOthersForm"
+												style="padding:15px;background-color:#FAFAFA;">
+												<input type="hidden"
+													value="<%=sendCardDetailView.getFollowCardListViews().get(i).getFollowId()%>"
+													name="followCardId">
+												<div class="aw-comment-box-main">
+													<textarea
+														style="overflow: hidden; word-wrap: break-word; resize: none; height: 34px;"
+														class="aw-comment-txt form-control" rows="2"
+														name="message" placeholder="评论一下..."></textarea>
+													<div style="display: block;" class="aw-comment-box-btn">
+														<span class="pull-right"><a
+															href="javascript:submitCommentToOth();"
+															class="btn btn-mini btn-success">评论</a> </span>
+													</div>
+												</div>
+											</form>
+											<%
+											    }
+											%>
 										</div>
-										<%
-										    }
-
-										        }
-										%>
-
 									</div>
 								</div>
 
@@ -338,15 +371,11 @@
 							<div class="mod-body">
 								<dl>
 									<dt class="pull-left aw-border-radius-5">
-										<a href="http://wenda.golaravel.com/people/laravelwy"><img
-											alt="laravelwy"
-											src="http://wenda.golaravel.com/static/common/avatar-mid-img.png" />
-										</a>
+										<a href="#"><img alt="laravelwy"
+											src="<%=sendCardDetailView.getFaceImg()%>" /> </a>
 									</dt>
 									<dd class="pull-left">
-										<a class="aw-user-name"
-											href="http://wenda.golaravel.com/people/laravelwy"
-											data-id="3396">laravelwy</a>
+										<a class="aw-user-name" href="#"><%=sendCardDetailView.getUserName()%></a>
 										<p></p>
 									</dd>
 								</dl>
@@ -356,35 +385,23 @@
 
 
 
-						<!-- 相关问题 -->
+						<!-- 热门问题 -->
 						<div class="aw-mod">
 							<div class="mod-head">
-								<h3>相关问题</h3>
+								<h3>热门问题</h3>
 							</div>
 							<div class="mod-body font-size-12">
 								<ul>
-									<li><a href="http://wenda.golaravel.com/question/724">关于laravel5文件上传的问题</a>
+									<%
+									    for (int i = 0; i < sendCardDetailView.getSendCardView().size(); i++) {
+									%>
+									<li><a
+										href="/Myweb/admin/getDiscussDetail.action?sendCardId=<%=sendCardDetailView.getSendCardView().get(i).getCardId()%>"><%=sendCardDetailView.getSendCardView().get(i).getTitle()%></a>
 									</li>
-									<li><a href="http://wenda.golaravel.com/question/145">Laravel5.0
-											是还没有定案么，还是说现在就已经这样了，感觉文件复杂了，写起来也变得麻烦了……</a></li>
-									<li><a href="http://wenda.golaravel.com/question/1436">谁有laravel5的视频教程？</a>
-									</li>
-									<li><a href="http://wenda.golaravel.com/question/1574">Laravel5.1中开启事务，不生效的问题</a>
-									</li>
-									<li><a href="http://wenda.golaravel.com/question/690">请问laravel5的验证码怎么弄？</a>
-									</li>
-									<li><a href="http://wenda.golaravel.com/question/782">急死了，求帮忙！新人laravel5配置问题</a>
-									</li>
-									<li><a href="http://wenda.golaravel.com/question/1499">
-											laravel5.1 如何返回上一步insert 操作产生的ID</a></li>
-									<li><a href="http://wenda.golaravel.com/question/66">laravel做纯手机APP接口，并发5k需要怎么搭建服务器？</a>
-									</li>
-									<li><a href="http://wenda.golaravel.com/question/194">网站一些资源文件
-											js css image 这些都是重定向访问的话，会造成资源浪费吗。</a></li>
-									<li><a href="http://wenda.golaravel.com/question/497">laravel访问数据库次数</a>
-									</li>
-									<li><a href="http://wenda.golaravel.com/question/201">Laravel如何实现支付宝接口功能？</a>
-									</li>
+									<%
+									    }
+									%>
+
 								</ul>
 							</div>
 						</div>
@@ -395,11 +412,20 @@
 							<div class="mod-head">
 								<h3>问题状态</h3>
 							</div>
-							<div class="mod-body">
+							<div class="mod-body" style="font-size:12px">
 								<ul>
-									<li>最新活动: <span class="aw-text-color-blue">4 小时前</span></li>
-									<li>浏览: <span class="aw-text-color-blue">24</span></li>
-									<li>关注: <span class="aw-text-color-blue">1</span> 人</li>
+									<%
+									    if (sendCardDetailView.getFollowCardListViews().size() != 0) {
+									%>
+									<li>最新活动: <span class="aw-text-color-blue"><%=sendCardDetailView.getFollowCardListViews().get(0).getPubTime()%></span>
+									</li>
+									<%
+									    }
+									%>
+									<li>浏览: <span class="aw-text-color-blue"><%=sendCardDetailView.getViewCount()%></span>
+									</li>
+									<li>关注: <span class="aw-text-color-blue"><%=sendCardDetailView.getFavoriteCount()%></span>
+										人</li>
 
 									<li class="aw-border-radius-5" id="focus_users"></li>
 								</ul>
@@ -413,41 +439,16 @@
 		</div>
 	</div>
 
-	<!-- <div class="aw-footer-wrap">
+	<div class="aw-footer-wrap">
 		<div class="aw-footer">
 			Copyright © 2015, All Rights Reserved</span> <span class="hidden-xs">Powered
 				By <a href="http://www.wecenter.com/?copyright" target="blank">WeCenter
 					3.0 Beta 2</a> </span>
 
 		</div>
-	</div> -->
+	</div>
 
 	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-
-
-	<script type="text/template" id="sendCard">  
-     <div class="aw-item active" data-topic-id="57,">
-	 <a class="aw-user-name hidden-xs" data-id="2483"
-		rel="nofollow"><img
-		src="{faceImg}"
-		alt=""> </a>
-	 <div class="aw-question-content">
-		<h4>
-			<a href="/Myweb/admin/getDiscussDetail.action?cardId={cardId}">{title}</a>
-		</h4>
-		<a href="/Myweb/admin/getDiscussDetail.action?cardId={cardId}"
-			class="pull-right text-color-999">回复</a>
-
-		<p>
-			<a href="#" class="aw-user-name">{userName}</a> <span class="text-color-999">发起了问题
-				• {favoriteCount} 人关注 • {followCount} 个回复 • {viewCount} 次浏览 </span> <span
-				class="text-color-999 related-topic hide"> • 来自相关话题</span>
-		</p>
-
-	 </div>
-    </div>
-	</script>
-
 	<script src="/Myweb/assets/js/discussdetail.js"></script>
 </body>
 </html>

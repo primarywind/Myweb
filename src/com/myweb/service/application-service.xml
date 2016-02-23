@@ -51,4 +51,7 @@
 	<bean id="sendCardService" class="com.myweb.service.impl.SendCardServiceImpl">
 	</bean>
 
+	<bean id="messageService" class="com.myweb.service.impl.MessageServiceImpl">
+	</bean>
+
 </beans>

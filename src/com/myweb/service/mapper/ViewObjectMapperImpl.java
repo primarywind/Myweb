@@ -4,16 +4,23 @@ import ma.glasnost.orika.MapperFactory;
 
 import com.myweb.entity.Article;
 import com.myweb.entity.Category;
+import com.myweb.entity.Favorite;
 import com.myweb.entity.Followcard;
+import com.myweb.entity.Message;
 import com.myweb.entity.Picture;
 import com.myweb.entity.Sendcard;
+import com.myweb.entity.User;
 import com.myweb.view.ArticleListView;
 import com.myweb.view.ArticleView;
 import com.myweb.view.CategoryView;
+import com.myweb.view.FavoriteListView;
 import com.myweb.view.FollowCardListView;
+import com.myweb.view.MessageView;
 import com.myweb.view.PictureListView;
 import com.myweb.view.SendCardDetailView;
 import com.myweb.view.SendCardListView;
+import com.myweb.view.SendCardView;
+import com.myweb.view.UserView;
 
 /**
  * 
@@ -58,7 +65,8 @@ public class ViewObjectMapperImpl extends BaseOrikaMapperImpl {
         // 帖子详细内容视图
         mapperFactory.classMap(Sendcard.class, SendCardDetailView.class).byDefault()
             .field("cardId", "cardId").field("userId", "userId").field("title", "title")
-            .field("pubTime", "pubTime").field("label", "label").register();
+            .field("pubTime", "pubTime").field("label", "label").field("viewCount", "viewCount")
+            .field("followCount", "followCount").field("favoriteCount", "favoriteCount").register();
 
         // 帖子回复列表视图
         mapperFactory.classMap(Followcard.class, FollowCardListView.class).byDefault()
@@ -66,6 +74,24 @@ public class ViewObjectMapperImpl extends BaseOrikaMapperImpl {
             .field("cardOrFollowId", "cardOrFollowId").field("followContent", "followContent")
             .field("pubTime", "pubTime").field("followType", "followType").register();
 
-        //回复
+        //热门话题列表视图
+        mapperFactory.classMap(Sendcard.class, SendCardView.class).byDefault()
+            .field("cardId", "cardId").field("title", "title").register();
+
+        //用户信息视图
+        mapperFactory.classMap(User.class, UserView.class).byDefault().field("userId", "userId")
+            .field("userName", "userName").field("blogUrl", "blogUrl").field("gender", "gender")
+            .field("nationality", "nationality").field("regTime", "regTime")
+            .field("level", "level").field("name", "name").field("faceImg", "faceImg").register();
+        //关注列表视图
+        mapperFactory.classMap(Favorite.class, FavoriteListView.class).byDefault()
+            .field("favoriteId", "favoriteId").field("userId", "userId").field("cardId", "cardId")
+            .field("addTime", "addTime").register();
+
+        //消息列表视图
+        mapperFactory.classMap(Message.class, MessageView.class).byDefault()
+            .field("messageId", "messageId").field("sendUserId", "sendUserId")
+            .field("receiveUserId", "receiveUserId").field("sendTime", "sendTime")
+            .field("group", "group").field("messageContent", "messageContent").register();
     }
 }

@@ -17,11 +17,20 @@ public class SendCardDetailView {
     private String                   content;
     private Timestamp                pubTime;
     private String                   label;
+    private Integer                  viewCount;
+    private Integer                  followCount;
+    private Integer                  favoriteCount;
     private List<FollowCardListView> FollowCardListViews;
 
     //userDo
     private String                   userName;
     private String                   faceImg;
+
+    //是否收藏
+    private Integer                  ifFavorite;
+
+    //热门问题
+    private List<SendCardView>       sendCardView;
 
     public Integer getCardId() {
         return cardId;
@@ -93,6 +102,46 @@ public class SendCardDetailView {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public Integer getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(Integer viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public Integer getFollowCount() {
+        return followCount;
+    }
+
+    public void setFollowCount(Integer followCount) {
+        this.followCount = followCount;
+    }
+
+    public Integer getFavoriteCount() {
+        return favoriteCount;
+    }
+
+    public void setFavoriteCount(Integer favoriteCount) {
+        this.favoriteCount = favoriteCount;
+    }
+
+    public Integer getIfFavorite() {
+        return ifFavorite;
+    }
+
+    public void setIfFavorite(Integer ifFavorite) {
+        this.ifFavorite = ifFavorite;
+    }
+
+    public List<SendCardView> getSendCardView() {
+        return sendCardView;
+    }
+
+    public void setSendCardView(List<SendCardView> sendCardView) {
+        this.sendCardView = sendCardView;
     }
 
 }

@@ -23,7 +23,7 @@
 
 	<!-- 设置session失效时间，这里我们设置成1分钟后失效 -->
 	<session-config>
-		<session-timeout>1</session-timeout>
+		<session-timeout>5</session-timeout>
 	</session-config>
 
 	<welcome-file-list>

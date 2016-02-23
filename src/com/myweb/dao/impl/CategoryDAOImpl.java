@@ -11,12 +11,9 @@ import com.myweb.dao.CategoryDAO;
 import com.myweb.entity.Category;
 
 /**
- 	* A data access object (DAO) providing persistence and search support for Category entities.
- 			* Transaction control of the save(), update() and delete() operations 
-		can directly support Spring container-managed transactions or they can be augmented	to handle user-managed Spring transactions. 
-		Each of these methods provides additional information for how to configure it for the desired type of transaction control. 	
-	 * @see com.myweb.entity.Category
-  * @author MyEclipse Persistence Tools 
+ * 
+ * @author huleiwind
+ * @version $Id: CategoryDAOImpl.java, v 0.1 2015-10-4 下午8:34:25 huleiwind Exp $
  */
 
 public class CategoryDAOImpl extends HibernateDaoSupport implements CategoryDAO {

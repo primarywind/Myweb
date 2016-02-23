@@ -10,6 +10,7 @@ public class Favorite implements java.io.Serializable {
 
     // Fields    
 
+    private Integer   favoriteId;
     private Integer   userId;
     private Integer   cardId;
     private Timestamp addTime;
@@ -28,6 +29,14 @@ public class Favorite implements java.io.Serializable {
     }
 
     // Property accessors
+
+    public Integer getFavoriteId() {
+        return this.favoriteId;
+    }
+
+    public void setFavoriteId(Integer favoriteId) {
+        this.favoriteId = favoriteId;
+    }
 
     public Integer getUserId() {
         return this.userId;

@@ -15,4 +15,8 @@ public interface SendcardDao {
     public Sendcard findById(int sendCardId);
 
     public Integer save(Sendcard sendcard);
+
+    public void update(Sendcard sendcard);
+
+    public List<Sendcard> findByUserId(int userId, int pageNo, int pageSize);
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.myweb.entity.User;
 import com.myweb.result.BizResult;
+import com.myweb.result.UserInfoQueryResult;
 import com.myweb.service.IUserService;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
@@ -18,6 +19,8 @@ public class UserAction extends ActionSupport {
     private String            password;
     private String            sex;
     private String            city;
+    private int               pageSize         = 100;
+    private int               pageNo           = 1;
     private IUserService      userService;
     public Map                responseJson;
 
@@ -34,6 +37,18 @@ public class UserAction extends ActionSupport {
             map.put("msg", "注册失败");
         }
 
+        this.setResponseJson(map);
+        return Action.SUCCESS;
+    }
+
+    public String getUserDatas() {
+        ActionContext actionContext = ActionContext.getContext();
+        Map session = actionContext.getSession();
+        User user = (User) session.get("USER");
+        Map<String, Object> map = new HashMap<String, Object>();
+        UserInfoQueryResult userInfoQueryResult = userService.getUserInfo(user.getUserId(), pageNo,
+            pageSize);
+        map.put("userInfo", userInfoQueryResult.getUserInfoView());
         this.setResponseJson(map);
         return Action.SUCCESS;
     }
