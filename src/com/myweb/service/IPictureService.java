@@ -37,4 +37,13 @@ public interface IPictureService {
      * @return
      */
     public BizResult<Object> savePictureChange(String[] delAIds);
+
+    /**
+     * 保存用户上传头像
+     * 
+     * @param file
+     * @param fileName
+     * @return
+     */
+    public BizResult<Picture> uploadUserImgPic(File file, String fileName);
 }

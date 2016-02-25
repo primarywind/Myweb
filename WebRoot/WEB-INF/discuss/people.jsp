@@ -90,7 +90,7 @@
 						<li><a href="/Myweb/admin/gotoMessage.action">私信<span
 								class="badge badge-important hide" id="inbox_unread">0</span> </a></li>
 						<li class="hidden-xs"><a
-							href="http://wenda.golaravel.com/setting/profile/">设置</a></li>
+							href="/Myweb/admin/gotoProfile.action">设置</a></li>
 						<li><a href="/Myweb/admin/logonOut.action">退出</a></li>
 					</ul>
 				</div>
@@ -111,7 +111,7 @@
 							<div class="mod-head">
 								<img id="faceimgId"
 									src="http://wenda.golaravel.com/uploads/avatar/000/00/25/14_avatar_max.jpg"
-									alt="nullpoint"> <span class="pull-right operate">
+									alt="nullpoint" width="100" height="100"> <span class="pull-right operate">
 									<a href="http://wenda.golaravel.com/setting/profile/"
 									class="btn btn-mini btn-success">编辑</a> </span>
 								<h1 id="nameId">nullpoint</h1>

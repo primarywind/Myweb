@@ -71,6 +71,20 @@
 			<result name="success">/WEB-INF/discuss/message.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+
+		<action name="gotoMessageDetail" class="com.myweb.action.DiscussAction"
+			method="gotoMessageDetail">
+			<interceptor-ref name="permissionStack" />
+			<result name="success">/WEB-INF/discuss/messageDetail.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="gotoProfile" class="com.myweb.action.DiscussAction"
+			method="gotoProfile">
+			<interceptor-ref name="permissionStack" />
+			<result name="success">/WEB-INF/discuss/profile.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
 	</package>
 
 
@@ -270,6 +284,41 @@
 
 		<action name="getMessageList" class="com.myweb.action.DiscussAction"
 			method="getMessageList">
+			<interceptor-ref name="permissionStack" />
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+		<action name="addMessage" class="com.myweb.action.DiscussAction"
+			method="addMessage">
+			<interceptor-ref name="permissionStack" />
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+		<action name="addReceiveMessage" class="com.myweb.action.DiscussAction"
+			method="addReceiveMessage">
+			<interceptor-ref name="permissionStack" />
+			<result type="json">
+				<param name="root">responseJson</param>
+			</result>
+		</action>
+
+		<action name="uploadUserFaceImg" class="com.myweb.action.UserAction"
+			method="uploadUserFaceImg">
+			<interceptor-ref name="permissionStack" />
+			<result type="json">
+				<param name="root">result</param>
+				<param name="contentType">
+					text/html
+				</param>
+			</result>
+		</action>
+
+		<action name="updateUserInfo" class="com.myweb.action.UserAction"
+			method="updateUserInfo">
 			<interceptor-ref name="permissionStack" />
 			<result type="json">
 				<param name="root">responseJson</param>

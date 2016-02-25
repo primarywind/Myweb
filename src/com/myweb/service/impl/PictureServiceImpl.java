@@ -148,4 +148,54 @@ public class PictureServiceImpl extends BaseService implements IPictureService {
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
+
+    @Override
+    public BizResult<Picture> uploadUserImgPic(final File file, final String fileName) {
+        BizResult<Picture> bizResult = getServiceTemplate().serviceProcess(
+            new ServiceCallBack<Picture>() {
+                @Override
+                public void beforeService() {
+
+                }
+
+                @Override
+                public BizResult<Picture> executeService() {
+                    String finalfileName = null;
+                    ActionContext actionContext = ActionContext.getContext();
+                    Map session = actionContext.getSession();
+                    User user = (User) session.get("USER");
+                    try {
+                        UUID uuid = UUID.randomUUID();
+                        finalfileName = uuid.toString() + fileName;
+                        FileUtils.copyFile(file,
+                            new File(HandlerPath.getHostSimulateAuthorLogoPath() + finalfileName));
+                        Picture picture = new Picture();
+                        picture.setPicName(finalfileName);
+                        if (finalfileName.indexOf("/Myweb") == -1) {
+                            picture.setPicPath(HandlerPath.getPicturePath() + finalfileName);
+                        } else {
+                            picture.setPicPath(finalfileName);
+                        }
+                        picture.setPicSize(HandlerPath.FormetFileSize(file.length()));
+                        String[] fileNames = finalfileName.split("\\.");
+                        picture.setPicType(fileNames[fileNames.length - 1]);
+                        picture.setPubTime(new Timestamp(System.currentTimeMillis()));
+                        picture.setPicOwnerId(user.getUserId());
+                        BizResult<Picture> bizResult = BizResult.valueOfSuccessed();
+                        bizResult.setObject(picture);
+                        return bizResult;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return BizResult.valueOfFailed();
+                    }
+                }
+
+                @Override
+                public void afterService(BizResult<Picture> result) {
+
+                }
+
+            });
+        return bizResult;
+    }
 }

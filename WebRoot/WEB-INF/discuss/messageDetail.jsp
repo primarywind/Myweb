@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.myweb.entity.User"%>
+<%@page import="com.myweb.view.MessageView"%>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":"
@@ -37,6 +38,18 @@
 	<%
 	    HttpSession sessions = request.getSession();
 	    User sessionValues = (User) sessions.getAttribute("USER");
+	    List<MessageView> messageViews = (List<MessageView>) request
+	        .getAttribute("messageViewList");
+	    int userId = sessionValues.getUserId();
+	    String connectUserName = "";
+	    int receiveUserId = 0;
+	    if (messageViews.get(0).getSendUserId() != userId) {
+	        connectUserName = messageViews.get(0).getSendUserName();
+	        receiveUserId = messageViews.get(0).getSendUserId();
+	    } else {
+	        connectUserName = messageViews.get(0).getReceiveUserName();
+	        receiveUserId = messageViews.get(0).getReceiveUserId();
+	    }
 	%>
 	<div class="aw-top-menu-wrap">
 		<div class="container">
@@ -109,16 +122,79 @@
 			<div class="row">
 				<div class="aw-content-wrap clearfix">
 					<div class="col-sm-12 col-md-12 aw-main-content">
-						<div class="aw-mod aw-inbox">
+						<div class="aw-mod aw-inbox-read">
 							<div class="mod-head common-head">
 								<h2>
-									<button data-toggle="modal" data-target="#newmessage"
-										class="pull-right btn btn-mini btn-success">新私信</button>
-									<span class="pull-right aw-setting-inbox hidden-xs"> </span> 私信
+									<a href="/Myweb/admin/gotoMessage.action" class="pull-right">返回私信列表
+										»</a> 私信对话：<%=connectUserName%>
 								</h2>
 							</div>
-							<div class="mod-body aw-feed-list" id="messageListId"></div>
-							<div class="mod-footer"></div>
+							<div class="mod-body">
+								<!-- 私信内容输入框　-->
+								<form id="recipient_form">
+									<input name="receiveUserId" value="<%=receiveUserId%>"
+										type="hidden"><input name="messageGroup"
+										value="<%=messageViews.get(0).getMessageGroup()%>"
+										type="hidden"><input name="messageId"
+										value="<%=messageViews.get(0).getMessageId()%>" type="hidden">
+									<a href="#" data-id="2" class="aw-user-img aw-border-radius-5"><img
+										src="<%=sessionValues.getFaceImg()%>" alt="" width="32" height="32"> </a>
+									<textarea rows="3" class="form-control"
+										placeholder="想要对ta说点什么?" type="text" name="messageContent"></textarea>
+									<p>
+										<button class="btn btn-mini btn-success"
+											onclick="submitReceiveMessage()">
+											发送</a>
+									</p>
+								</form>
+								<!-- end 私信内容输入框 -->
+							</div>
+							<div class="mod-footer">
+								<!-- 私信内容列表 -->
+								<a name="contents"></a>
+								<ul>
+									<%
+									    for (int i = 0; i < messageViews.size(); i++) {
+									        if (messageViews.get(i).getSendUserId() == userId) {
+									%>
+									<li class="active"><a href="#" data-id="2"
+										class="aw-user-img aw-border-radius-5"><img
+											src="<%=messageViews.get(i).getSendUserFaceImg()%>" alt="">
+									</a>
+										<div class="aw-item">
+											<p>
+												<a href="#">我</a>:
+												<%=messageViews.get(i).getMessageContent()%>
+											</p>
+											<p class="text-color-999"><%=messageViews.get(i).getSendTime()%></p>
+											<i class="i-private-replay-triangle"></i>
+										</div></li>
+									<%
+									    } else {
+									%>
+									<li><a href="#" data-id="1"
+										class="aw-user-img aw-border-radius-5"><img
+											src="<%=messageViews.get(i).getSendUserFaceImg()%>" alt="">
+									</a>
+										<div class="aw-item">
+											<p>
+												<a href="#"><%=messageViews.get(i).getSendUserName()%></a>:
+												<%=messageViews.get(i).getMessageContent()%>
+											</p>
+											<p class="text-color-999">
+												<%=messageViews.get(i).getSendTime()%>
+											</p>
+											<i class="i-private-replay-triangle"></i>
+										</div></li>
+									<%
+									    }
+									    }
+									%>
+
+
+								</ul>
+								<!-- end 私信内容列表 -->
+							</div>
 						</div>
 					</div>
 
@@ -180,7 +256,7 @@
 												href="http://wenda.golaravel.com/people/wangsai">{sendUserName}</a>
 										</p>
 										<p class="content">
-											<a href="/Myweb/admin/gotoMessageDetail.action?messageId={messageId}">{messageContent}</a>
+											<a href="#">{messageContent}</a>
 										</p>
 										<p class="text-color-999">
 											<span class="pull-right"><a href="javascript:;" class="text-color-999"

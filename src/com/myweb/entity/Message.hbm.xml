@@ -22,8 +22,8 @@
         <property name="sendTime" type="java.sql.Timestamp">
             <column name="send_time" length="19" not-null="true" />
         </property>
-        <property name="group" type="java.lang.Integer">
-            <column name="group" not-null="true" />
+        <property name="messageGroup" type="java.lang.Integer">
+            <column name="message_group" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

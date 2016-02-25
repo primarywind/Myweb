@@ -17,6 +17,7 @@ import com.myweb.service.IUserService;
 import com.myweb.template.QueryCallBack;
 import com.myweb.template.ServiceCallBack;
 import com.myweb.util.Constant;
+import com.myweb.util.HandlerPath;
 import com.myweb.util.MD5Util;
 import com.myweb.util.StringUtil;
 import com.myweb.util.sensitive.annotations.SensitiveInfo;
@@ -37,20 +38,19 @@ public class UserServiceImpl extends BaseService implements IUserService {
     private FollowcardDao followcardDao;
     private FavoriteDao   favoriteDao;
 
-    public BizResult<User> saveUser(final String name, final String password, final String sex,
+    public BizResult<User> saveUser(final String name, final String password, final int sex,
                                     final String city) {
         return getServiceTemplate().serviceProcess(new ServiceCallBack<User>() {
             @Override
             public void beforeService() {
                 //检查是否非空
                 if (StringUtil.isBlank(name) || StringUtil.isBlank(password)
-                    || StringUtil.isBlank(sex) || StringUtil.isBlank(city)) {
+                    || StringUtil.isBlank(city)) {
                     //异常类待细分，现统一抛出运行时异常
                     throw new RuntimeException();
                 }
                 //检查是否合法
-                if (!StringUtil.equals(sex, Constant.WOMANSEX + "")
-                    && !StringUtil.equals(sex, Constant.MANSEX + "")) {
+                if (sex != Constant.WOMANSEX && sex != Constant.MANSEX) {
                     //异常类待细分，现统一抛出运行时异常
                     throw new RuntimeException();
                 }
@@ -60,7 +60,7 @@ public class UserServiceImpl extends BaseService implements IUserService {
             public BizResult<User> executeService() {
                 User user = new User();
                 user.setName(name);
-                user.setGender(Integer.parseInt(sex));
+                user.setGender(sex);
                 user.setNationality(city);
                 user.setLevel(Constant.USER_LEVEL);
                 user.setFaceImg("/Myweb/assets/images/default-img.png");
@@ -191,6 +191,36 @@ public class UserServiceImpl extends BaseService implements IUserService {
 
     public void setFavoriteDao(FavoriteDao favoriteDao) {
         this.favoriteDao = favoriteDao;
+    }
+
+    @Override
+    public BizResult<User> updateUserInfo(final Integer userId, final int sex,
+                                          final String userName, final String nationality,
+                                          final String blogUrl, final String faceImg) {
+        return getServiceTemplate().serviceProcess(new ServiceCallBack<User>() {
+            @Override
+            public void beforeService() {
+            }
+
+            @Override
+            public BizResult<User> executeService() {
+
+                User user = userDao.findById(userId);
+                user.setBlogUrl(blogUrl);
+                user.setFaceImg(HandlerPath.getPicturePath() + faceImg);
+                user.setGender(sex);
+                user.setNationality(nationality);
+                user.setUserName(userName);
+                userDao.update(user);
+                BizResult<User> bizResult = BizResult.valueOfSuccessed();
+                bizResult.setObject(user);
+                return bizResult;
+            }
+
+            @Override
+            public void afterService(BizResult<User> result) {
+            }
+        });
     }
 
 }

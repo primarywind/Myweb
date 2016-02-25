@@ -15,7 +15,7 @@ public class Message implements java.io.Serializable {
     private Integer   receiveUserId;
     private String    messageContent;
     private Timestamp sendTime;
-    private Integer   group;
+    private Integer   messageGroup;
 
     // Constructors
 
@@ -25,12 +25,12 @@ public class Message implements java.io.Serializable {
 
     /** full constructor */
     public Message(Integer sendUserId, Integer receiveUserId, String messageContent,
-                   Timestamp sendTime, Integer group) {
+                   Timestamp sendTime, Integer messageGroup) {
         this.sendUserId = sendUserId;
         this.receiveUserId = receiveUserId;
         this.messageContent = messageContent;
         this.sendTime = sendTime;
-        this.group = group;
+        this.messageGroup = messageGroup;
     }
 
     // Property accessors
@@ -75,12 +75,12 @@ public class Message implements java.io.Serializable {
         this.sendTime = sendTime;
     }
 
-    public Integer getGroup() {
-        return this.group;
+    public Integer getMessageGroup() {
+        return this.messageGroup;
     }
 
-    public void setGroup(Integer group) {
-        this.group = group;
+    public void setMessageGroup(Integer messageGroup) {
+        this.messageGroup = messageGroup;
     }
 
 }

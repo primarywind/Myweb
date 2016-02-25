@@ -13,10 +13,13 @@ public class MessageView {
     private Integer   receiveUserId;
     private String    messageContent;
     private Timestamp sendTime;
-    private Integer   group;
+    private Integer   messageGroup;
 
     private String    sendUserName;
     private String    sendUserFaceImg;
+
+    private String    receiveUserName;
+    private String    receiveUserFaceImg;
 
     public String getSendUserName() {
         return sendUserName;
@@ -74,12 +77,28 @@ public class MessageView {
         this.sendTime = sendTime;
     }
 
-    public Integer getGroup() {
-        return group;
+    public Integer getMessageGroup() {
+        return messageGroup;
     }
 
-    public void setGroup(Integer group) {
-        this.group = group;
+    public void setMessageGroup(Integer messageGroup) {
+        this.messageGroup = messageGroup;
+    }
+
+    public String getReceiveUserName() {
+        return receiveUserName;
+    }
+
+    public void setReceiveUserName(String receiveUserName) {
+        this.receiveUserName = receiveUserName;
+    }
+
+    public String getReceiveUserFaceImg() {
+        return receiveUserFaceImg;
+    }
+
+    public void setReceiveUserFaceImg(String receiveUserFaceImg) {
+        this.receiveUserFaceImg = receiveUserFaceImg;
     }
 
 }

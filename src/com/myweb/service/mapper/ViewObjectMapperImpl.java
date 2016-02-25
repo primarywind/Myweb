@@ -92,6 +92,7 @@ public class ViewObjectMapperImpl extends BaseOrikaMapperImpl {
         mapperFactory.classMap(Message.class, MessageView.class).byDefault()
             .field("messageId", "messageId").field("sendUserId", "sendUserId")
             .field("receiveUserId", "receiveUserId").field("sendTime", "sendTime")
-            .field("group", "group").field("messageContent", "messageContent").register();
+            .field("messageGroup", "messageGroup").field("messageContent", "messageContent")
+            .register();
     }
 }

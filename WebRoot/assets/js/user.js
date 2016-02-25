@@ -16,8 +16,8 @@ function loadUserDatas() {
 					if (!dta.userInfo) {
 						return;
 					}
-					$("#faceimgId").attr("src", dta.userInfo.userView.faceImg);
-					$("#nameId").html(dta.userInfo.userView.name);
+					$("#faceimgId").attr("src",dta.userInfo.userView.faceImg);
+					$("#nameId").html(dta.userInfo.userView.userName);
 					// 发问列表填充
 					$("#sendCardListId").empty();
 					var sendCardListHtml = "";

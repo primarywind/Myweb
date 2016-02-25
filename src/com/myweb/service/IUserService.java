@@ -15,7 +15,7 @@ public interface IUserService {
      * 
      * @param user
      */
-    public BizResult<User> saveUser(String name, String password, String sex, String city);
+    public BizResult<User> saveUser(String name, String password, int sex, String city);
 
     /**
      * 用户登录验证
@@ -29,4 +29,19 @@ public interface IUserService {
      * @return
      */
     public UserInfoQueryResult getUserInfo(Integer userId, Integer pageNo, Integer pageSize);
+
+    /**
+     * 更新用户信息
+     * 
+     * @param userId
+     * @param sex
+     * @param userName
+     * @param nationality
+     * @param blogUrl
+     * @param faceImg
+     * @return
+     */
+    public BizResult<User> updateUserInfo(Integer userId, int sex, String userName,
+                                          String nationality, String blogUrl, String faceImg);
+
 }

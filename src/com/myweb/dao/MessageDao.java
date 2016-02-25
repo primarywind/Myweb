@@ -15,4 +15,10 @@ public interface MessageDao {
     public Integer save(Message message);
 
     public int deleteById(Integer id);
+
+    public Integer getMaxGroupBySendUserId(int sendUserId);
+
+    public Message findById(Integer id);
+
+    public List<Message> findByGroup(int messageGroup, int pageNo, int pageSize);
 }

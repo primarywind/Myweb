@@ -92,7 +92,7 @@
 						<li><a href="/Myweb/admin/gotoMessage.action">私信<span
 								class="badge badge-important hide" id="inbox_unread">0</span> </a></li>
 						<li class="hidden-xs"><a
-							href="http://wenda.golaravel.com/setting/profile/">设置</a></li>
+							href="/Myweb/admin/gotoProfile.action">设置</a></li>
 						<li><a href="/Myweb/admin/logonOut.action">退出</a></li>
 					</ul>
 				</div>

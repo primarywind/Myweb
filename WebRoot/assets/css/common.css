@@ -880,7 +880,7 @@ a.aw-load-more-content {
 .i-private-replay-triangle {
 	width: 8px;
 	height: 10px;
-	background: url(img/icon-angle-right.png) no-repeat
+	background: url(/Myweb/assets/images/icon-angle-right.png) no-repeat
 }
 
 .aw-email-verify {
@@ -3092,7 +3092,7 @@ a.aw-load-more-content {
 }
 
 .aw-inbox-read .mod-footer li.active .i-private-replay-triangle {
-	background: url(img/icon-angle-left.png) no-repeat;
+	background: url(/Myweb/assets/images/icon-angle-left.png) no-repeat;
 	left: -8px;
 	border-left: none;
 	border-right: 1px solid #F5FAFE

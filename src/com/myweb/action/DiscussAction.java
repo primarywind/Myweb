@@ -1,6 +1,7 @@
 package com.myweb.action;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.myweb.entity.Sendcard;
@@ -11,6 +12,7 @@ import com.myweb.result.MessageListQueryResult;
 import com.myweb.result.SendCardListQueryResult;
 import com.myweb.service.IMessageService;
 import com.myweb.service.ISendCardService;
+import com.myweb.view.MessageView;
 import com.myweb.view.SendCardDetailView;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
@@ -46,8 +48,13 @@ public class DiscussAction extends ActionSupport {
     private String             cardContent;
     private String             cardLabel;
     private SendCardDetailView sendCardDetailView;
-
+    private String             receiveName;
+    private int                receiveUserId;
+    private String             messageContent;
+    private int                messageId;
+    private int                messageGroup;
     public Map                 responseJson;
+    public List<MessageView>   messageViewList;
 
     public String findSendCardsByPage() {
         SendCardListQueryResult sendCardListResult = sendCardService.findSendCardsByPage(pageNo,
@@ -142,11 +149,60 @@ public class DiscussAction extends ActionSupport {
         return Action.SUCCESS;
     }
 
+    public String addMessage() {
+        ActionContext actionContext = ActionContext.getContext();
+        Map session = actionContext.getSession();
+        int sendUserId = ((User) session.get("USER")).getUserId();
+        BizResult<Object> bizResult = messageService.addMessage(sendUserId, receiveName,
+            messageContent);
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (bizResult.isSuccess()) {
+            map.put("msg", "发送成功");
+        } else {
+            map.put("msg", "发送失败");
+        }
+        this.setResponseJson(map);
+        return Action.SUCCESS;
+    }
+
+    public String addReceiveMessage() {
+        ActionContext actionContext = ActionContext.getContext();
+        Map session = actionContext.getSession();
+        int sendUserId = ((User) session.get("USER")).getUserId();
+
+        BizResult<Object> bizResult = messageService.addReceiveMessage(sendUserId, receiveUserId,
+            messageGroup, messageContent);
+        MessageListQueryResult messageListQueryResult = messageService.getMessageDetailList(
+            messageId, pageNo, pageSize);
+        messageViewList = messageListQueryResult.getMessageViewList();
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (bizResult.isSuccess()) {
+            map.put("msg", "发送成功");
+            map.put("messageId", messageId);
+        } else {
+            map.put("msg", "发送失败");
+        }
+        this.setResponseJson(map);
+        return Action.SUCCESS;
+    }
+
     public String gotoMessage() {
+
         return Action.SUCCESS;
     }
 
     public String findSendCardDateilsByPage() {
+        return Action.SUCCESS;
+    }
+
+    public String gotoProfile() {
+        return Action.SUCCESS;
+    }
+
+    public String gotoMessageDetail() {
+        MessageListQueryResult messageListQueryResult = messageService.getMessageDetailList(
+            messageId, pageNo, pageSize);
+        messageViewList = messageListQueryResult.getMessageViewList();
         return Action.SUCCESS;
     }
 
@@ -272,6 +328,54 @@ public class DiscussAction extends ActionSupport {
 
     public void setMessageService(IMessageService messageService) {
         this.messageService = messageService;
+    }
+
+    public String getReceiveName() {
+        return receiveName;
+    }
+
+    public void setReceiveName(String receiveName) {
+        this.receiveName = receiveName;
+    }
+
+    public String getMessageContent() {
+        return messageContent;
+    }
+
+    public void setMessageContent(String messageContent) {
+        this.messageContent = messageContent;
+    }
+
+    public int getMessageId() {
+        return messageId;
+    }
+
+    public void setMessageId(int messageId) {
+        this.messageId = messageId;
+    }
+
+    public List<MessageView> getMessageViewList() {
+        return messageViewList;
+    }
+
+    public void setMessageViewList(List<MessageView> messageViewList) {
+        this.messageViewList = messageViewList;
+    }
+
+    public int getReceiveUserId() {
+        return receiveUserId;
+    }
+
+    public void setReceiveUserId(int receiveUserId) {
+        this.receiveUserId = receiveUserId;
+    }
+
+    public int getMessageGroup() {
+        return messageGroup;
+    }
+
+    public void setMessageGroup(int messageGroup) {
+        this.messageGroup = messageGroup;
     }
 
 }
