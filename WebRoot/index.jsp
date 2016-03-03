@@ -200,7 +200,7 @@
 
 					<footer class="post-footer clearfix">
 						<div class="pull-left tag-list">
-							<i class="fa fa-folder-open-o"></i> <a href="/tag/laravel-5-1/">{label}</a>
+							<i class="fa fa-folder-open-o"></i> <a href="#">{label}</a>
 						</div>
 						<div class="pull-right share"></div>
 					</footer>
