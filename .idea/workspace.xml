@@ -932,7 +932,7 @@
       <workItem from="1456998967331" duration="1734000" />
       <workItem from="1457009720477" duration="840000" />
       <workItem from="1457011339355" duration="4335000" />
-      <workItem from="1457100372528" duration="5437000" />
+      <workItem from="1457100372528" duration="5463000" />
     </task>
     <task id="LOCAL-00001" summary="更改链接地址">
       <created>1457010050073</created>
@@ -946,11 +946,17 @@
       <option name="project" value="LOCAL" />
       <updated>1457107854849</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="workspace.xml">
+      <created>1457107873866</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1457107873866</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17448000" />
+    <option name="totallyTimeSpent" value="17474000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1010,7 +1016,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="更改链接地址" />
     <MESSAGE value="实现讨论页简单分页功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现讨论页简单分页功能" />
+    <MESSAGE value="workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace.xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
