@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7202c61f-c767-43c2-8432-188020949cc0" name="Default" comment="实现讨论页简单分页功能">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myweb/action/ArticleAction.java" afterPath="$PROJECT_DIR$/src/com/myweb/action/ArticleAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myweb/action/DiscussAction.java" afterPath="$PROJECT_DIR$/src/com/myweb/action/DiscussAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myweb/result/SendCardListQueryResult.java" afterPath="$PROJECT_DIR$/src/com/myweb/result/SendCardListQueryResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myweb/service/impl/SendCardServiceImpl.java" afterPath="$PROJECT_DIR$/src/com/myweb/service/impl/SendCardServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myweb/dao/SendcardDao.java" afterPath="$PROJECT_DIR$/src/com/myweb/dao/SendcardDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/myweb/dao/impl/SendcardDaoImpl.java" afterPath="$PROJECT_DIR$/src/com/myweb/dao/impl/SendcardDaoImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/assets/js/discuss.js" afterPath="$PROJECT_DIR$/WebRoot/assets/js/discuss.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/discuss/discuss.jsp" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/discuss/discuss.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="7202c61f-c767-43c2-8432-188020949cc0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Myweb.iws" />
@@ -941,7 +932,7 @@
       <workItem from="1456998967331" duration="1734000" />
       <workItem from="1457009720477" duration="840000" />
       <workItem from="1457011339355" duration="4335000" />
-      <workItem from="1457100372528" duration="5419000" />
+      <workItem from="1457100372528" duration="5437000" />
     </task>
     <task id="LOCAL-00001" summary="更改链接地址">
       <created>1457010050073</created>
@@ -949,11 +940,17 @@
       <option name="project" value="LOCAL" />
       <updated>1457010050074</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="实现讨论页简单分页功能">
+      <created>1457107854849</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1457107854849</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17430000" />
+    <option name="totallyTimeSpent" value="17448000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
