@@ -184,7 +184,7 @@
 							</div>
 							<div class="mod-footer">
 								<div class="page-control">
-									<ul class="pagination pull-right">
+									<ul class="pagination pull-right" id="discussPaginationId">
 										<li class="active"><a href="javascript:;">1</a>
 										</li>
 										<li><a

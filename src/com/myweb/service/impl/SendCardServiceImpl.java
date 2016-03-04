@@ -57,6 +57,7 @@ public class SendCardServiceImpl extends BaseService implements ISendCardService
                 @Override
                 public void doProcess(SendCardListQueryResult result) {
                     List<Sendcard> sendcards = sendcardDao.findByPages(pageNo, pageSize, orderType);
+                    int totalSize = sendcardDao.getTotalSize();
                     List<SendCardListView> sendCardListViews = getViewObjectMapper().map(sendcards,
                         SendCardListView.class);
                     for (SendCardListView sendCardListView : sendCardListViews) {
@@ -64,6 +65,7 @@ public class SendCardServiceImpl extends BaseService implements ISendCardService
                         sendCardListView.setUserName(user.getUserName());
                         sendCardListView.setFaceImg(user.getFaceImg());
                     }
+                    result.setTotalSize(totalSize);
                     result.setSendCardListView(sendCardListViews);
                 }
             });

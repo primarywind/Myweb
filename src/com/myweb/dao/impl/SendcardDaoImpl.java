@@ -69,4 +69,12 @@ public class SendcardDaoImpl extends HibernateDaoSupport implements SendcardDao 
         return lists;
     }
 
+    @Override
+    public int getTotalSize() {
+        String hql = "select count(*) from Sendcard";
+        Long a = (Long) getHibernateTemplate().find(hql).listIterator().next();
+        int count = a.intValue();
+        return count;
+    }
+
 }

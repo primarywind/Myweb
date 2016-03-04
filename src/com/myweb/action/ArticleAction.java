@@ -88,7 +88,6 @@ public class ArticleAction extends ActionSupport {
 
     public String addAndUpdateCategoryArticles() {
         Map<String, Object> map = new HashMap<String, Object>();
-        System.out.println(delAIds);
         BizResult bizResult = articleService.addAndUpdateCategoryArticles(articleIds, categoryIds,
             labels, titles, brefContents, contents, delAIds);
         if (bizResult.isSuccess()) {

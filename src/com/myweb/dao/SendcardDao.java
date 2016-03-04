@@ -19,4 +19,6 @@ public interface SendcardDao {
     public void update(Sendcard sendcard);
 
     public List<Sendcard> findByUserId(int userId, int pageNo, int pageSize);
+
+    public int getTotalSize();
 }

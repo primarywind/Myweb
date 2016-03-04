@@ -61,6 +61,7 @@ public class DiscussAction extends ActionSupport {
             pageSize, orderType);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("sendCardListViews", sendCardListResult.getSendCardListView());
+        map.put("totalSize", sendCardListResult.getTotalSize());
         this.setResponseJson(map);
         return Action.SUCCESS;
     }

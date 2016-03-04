@@ -14,6 +14,7 @@ public class SendCardListQueryResult extends QueryResult {
     /** serialVersionUID */
     private static final long serialVersionUID = -7908313491124272615L;
     List<SendCardListView>    sendCardListView;
+    int totalSize;
 
     public List<SendCardListView> getSendCardListView() {
         return sendCardListView;
@@ -23,4 +24,11 @@ public class SendCardListQueryResult extends QueryResult {
         this.sendCardListView = sendCardListView;
     }
 
+    public int getTotalSize() {
+        return totalSize;
+    }
+
+    public void setTotalSize(int totalSize) {
+        this.totalSize = totalSize;
+    }
 }
