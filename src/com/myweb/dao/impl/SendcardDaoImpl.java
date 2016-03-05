@@ -77,4 +77,11 @@ public class SendcardDaoImpl extends HibernateDaoSupport implements SendcardDao 
         return count;
     }
 
+    @Override public int getSendCardNumByUserId(int userId) {
+        String hql = "select count(*) from Sendcard s where s.userId="+userId;
+        Long a = (Long) getHibernateTemplate().find(hql).listIterator().next();
+        int count = a.intValue();
+        return count;
+    }
+
 }

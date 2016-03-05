@@ -43,7 +43,7 @@
 		<div class="container">
 			<!-- logo -->
 			<div class="aw-logo hidden-xs">
-				<a href="http://wenda.golaravel.com"></a>
+				<a href="/Myweb/admin/goToDiscuss.action"></a>
 			</div>
 			<!-- end logo -->
 			<!-- 搜索框 -->

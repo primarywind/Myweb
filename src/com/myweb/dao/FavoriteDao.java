@@ -23,4 +23,5 @@ public interface FavoriteDao {
 
     public List<Favorite> findByUserId(int userId, int pageNo, int pageSize);
 
+    int findFavoriteNumByUserId(int userId);
 }

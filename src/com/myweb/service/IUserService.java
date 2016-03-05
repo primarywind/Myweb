@@ -2,6 +2,7 @@ package com.myweb.service;
 
 import com.myweb.entity.User;
 import com.myweb.result.BizResult;
+import com.myweb.result.HotUserQueryResult;
 import com.myweb.result.UserInfoQueryResult;
 
 /**
@@ -12,8 +13,11 @@ import com.myweb.result.UserInfoQueryResult;
 public interface IUserService {
     /**
      * 保存用户
-     * 
-     * @param user
+     * @param name
+     * @param password
+     * @param sex
+     * @param city
+     * @return
      */
     public BizResult<User> saveUser(String name, String password, int sex, String city);
 
@@ -44,4 +48,10 @@ public interface IUserService {
     public BizResult<User> updateUserInfo(Integer userId, int sex, String userName,
                                           String nationality, String blogUrl, String faceImg);
 
+    /**
+     * 按照发问数进行用户排序
+     * @param hotUserSize
+     * @return
+     */
+   public  HotUserQueryResult findHotUsers(int hotUserSize);
 }

@@ -65,4 +65,11 @@ public class FavoriteDaoImpl extends HibernateDaoSupport implements FavoriteDao 
         return lists;
     }
 
+    @Override public int findFavoriteNumByUserId(int userId) {
+        String hql = "select count(*) from Favorite f where f.userId ="+userId;
+        Long a = (Long) getHibernateTemplate().find(hql).listIterator().next();
+        int count = a.intValue();
+        return count;
+    }
+
 }

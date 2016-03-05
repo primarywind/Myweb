@@ -7,6 +7,7 @@ import java.util.Map;
 import com.myweb.entity.Picture;
 import com.myweb.entity.User;
 import com.myweb.result.BizResult;
+import com.myweb.result.HotUserQueryResult;
 import com.myweb.result.UserInfoQueryResult;
 import com.myweb.service.IPictureService;
 import com.myweb.service.IUserService;
@@ -33,6 +34,8 @@ public class UserAction extends ActionSupport {
     private File              file;
     public Map                responseJson;
 
+    //热门用户数量
+    private int               hotUserSize;
     private String            userName;
     private String            nationality;
     private String            blogUrl;
@@ -92,6 +95,14 @@ public class UserAction extends ActionSupport {
             map.put("msg", "保存失败");
         }
 
+        this.setResponseJson(map);
+        return Action.SUCCESS;
+    }
+
+    public String findHotUsers() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        HotUserQueryResult hotUserQueryResult = userService.findHotUsers(hotUserSize);
+        map.put("hotUserViewList", hotUserQueryResult.getHotUserViewList());
         this.setResponseJson(map);
         return Action.SUCCESS;
     }
@@ -224,4 +235,11 @@ public class UserAction extends ActionSupport {
         this.faceImg = faceImg;
     }
 
+    public int getHotUserSize() {
+        return hotUserSize;
+    }
+
+    public void setHotUserSize(int hotUserSize) {
+        this.hotUserSize = hotUserSize;
+    }
 }

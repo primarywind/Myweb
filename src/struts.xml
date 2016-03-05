@@ -1,328 +1,336 @@
 <?xml version="1.0" encoding="GBK"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-         "http://struts.apache.org/dtds/struts-2.0.dtd">
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<constant name="struts.action.extension" value="action" />
-	<constant name="struts.i18n.encoding" value="utf-8" />
-	<!-- 使用spring,将action托管给spring -->
-	<constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.action.extension" value="action"/>
+    <constant name="struts.i18n.encoding" value="utf-8"/>
+    <!-- 使用spring,将action托管给spring -->
+    <constant name="struts.objectFactory" value="spring"/>
 
-	<package name="admin" extends="struts-default">
-		<interceptors>
-			<!-- 自定义拦截器 -->
-			<interceptor name="permission"
-				class="com.myweb.action.interceptor.SessionIterceptor" />
-			<!-- 配制默许的拦截器到拦截器栈 -->
-			<interceptor-stack name="permissionStack">
-				<interceptor-ref name="permission" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
-		</interceptors>
+    <package name="admin" extends="struts-default">
+        <interceptors>
+            <!-- 自定义拦截器 -->
+            <interceptor name="permission"
+                         class="com.myweb.action.interceptor.SessionIterceptor"/>
+            <!-- 配制默许的拦截器到拦截器栈 -->
+            <interceptor-stack name="permissionStack">
+                <interceptor-ref name="permission"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
 
-		<global-results>
-			<result name="logon_failed">/Dlogon.jsp
-			</result>
-		</global-results>
+        <global-results>
+            <result name="logon_failed">/Dlogon.jsp
+            </result>
+        </global-results>
 
-		<action name="logon" class="com.myweb.action.AdminAction"
-			method="logon">
-			<result name="verify_admin_ok">/WEB-INF/admin/admin.jsp</result>
-			<result name="verify_user_ok">/WEB-INF/discuss/discuss.jsp</result>
-			<result name="logon_failed">/Dlogon.jsp</result>
-		</action>
+        <action name="logon" class="com.myweb.action.AdminAction"
+                method="logon">
+            <result name="verify_admin_ok">/WEB-INF/admin/admin.jsp</result>
+            <result name="verify_user_ok">/WEB-INF/discuss/discuss.jsp</result>
+            <result name="logon_failed">/Dlogon.jsp</result>
+        </action>
 
-		<action name="logonOut" class="com.myweb.action.AdminAction"
-			method="logonOut">
-			<result name="logonOut_ok">/Dlogon.jsp</result>
-			<result name="logonOut_failed">/WEB-INF/admin/admin.jsp</result>
-		</action>
+        <action name="logonOut" class="com.myweb.action.AdminAction"
+                method="logonOut">
+            <result name="logonOut_ok">/Dlogon.jsp</result>
+            <result name="logonOut_failed">/WEB-INF/admin/admin.jsp</result>
+        </action>
 
-		<action name="goToDiscuss" class="com.myweb.action.AdminAction"
-			method="goToDiscuss">
-			<result name="verify_user_ok">/WEB-INF/discuss/discuss.jsp</result>
-			<result name="verify_failed">/Dlogon.jsp</result>
-		</action>
-
-
-		<action name="getDiscussDetail" class="com.myweb.action.DiscussAction"
-			method="getDiscussDetail">
-			<interceptor-ref name="permissionStack" />
-			<result name="success">/WEB-INF/discuss/DiscussDetail.jsp</result>
-			<result name="error">/error.jsp</result>
-		</action>
-		<action name="goToPublish" class="com.myweb.action.DiscussAction"
-			method="goToPublish">
-			<interceptor-ref name="permissionStack" />
-			<result name="success">/WEB-INF/discuss/publish.jsp</result>
-			<result name="error">/error.jsp</result>
-		</action>
-
-		<action name="goToPeople" class="com.myweb.action.DiscussAction"
-			method="goToPeople">
-			<interceptor-ref name="permissionStack" />
-			<result name="success">/WEB-INF/discuss/people.jsp</result>
-			<result name="error">/error.jsp</result>
-		</action>
-
-		<action name="gotoMessage" class="com.myweb.action.DiscussAction"
-			method="gotoMessage">
-			<interceptor-ref name="permissionStack" />
-			<result name="success">/WEB-INF/discuss/message.jsp</result>
-			<result name="error">/error.jsp</result>
-		</action>
-
-		<action name="gotoMessageDetail" class="com.myweb.action.DiscussAction"
-			method="gotoMessageDetail">
-			<interceptor-ref name="permissionStack" />
-			<result name="success">/WEB-INF/discuss/messageDetail.jsp</result>
-			<result name="error">/error.jsp</result>
-		</action>
-
-		<action name="gotoProfile" class="com.myweb.action.DiscussAction"
-			method="gotoProfile">
-			<interceptor-ref name="permissionStack" />
-			<result name="success">/WEB-INF/discuss/profile.jsp</result>
-			<result name="error">/error.jsp</result>
-		</action>
-	</package>
+        <action name="goToDiscuss" class="com.myweb.action.AdminAction"
+                method="goToDiscuss">
+            <result name="verify_user_ok">/WEB-INF/discuss/discuss.jsp</result>
+            <result name="verify_failed">/Dlogon.jsp</result>
+        </action>
 
 
+        <action name="getDiscussDetail" class="com.myweb.action.DiscussAction"
+                method="getDiscussDetail">
+            <interceptor-ref name="permissionStack"/>
+            <result name="success">/WEB-INF/discuss/DiscussDetail.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        <action name="goToPublish" class="com.myweb.action.DiscussAction"
+                method="goToPublish">
+            <interceptor-ref name="permissionStack"/>
+            <result name="success">/WEB-INF/discuss/publish.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
 
-	<package name="jsonkpi" extends="json-default">
-		<interceptors>
-			<!-- 自定义拦截器 -->
-			<interceptor name="permission"
-				class="com.myweb.action.interceptor.SessionIterceptor" />
-			<!-- 配制默许的拦截器到拦截器栈 -->
-			<interceptor-stack name="permissionStack">
-				<interceptor-ref name="permission" />
-				<interceptor-ref name="defaultStack" />
-			</interceptor-stack>
-		</interceptors>
+        <action name="goToPeople" class="com.myweb.action.DiscussAction"
+                method="goToPeople">
+            <interceptor-ref name="permissionStack"/>
+            <result name="success">/WEB-INF/discuss/people.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
 
-		<global-results>
-			<result name="logon_failed" type="redirectAction">/jsonkpi/logonFailed.action
-			</result>
-		</global-results>
+        <action name="gotoMessage" class="com.myweb.action.DiscussAction"
+                method="gotoMessage">
+            <interceptor-ref name="permissionStack"/>
+            <result name="success">/WEB-INF/discuss/message.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
 
-		<action name="findArticlesByPage" class="com.myweb.action.ArticleAction"
-			method="findArticlesByPage">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
+        <action name="gotoMessageDetail" class="com.myweb.action.DiscussAction"
+                method="gotoMessageDetail">
+            <interceptor-ref name="permissionStack"/>
+            <result name="success">/WEB-INF/discuss/messageDetail.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
 
-		<action name="findArticlesNums" class="com.myweb.action.ArticleAction"
-			method="findArticlesNums">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="findArticleDetail" class="com.myweb.action.ArticleAction"
-			method="findArticleDetail">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="findCategories" class="com.myweb.action.CategoryAction"
-			method="findCategories">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="findAllCategories" class="com.myweb.action.CategoryAction"
-			method="findAllCategories">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="findPicturesByPage" class="com.myweb.action.PictureAction"
-			method="findPicturesByPage">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="findSendCardsByPage" class="com.myweb.action.DiscussAction"
-			method="findSendCardsByPage">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="findSendCardDateilsByPage" class="com.myweb.action.DiscussAction"
-			method="findSendCardDateilsByPage">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="addAndUpdateCategories" class="com.myweb.action.CategoryAction"
-			method="addAndUpdateCategories">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="deleteCategory" class="com.myweb.action.CategoryAction"
-			method="deleteCategory">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="findArticleCategories" class="com.myweb.action.CategoryAction"
-			method="findArticleCategories">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="findArticleDetailListByCategoryId" class="com.myweb.action.ArticleAction"
-			method="findArticleDetailListByCategoryId">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="addAndUpdateCategoryArticles" class="com.myweb.action.ArticleAction"
-			method="addAndUpdateCategoryArticles">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="uploadSpecialRecommendPic" class="com.myweb.action.PictureAction"
-			method="uploadSpecialRecommendPic">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">result</param>
-				<param name="contentType">
-					text/html
-				</param>
-			</result>
-		</action>
-
-		<action name="savePictureChange" class="com.myweb.action.PictureAction"
-			method="savePictureChange">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="addCardComment" class="com.myweb.action.DiscussAction"
-			method="addCardComment">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="addOthCardComment" class="com.myweb.action.DiscussAction"
-			method="addOthCardComment">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="updateCardFavorite" class="com.myweb.action.DiscussAction"
-			method="updateCardFavorite">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="submitSendCard" class="com.myweb.action.DiscussAction"
-			method="submitSendCard">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-
-		<action name="registerUser" class="com.myweb.action.UserAction"
-			method="registerUser">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
+        <action name="gotoProfile" class="com.myweb.action.DiscussAction"
+                method="gotoProfile">
+            <interceptor-ref name="permissionStack"/>
+            <result name="success">/WEB-INF/discuss/profile.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+    </package>
 
 
-		<action name="logonFailed" class="com.myweb.action.AdminAction"
-			method="logonFailed">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
+    <package name="jsonkpi" extends="json-default">
+        <interceptors>
+            <!-- 自定义拦截器 -->
+            <interceptor name="permission"
+                         class="com.myweb.action.interceptor.SessionIterceptor"/>
+            <!-- 配制默许的拦截器到拦截器栈 -->
+            <interceptor-stack name="permissionStack">
+                <interceptor-ref name="permission"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
 
-		<action name="discuss" class="com.myweb.action.AdminAction"
-			method="discuss">
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
+        <global-results>
+            <result name="logon_failed" type="redirectAction">/jsonkpi/logonFailed.action
+            </result>
+        </global-results>
 
-		<action name="getUserDatas" class="com.myweb.action.UserAction"
-			method="getUserDatas">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
+        <action name="findArticlesByPage" class="com.myweb.action.ArticleAction"
+                method="findArticlesByPage">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="findArticlesNums" class="com.myweb.action.ArticleAction"
+                method="findArticlesNums">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="findArticleDetail" class="com.myweb.action.ArticleAction"
+                method="findArticleDetail">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="findCategories" class="com.myweb.action.CategoryAction"
+                method="findCategories">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="findAllCategories" class="com.myweb.action.CategoryAction"
+                method="findAllCategories">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="findPicturesByPage" class="com.myweb.action.PictureAction"
+                method="findPicturesByPage">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="findSendCardsByPage" class="com.myweb.action.DiscussAction"
+                method="findSendCardsByPage">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="findSendCardDateilsByPage" class="com.myweb.action.DiscussAction"
+                method="findSendCardDateilsByPage">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="addAndUpdateCategories" class="com.myweb.action.CategoryAction"
+                method="addAndUpdateCategories">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="deleteCategory" class="com.myweb.action.CategoryAction"
+                method="deleteCategory">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="findArticleCategories" class="com.myweb.action.CategoryAction"
+                method="findArticleCategories">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="findArticleDetailListByCategoryId" class="com.myweb.action.ArticleAction"
+                method="findArticleDetailListByCategoryId">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="addAndUpdateCategoryArticles" class="com.myweb.action.ArticleAction"
+                method="addAndUpdateCategoryArticles">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="uploadSpecialRecommendPic" class="com.myweb.action.PictureAction"
+                method="uploadSpecialRecommendPic">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">result</param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+        </action>
+
+        <action name="savePictureChange" class="com.myweb.action.PictureAction"
+                method="savePictureChange">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="addCardComment" class="com.myweb.action.DiscussAction"
+                method="addCardComment">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="addOthCardComment" class="com.myweb.action.DiscussAction"
+                method="addOthCardComment">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="updateCardFavorite" class="com.myweb.action.DiscussAction"
+                method="updateCardFavorite">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="submitSendCard" class="com.myweb.action.DiscussAction"
+                method="submitSendCard">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="registerUser" class="com.myweb.action.UserAction"
+                method="registerUser">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
 
 
-		<action name="getMessageList" class="com.myweb.action.DiscussAction"
-			method="getMessageList">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
+        <action name="logonFailed" class="com.myweb.action.AdminAction"
+                method="logonFailed">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
 
-		<action name="addMessage" class="com.myweb.action.DiscussAction"
-			method="addMessage">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
+        <action name="discuss" class="com.myweb.action.AdminAction"
+                method="discuss">
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
 
-		<action name="addReceiveMessage" class="com.myweb.action.DiscussAction"
-			method="addReceiveMessage">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
+        <action name="getUserDatas" class="com.myweb.action.UserAction"
+                method="getUserDatas">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
 
-		<action name="uploadUserFaceImg" class="com.myweb.action.UserAction"
-			method="uploadUserFaceImg">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">result</param>
-				<param name="contentType">
-					text/html
-				</param>
-			</result>
-		</action>
 
-		<action name="updateUserInfo" class="com.myweb.action.UserAction"
-			method="updateUserInfo">
-			<interceptor-ref name="permissionStack" />
-			<result type="json">
-				<param name="root">responseJson</param>
-			</result>
-		</action>
-	</package>
+        <action name="getMessageList" class="com.myweb.action.DiscussAction"
+                method="getMessageList">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="addMessage" class="com.myweb.action.DiscussAction"
+                method="addMessage">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="addReceiveMessage" class="com.myweb.action.DiscussAction"
+                method="addReceiveMessage">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="uploadUserFaceImg" class="com.myweb.action.UserAction"
+                method="uploadUserFaceImg">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">result</param>
+                <param name="contentType">
+                    text/html
+                </param>
+            </result>
+        </action>
+
+        <action name="updateUserInfo" class="com.myweb.action.UserAction"
+                method="updateUserInfo">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+        <action name="findHotUsers" class="com.myweb.action.UserAction"
+                method="findHotUsers">
+            <interceptor-ref name="permissionStack"/>
+            <result type="json">
+                <param name="root">responseJson</param>
+            </result>
+        </action>
+
+    </package>
 </struts>

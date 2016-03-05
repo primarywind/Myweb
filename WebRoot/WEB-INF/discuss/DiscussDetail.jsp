@@ -45,7 +45,7 @@
 		<div class="container">
 			<!-- logo -->
 			<div class="aw-logo hidden-xs">
-				<a href="#"></a>
+				<a href="/Myweb/admin/goToDiscuss.action"></a>
 			</div>
 			<!-- end logo -->
 			<!-- 搜索框 -->

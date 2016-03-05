@@ -83,34 +83,33 @@ function findHotUser(hotUserSize) {
     $
         .ajax({
             type: "get",
-            url: "jsonkpi/findSendCardsByPage.action",
+            url: "jsonkpi/findHotUsers.action",
             data: {
-                "hotUserSize": hotUserSize,
-                "orderType": orderType
+                "hotUserSize": hotUserSize
             },
             cache: false,
             dataType: "json",
             success: function (dta) {
-                if (!dta.sendCardListViews
-                    || dta.sendCardListViews.length <= 0) {
-                    alert("已无新话题...");
+                if (!dta.hotUserViewList
+                    || dta.hotUserViewList.length <= 0) {
+                    alert("热门用户数据拉取失败...");
                 }
                 // 清空内容
-                $("#aw-common-list").empty();
+                $("#hotUser").empty();
                 // 获取模板上的HTML
-                var phtml = $('script[type="text/template"][id="sendCard"]')
+                var phtml = $('script[type="text/template"][id="hotUserListId"]')
                     .html();
 
                 // 定义一个数组，用来接收格式化合的数据
                 var arr = [];
                 // 对数据进行遍历
-                $.each(dta.sendCardListViews, function (i, o) {
+                $.each(dta.hotUserViewList, function (i, o) {
                     arr.push(formatTemplate(o, phtml));
                 });
 
                 var $items = $(arr.join(''));
                 // append items to grid
-                $('#aw-common-list').append($items)
+                $('#hotUser').append($items)
             },
             error: function (dta) {
                 alert("话题列表信息拉取失败...");
@@ -134,4 +133,4 @@ function gotoPrevious(orderType, previousPageNo) {
 }
 // 执行数据初始化
 findSendCardsByPage(orderType, pageNo);
-
+findHotUser(hotUserSize);

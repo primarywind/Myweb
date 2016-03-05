@@ -40,6 +40,17 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         return users.get(0);
     }
 
+    @Override public List<User> findHotUser(int hotUserSize) {
+        String queryString = "from User u group by u.userId ORDER BY count(*) desc limit "+hotUserSize;
+        List<User> users = getHibernateTemplate().find(queryString);
+        if (users.size() == 0) {
+            return null;
+        }
+        return users;
+    }
+
+
+
     @Override
     public void update(User user) {
         getHibernateTemplate().update(user);

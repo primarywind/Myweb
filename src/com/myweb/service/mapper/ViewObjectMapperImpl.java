@@ -1,5 +1,6 @@
 package com.myweb.service.mapper;
 
+import com.myweb.view.*;
 import ma.glasnost.orika.MapperFactory;
 
 import com.myweb.entity.Article;
@@ -10,17 +11,6 @@ import com.myweb.entity.Message;
 import com.myweb.entity.Picture;
 import com.myweb.entity.Sendcard;
 import com.myweb.entity.User;
-import com.myweb.view.ArticleListView;
-import com.myweb.view.ArticleView;
-import com.myweb.view.CategoryView;
-import com.myweb.view.FavoriteListView;
-import com.myweb.view.FollowCardListView;
-import com.myweb.view.MessageView;
-import com.myweb.view.PictureListView;
-import com.myweb.view.SendCardDetailView;
-import com.myweb.view.SendCardListView;
-import com.myweb.view.SendCardView;
-import com.myweb.view.UserView;
 
 /**
  * 
@@ -94,5 +84,10 @@ public class ViewObjectMapperImpl extends BaseOrikaMapperImpl {
             .field("receiveUserId", "receiveUserId").field("sendTime", "sendTime")
             .field("messageGroup", "messageGroup").field("messageContent", "messageContent")
             .register();
+        //热门用户视图
+        mapperFactory.classMap(User.class, HotUserView.class).byDefault().field("userId", "userId")
+            .field("userName", "userName").field("blogUrl", "blogUrl").field("gender", "gender")
+            .field("nationality", "nationality").field("level", "level").field("name", "name")
+            .field("faceImg", "faceImg").register();
     }
 }

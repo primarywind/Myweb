@@ -12,6 +12,7 @@ import com.myweb.entity.Followcard;
 import com.myweb.entity.Sendcard;
 import com.myweb.entity.User;
 import com.myweb.result.BizResult;
+import com.myweb.result.HotUserQueryResult;
 import com.myweb.result.UserInfoQueryResult;
 import com.myweb.service.IUserService;
 import com.myweb.template.QueryCallBack;
@@ -21,11 +22,7 @@ import com.myweb.util.HandlerPath;
 import com.myweb.util.MD5Util;
 import com.myweb.util.StringUtil;
 import com.myweb.util.sensitive.annotations.SensitiveInfo;
-import com.myweb.view.FavoriteListView;
-import com.myweb.view.FollowCardView;
-import com.myweb.view.SendCardListView;
-import com.myweb.view.UserInfoView;
-import com.myweb.view.UserView;
+import com.myweb.view.*;
 
 /**
  * 用户模版服务
@@ -221,6 +218,33 @@ public class UserServiceImpl extends BaseService implements IUserService {
             public void afterService(BizResult<User> result) {
             }
         });
+    }
+
+    @Override
+    public HotUserQueryResult findHotUsers(final int hotUserSize) {
+        return getViewQueryTemplate().process(HotUserQueryResult.class,
+            new QueryCallBack<HotUserQueryResult>() {
+
+                @Override
+                public void check() {
+
+                }
+
+                @Override
+                public void doProcess(HotUserQueryResult result) {
+                    List<User> users = userDao.findHotUser(hotUserSize);
+                    List<HotUserView> hotUserViews = getViewObjectMapper().map(users,
+                        HotUserView.class);
+                    for (HotUserView hotUserView : hotUserViews) {
+                        int userId = hotUserView.getUserId();
+                        int favoriteNum = favoriteDao.findFavoriteNumByUserId(userId);
+                        hotUserView.setFavoriteNum(favoriteNum);
+                        int sendCardNum = sendcardDao.getSendCardNumByUserId(userId);
+                        hotUserView.setSendCardNum(sendCardNum);
+                    }
+                    result.setHotUserViewList(hotUserViews);
+                }
+            });
     }
 
 }
